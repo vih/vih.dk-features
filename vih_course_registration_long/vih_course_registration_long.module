@@ -1,0 +1,3 @@
+<?php
+
+include_once('vih_course_registration_long.features.inc');
