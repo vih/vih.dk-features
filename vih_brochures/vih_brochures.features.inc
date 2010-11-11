@@ -10,7 +10,7 @@ function vih_brochures_node_info() {
       'base' => 'node_content',
       'description' => t('Used for ordering brochure ordering'),
       'has_title' => '1',
-      'title_label' => t('Bestil materiale'),
+      'title_label' => t('Name'),
       'help' => t('Du kan bestille vores magasin og dvd om de lange kurser eller vores brochure om de korte kurser.'),
     ),
   );
