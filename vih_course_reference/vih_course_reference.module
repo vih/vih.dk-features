@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Defines a field type for referencing courses to a subject group
+ * bound to a period with some special flags.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function vih_course_reference_menu() {
+  $items = array();
+  $items['vih_course_reference/autocomplete/%/%'] = array(
+    'title' => 'vih_course_reference autocomplete',
+    'page callback' => 'vih_course_reference_autocomplete',
+    'page arguments' => array(2, 3),
+    'access callback' => 'vih_course_reference_autocomplete_access',
+    'access arguments' => array(2, 3),
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+

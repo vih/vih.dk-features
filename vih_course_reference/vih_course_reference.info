@@ -1,0 +1,7 @@
+name = VIH course reference
+description = Defines a field type for referencing courses to a subject group bound to a period with some special flags.
+files[] = vih_course_reference.module
+package = VIH
+core = 7.x
+dependencies[] = node_reference
+
