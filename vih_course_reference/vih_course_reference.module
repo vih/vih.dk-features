@@ -168,10 +168,10 @@ function vih_course_reference_field_widget_form(&$form, &$form_state, $field, $i
 
       // If available, assign the value from the array to our elements.
       if (isset($values['period_nid'])) {
-        $element['period_nid']['#value'] = $values['period_nid'];
+        $element['period_nid']['#default_value'] = $values['period_nid'];
       }
       if (isset($values['subject_group_nid'])) {
-        $element['subject_group_nid']['#value'] = $values['subject_group_nid'];
+        $element['subject_group_nid']['#default_value'] = $values['subject_group_nid'];
       }
 
       break;
