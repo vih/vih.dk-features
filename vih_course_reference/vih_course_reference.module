@@ -22,3 +22,126 @@ function vih_course_reference_menu() {
   return $items;
 }
 
+/**
+ * Implements hook_field_info().
+ */
+function vih_course_reference_field_info() {
+  return array(
+    'vih_course_reference' => array(
+      'label'             => t('VIH course reference'),
+      'description'       => t('This field stores a three-way relation between courses, subject groups and periods.'),
+      'default_formatter' => 'vih_course_reference_formatter',
+      'default_widget'    => 'vih_course_reference_select',
+    ),
+  );
+}
+
+/**
+ * Implements hook_field_schema().
+ */
+function vih_course_reference_field_schema($field) {
+  $columns = array(
+    'period_nid' => array(
+      'type'     => 'int',
+      'unsigned' => TRUE,
+      'not null' => FALSE,
+    ),
+    'subject_group_nid' => array(
+      'type'     => 'int',
+      'unsigned' => TRUE,
+      'not null' => FALSE,
+    ),
+  );
+  return array(
+    'columns' => $columns,
+    'indexes' => array('period_nid' => array('period_nid')),
+    'foreign keys' => array(
+      'period_nid' => array(
+        'table' => 'node',
+        'columns' => array('period_nid' => 'nid'),
+      ),
+      'subject_group_nid' => array(
+        'table' => 'node',
+        'columns' => array('subject_group_nid' => 'nid'),
+      ),
+    ),
+  );
+}
+
+/**
+ * Implements hook_field_validate().
+ *
+ * Possible error codes:
+ * - 'invalid_nid': nid is not valid for the field (not a valid node id, or the node is not referenceable).
+ */
+function vih_course_reference_field_validate($entity_type, $entity, $field, $instance, $langcode, $items, &$errors) {
+  // Extract nids to check.
+  $ids = array();
+
+  // First check non-numeric "nid's to avoid losing time with them.
+  foreach ($items as $delta => $item) {
+    if (is_array($item) && !empty($item['nid'])) {
+      if (is_numeric($item['nid'])) {
+        $ids[] = $item['nid'];
+      }
+      else {
+        $errors[$field['field_name']][$langcode][$delta][] = array(
+          'error' => 'invalid_nid',
+          'message' => t("%name: invalid input.",
+             array('%name' => $instance['label'])),
+        );
+      }
+    }
+  }
+  // Prevent performance hog if there are no ids to check.
+  if ($ids) {
+    $refs = _vih_course_reference_potential_references($field, '', NULL, $ids);
+    foreach ($items as $delta => $item) {
+      if (is_array($item)) {
+        if (!empty($item['nid']) && !isset($refs[$item['nid']])) {
+          $errors[$field['field_name']][$langcode][$delta][] = array(
+            'error' => 'invalid_nid',
+            'message' => t("%name: this post can't be referenced.",
+              array('%name' => $instance['label'])),
+          );
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_field_is_empty().
+ */
+function vih_course_reference_field_is_empty($item, $field) {
+  // nid = 0 is empty too, which is exactly what we want.
+  return empty($item['period_nid']) || empty($item['subject_group_nid']);
+}
+
+/**
+ * Implements hook_field_formatter_info().
+ */
+function vih_course_reference_field_formatter_info() {
+  $ret = array(
+    'vih_course_reference_formatter' => array(
+      'label'       => t('Subject/period groups.'),
+      'description' => t('Display the subject groups, grouped by period.'),
+      'field types' => array('vih_course_reference'),
+    ),
+  );
+  return $ret;
+}
+
+/**
+ * Implements hook_field_widget_info().
+ */
+function vih_course_reference_field_widget_info() {
+  return array(
+    'vih_course_reference_select' => array(
+      'label'       => t('Selection widget'),
+      'description' => t('Enables the user to set the options for a course reference.'),
+      'field types' => array('vih_course_reference'),
+    ),
+  );
+}
+
