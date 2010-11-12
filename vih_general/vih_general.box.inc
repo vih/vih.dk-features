@@ -9,7 +9,7 @@ function vih_general_default_box() {
   $box = new stdClass;
   $box->disabled = FALSE; /* Edit this to true to make a default box disabled initially */
   $box->api_version = 1;
-  $box->delta = 'address';
+  $box->delta = 'vih_address';
   $box->plugin_key = 'simple';
   $box->title = '';
   $box->description = 'Address block for Vejle Idrætshøjskole';
@@ -22,29 +22,27 @@ Telefon: 7582 0811<br>
       'format' => '3',
     ),
   );
-  $export['address'] = $box;
+  $export['vih_address'] = $box;
 
   $box = new stdClass;
   $box->disabled = FALSE; /* Edit this to true to make a default box disabled initially */
   $box->api_version = 1;
-  $box->delta = 'highlighted_box';
+  $box->delta = 'vih_highlighted_box';
   $box->plugin_key = 'simple';
   $box->title = '';
   $box->description = 'The highlighed text at the top of vih.dk';
   $box->options = array(
     'body' => array(
-      'value' => '<p>Spørgsmål til højskoleophold eller rundvisning<span>Kontakt Peter Sebastian på 2929 6387 eller ps@vih.dk.</span></p>            </div>
-
-',
+      'value' => '<p>Spørgsmål til højskoleophold eller rundvisning<span>Kontakt Peter Sebastian på 2929 6387 eller ps@vih.dk.</span></p></div>',
       'format' => '3',
     ),
   );
-  $export['highlighted_box'] = $box;
+  $export['vih_highlighted_box'] = $box;
 
   $box = new stdClass;
   $box->disabled = FALSE; /* Edit this to true to make a default box disabled initially */
   $box->api_version = 1;
-  $box->delta = 'links_sistersites';
+  $box->delta = 'vih_links_sistersites';
   $box->plugin_key = 'simple';
   $box->title = '';
   $box->description = 'Links for other sites at Vejle Idrætsskole';
@@ -54,22 +52,22 @@ Telefon: 7582 0811<br>
       'format' => '3',
     ),
   );
-  $export['links_sistersites'] = $box;
+  $export['vih_links_sistersites'] = $box;
 
   $box = new stdClass;
   $box->disabled = FALSE; /* Edit this to true to make a default box disabled initially */
   $box->api_version = 1;
-  $box->delta = 'rundvisning';
+  $box->delta = 'vih_book_tour';
   $box->plugin_key = 'simple';
   $box->title = 'Rundvisning';
-  $box->description = 'Rundvisning';
+  $box->description = 'Book tour';
   $box->options = array(
     'body' => array(
-      'value' => '<p>Rundvisning rundt over det hele på skolen. Det er da ik så ringe. dkfdslkfsd</p>',
+      'value' => '<p>Du er meget velkommen til at ringe til skolen og aftale et tidspunkt for en rigtig rundvisning. Kontakt Peter Sebastian på 2929 6387.</p>',
       'format' => '2',
     ),
   );
-  $export['rundvisning'] = $box;
+  $export['vih_book_tour'] = $box;
 
   return $export;
 }
