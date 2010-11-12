@@ -109,11 +109,11 @@ function vih_course_reference_field_widget_form(&$form, &$form_state, $field, $i
       $values = (isset($items[$delta])) ? $items[$delta] : array();
 
       // If available, assign the value from the array to our elements.
-      if (isset($values['period_nid'])) {
-        $element['period_nid']['#default_value'] = $values['period_nid'];
-      }
-      if (isset($values['subject_group_nid'])) {
-        $element['subject_group_nid']['#default_value'] = $values['subject_group_nid'];
+      foreach ($values as $key => $value) {
+        // Check that the element exists before setting a value for it.
+        if (isset($element[$key]) && is_array($element[$key])) {
+          $element[$key]['#default_value'] = $value;
+        }
       }
 
       break;
