@@ -1,0 +1,5 @@
+name = VIH Registration for Long Courses
+description = Registration for courses of longer duration
+files[] = vih_course_registration_long.module
+package = VIH
+core = 7.x

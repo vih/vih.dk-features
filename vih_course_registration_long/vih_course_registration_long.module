@@ -1,0 +1,18 @@
+<?php
+/**
+ * Implements hook_menu() to set up the URLs (menu entries) for the
+ * form examples.
+ */
+function vih_course_registration_long_menu() {
+  $items = array();
+  $items['registration/long/form'] = array(
+    'title' => 'Register for long course',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('vih_course_registration_long_form'),
+    'access callback' => TRUE,
+    'description' => 'Registration form',
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'vih_course_registration_long.form.inc',
+  );
+  return $items;
+}
