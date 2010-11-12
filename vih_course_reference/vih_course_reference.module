@@ -145,3 +145,80 @@ function vih_course_reference_field_widget_info() {
   );
 }
 
+/**
+ * Implements hook_field_widget_form().
+ */
+function vih_course_reference_field_widget_form(&$form, &$form_state, $field, $instance, $langcode, $items, $delta, $element) {
+  switch ($instance['widget']['type']) {
+    case 'vih_course_reference_select':
+      $element['period_nid'] = array(
+        '#type' => 'select',
+        '#title' => t('Period'),
+        '#options' => vih_course_reference_get_periods(),
+      );
+
+      $element['subject_group_nid'] = array(
+        '#type' => 'select',
+        '#title' => t('Subject group'),
+        '#options' => vih_course_reference_get_subject_groups(),
+      );
+
+      // Get the values for the current widget.
+      $values = (isset($items[$delta])) ? $items[$delta] : array();
+
+      // If available, assign the value from the array to our elements.
+      if (isset($values['period_nid'])) {
+        $element['period_nid']['#value'] = $values['period_nid'];
+      }
+      if (isset($values['subject_group_nid'])) {
+        $element['subject_group_nid']['#value'] = $values['subject_group_nid'];
+      }
+
+      break;
+  }
+
+  return $element;
+}
+
+/**
+ * Get available subject groups.
+ *
+ * @return
+ *   Array of subject group node names, keyed by nid. Suitable for
+ *   select forms.
+ */
+function vih_course_reference_get_periods() {
+  $nodes = node_load_multiple(array(), array(
+    'status' => 1,
+    'type' => 'course_period',
+  ));
+
+  $periods = array();
+  foreach ($nodes as $node) {
+    $periods[$node->nid] = $node->title;
+  }
+
+  return $periods;
+}
+
+/**
+ * Get available subject groups.
+ *
+ * @return
+ *   Array of subject group node names, keyed by nid. Suitable for
+ *   select forms.
+ */
+function vih_course_reference_get_subject_groups() {
+  $nodes = node_load_multiple(array(), array(
+    'status' => 1,
+    'type' => 'course_subject_group',
+  ));
+
+  $groups = array('' => t('Choose subject group'));
+  foreach ($nodes as $node) {
+    $groups[$node->nid] = $node->title;
+  }
+
+  return $groups;
+}
+
