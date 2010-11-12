@@ -7,22 +7,6 @@
  */
 
 /**
- * Implements hook_menu().
- */
-function vih_course_reference_menu() {
-  $items = array();
-  $items['vih_course_reference/autocomplete/%/%'] = array(
-    'title' => 'vih_course_reference autocomplete',
-    'page callback' => 'vih_course_reference_autocomplete',
-    'page arguments' => array(2, 3),
-    'access callback' => 'vih_course_reference_autocomplete_access',
-    'access arguments' => array(2, 3),
-    'type' => MENU_CALLBACK,
-  );
-  return $items;
-}
-
-/**
  * Implements hook_field_info().
  */
 function vih_course_reference_field_info() {
@@ -51,6 +35,13 @@ function vih_course_reference_field_schema($field) {
       'unsigned' => TRUE,
       'not null' => FALSE,
     ),
+    'signup_enabled' => array(
+      'type' => 'int',
+      'unsigned' => TRUE,
+      'size' => 'tiny',
+      'not null' => TRUE,
+      'default' => 0,
+    ),
   );
   return array(
     'columns' => $columns,
@@ -66,48 +57,6 @@ function vih_course_reference_field_schema($field) {
       ),
     ),
   );
-}
-
-/**
- * Implements hook_field_validate().
- *
- * Possible error codes:
- * - 'invalid_nid': nid is not valid for the field (not a valid node id, or the node is not referenceable).
- */
-function vih_course_reference_field_validate($entity_type, $entity, $field, $instance, $langcode, $items, &$errors) {
-  // Extract nids to check.
-  $ids = array();
-
-  // First check non-numeric "nid's to avoid losing time with them.
-  foreach ($items as $delta => $item) {
-    if (is_array($item) && !empty($item['nid'])) {
-      if (is_numeric($item['nid'])) {
-        $ids[] = $item['nid'];
-      }
-      else {
-        $errors[$field['field_name']][$langcode][$delta][] = array(
-          'error' => 'invalid_nid',
-          'message' => t("%name: invalid input.",
-             array('%name' => $instance['label'])),
-        );
-      }
-    }
-  }
-  // Prevent performance hog if there are no ids to check.
-  if ($ids) {
-    $refs = _vih_course_reference_potential_references($field, '', NULL, $ids);
-    foreach ($items as $delta => $item) {
-      if (is_array($item)) {
-        if (!empty($item['nid']) && !isset($refs[$item['nid']])) {
-          $errors[$field['field_name']][$langcode][$delta][] = array(
-            'error' => 'invalid_nid',
-            'message' => t("%name: this post can't be referenced.",
-              array('%name' => $instance['label'])),
-          );
-        }
-      }
-    }
-  }
 }
 
 /**
@@ -163,15 +112,20 @@ function vih_course_reference_field_widget_form(&$form, &$form_state, $field, $i
         '#options' => vih_course_reference_get_subject_groups(),
       );
 
+      $element['signup_enabled'] = array(
+        '#type' => 'checkbox',
+        '#title' => t('Signup enabled?'),
+      );
+
       // Get the values for the current widget.
       $values = (isset($items[$delta])) ? $items[$delta] : array();
 
       // If available, assign the value from the array to our elements.
-      if (isset($values['period_nid'])) {
-        $element['period_nid']['#value'] = $values['period_nid'];
-      }
-      if (isset($values['subject_group_nid'])) {
-        $element['subject_group_nid']['#value'] = $values['subject_group_nid'];
+      foreach ($values as $key => $value) {
+        // Check that the element exists before setting a value for it.
+        if (isset($element[$key]) && is_array($element[$key])) {
+          $element[$key]['#default_value'] = $value;
+        }
       }
 
       break;
