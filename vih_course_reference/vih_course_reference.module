@@ -35,6 +35,13 @@ function vih_course_reference_field_schema($field) {
       'unsigned' => TRUE,
       'not null' => FALSE,
     ),
+    'signup_enabled' => array(
+      'type' => 'int',
+      'unsigned' => TRUE,
+      'size' => 'tiny',
+      'not null' => TRUE,
+      'default' => 0,
+    ),
   );
   return array(
     'columns' => $columns,
@@ -103,6 +110,11 @@ function vih_course_reference_field_widget_form(&$form, &$form_state, $field, $i
         '#type' => 'select',
         '#title' => t('Subject group'),
         '#options' => vih_course_reference_get_subject_groups(),
+      );
+
+      $element['signup_enabled'] = array(
+        '#type' => 'checkbox',
+        '#title' => t('Signup enabled?'),
       );
 
       // Get the values for the current widget.
