@@ -41,7 +41,7 @@ function vih_course_registration_long_form($form, &$form_state) {
     '#title' => t('CPR-number'),
     '#required' => TRUE,
     '#default_value' => "DDMMYY-XXXX",
-    '#description' => "Please enter your CPR number.",
+    '#description' => "Please enter your CPR number. Format ddmmyy-xxxx",
     '#size' => 20,
     '#maxlength' => 20,
   );
