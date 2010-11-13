@@ -15,9 +15,9 @@ function vih_general_default_box() {
   $box->description = 'Address block for Vejle Idrætshøjskole';
   $box->options = array(
     'body' => array(
-      'value' => '<p id="address">Ørnebjergvej 28<br>
-7100 Vejle<br>
-Telefon: 7582 0811<br>
+      'value' => '<p id="address">Ørnebjergvej 28
+7100 Vejle
+Telefon: 7582 0811
 <a href="mailto:kontor@vih.dk">E-mail</a></p>',
       'format' => '3',
     ),
