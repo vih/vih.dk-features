@@ -2,25 +2,49 @@
 function vih_course_short_menu() {
     $items = array();
     $items['kortekurser'] = array(
-        'page callback' => 'vih_course_short_list',
+        'title' => 'Korte kurser',
+        'title callback' => 'vih_course_short_title',
+        'title arguments' => array(1),
+        'page callback' => 'vih_course_short_view',
         'page arguments' => array(1),
         'access arguments' => array('access content'),
-        'type' => MENU_CALLBACK,
-    );
-
-    $items['kortekurser/%'] = array(
-        'page callback' => 'vih_course_short_show',
-        'page arguments' => array(1),
-        'access arguments' => array('access content'),
-        'type' => MENU_CALLBACK,
+        'type' => MENU_NORMAL_ITEM,
+        'menu_name' => 'main_menu'
     );
     return $items;
 }
 
-function vih_course_short_list() {
-    return 'list';
+function vih_course_short_load($id) {
+    return $result = db_query("SELECT navn FROM {kortkursus} WHERE id = :id", array(':id' => $id), array('target' => 'vih'))->fetchObject();
 }
 
-function vih_course_short_show() {
-    return 'kursus';
+function vih_course_short_view($id = 0) {
+    if ($id > 0) {
+        $course = vih_course_short_load($id);
+        if (!$course) {
+            // @todo
+            die('Should return 404');
+        }
+        return $course->navn;
+    }
+    $courses = '';
+    $result = db_query("SELECT navn FROM {kortkursus} WHERE dato_slut > :date", array(':date' => date('2009-m-d')), array('target' => 'vih'));
+    
+    // @todo HOWTO THEME THIS?
+    foreach ($result as $course) {
+        $courses .= $course->navn;
+    }
+    return $courses;
+}
+
+function vih_course_short_title($id = 0) {
+    if ($id > 0) {
+        $course = vih_course_short_load($id);
+        if (!$course) {
+            // @todo
+            die('Should return 404');
+        }
+        return $course->navn;
+    }
+    return 'Korte kurser';
 }
