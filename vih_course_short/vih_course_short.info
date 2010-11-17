@@ -1,0 +1,7 @@
+core = "7.x"
+description = "Module for short courses."
+name = "VIH Short Course"
+package = "VIH"
+php = "5.2.4"
+project = "vih_course_short"
+version = "7.x-0.1"

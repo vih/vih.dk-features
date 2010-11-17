@@ -1,0 +1,26 @@
+<?php
+function vih_course_short_menu() {
+    $items = array();
+    $items['kortekurser'] = array(
+        'page callback' => 'vih_course_short_list',
+        'page arguments' => array(1),
+        'access arguments' => array('access content'),
+        'type' => MENU_CALLBACK,
+    );
+
+    $items['kortekurser/%'] = array(
+        'page callback' => 'vih_course_short_show',
+        'page arguments' => array(1),
+        'access arguments' => array('access content'),
+        'type' => MENU_CALLBACK,
+    );
+    return $items;
+}
+
+function vih_course_short_list() {
+    return 'list';
+}
+
+function vih_course_short_show() {
+    return 'kursus';
+}
