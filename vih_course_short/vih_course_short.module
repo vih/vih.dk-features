@@ -3,8 +3,6 @@ function vih_course_short_menu() {
     $items = array();
     $items['kortekurser'] = array(
         'title' => 'Korte kurser',
-        'title callback' => 'vih_course_short_title',
-        'title arguments' => array(1),
         'page callback' => 'vih_course_short_view',
         'page arguments' => array(1),
         'access arguments' => array('access content'),
@@ -23,10 +21,13 @@ function vih_course_short_view($id = 0) {
         $course = vih_course_short_load($id);
         if (!$course) {
             // @todo
-            die('Should return 404');
+            drupal_add_http_header('Status', '404 Not Found');
+            exit('404 / Page Not Found');
         }
+        drupal_set_title($course->navn);
         return $course->navn;
     }
+    drupal_set_title('Korte kurser');
     $courses = '';
     $result = db_query("SELECT navn FROM {kortkursus} WHERE dato_slut > :date", array(':date' => date('2009-m-d')), array('target' => 'vih'));
     
@@ -35,16 +36,4 @@ function vih_course_short_view($id = 0) {
         $courses .= $course->navn;
     }
     return $courses;
-}
-
-function vih_course_short_title($id = 0) {
-    if ($id > 0) {
-        $course = vih_course_short_load($id);
-        if (!$course) {
-            // @todo
-            die('Should return 404');
-        }
-        return $course->navn;
-    }
-    return 'Korte kurser';
 }
