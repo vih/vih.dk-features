@@ -7,6 +7,18 @@
  */
 
 /**
+ * Implements hook_theme().
+ */
+function vih_course_reference_theme($existing, $type, $theme, $path) {
+  return array(
+    'vih_course_grouped_subjects' => array(
+      'variables' => array('items' => NULL),
+      'template' => 'vih_course_grouped_subjects',
+    ),
+  );
+}
+
+/**
  * Implements hook_field_info().
  */
 function vih_course_reference_field_info() {
@@ -79,6 +91,48 @@ function vih_course_reference_field_formatter_info() {
     ),
   );
   return $ret;
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ */
+function vih_course_reference_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  $result = array();
+
+  switch ($display['type']) {
+    case 'vih_course_reference_formatter':
+      return array(array(
+        '#markup' => theme('vih_course_grouped_subjects', array('items' => $items)),
+      ));
+      break;
+    case 'node_reference_plain':
+      foreach ($items as $delta => $item) {
+        if ($item['access']) {
+          $node = $item['node'];
+          if ($display['type'] == 'node_reference_default') {
+            $uri = entity_uri('node', $node);
+            $result[$delta] = array(
+              '#type' => 'link',
+              '#title' => $node->title,
+              '#href' => $uri['path'],
+              '#options' => $uri['options'],
+            );
+          }
+          else {
+            $result[$delta] = array(
+              '#markup' => check_plain($node->title),
+            );
+          }
+          if (!$node->status) {
+            $result[$delta]['#prefix'] = '<span class="node-unpublished">';
+            $result[$delta]['#suffix'] = '</span>';
+          }
+        }
+      }
+      break;
+  }
+
+  return $result;
 }
 
 /**
@@ -174,5 +228,47 @@ function vih_course_reference_get_subject_groups() {
   }
 
   return $groups;
+}
+
+/**
+ * Variable preprocessor for vih_course_grouped_subjects.tpl.php
+ */
+function template_preprocess_vih_course_grouped_subjects(&$vars) {
+  // Collect the node ids of all nodes that should be loaded to
+  // render this view, so we can load them all at once.
+  $nids = array();
+
+  // Group the subject groups by period.
+  $vars['groups'] = array();
+  foreach ($vars['items'] as $delta => $item) {
+    $nids[$item['period_nid']] = $item['period_nid'];
+    $nids[$item['subject_group_nid']] = $item['subject_group_nid'];
+
+    $vars['groups'][$item['period_nid']][$delta] = $item;
+  }
+
+  // Load all the nodes we need to render this stuff.
+  $vars['nodes'] = node_load_multiple($nids, array('status' => 1));
+
+  // Get the nids for all the subjects, so we can load their titles.
+  $subject_nids = array();
+  $vars['group_subject_nids'] = array();
+  foreach ($vars['nodes'] as $node) {
+    if ($node->type == 'course_subject_group') {
+      foreach ($node->field_subject_group_subjects['und'] as $reference) {
+        $nid = (integer) $reference['nid'];
+        $subject_nids[$nid] = $nid;
+        $vars['group_subject_nids'][$node->nid][$nid] = $nid;
+      }
+    }
+  }
+
+  // Load the titles for each subjects.
+  $vars['subject_titles'] = array();
+  foreach (db_query("SELECT nid, title FROM {node} WHERE nid IN (:nids)", array(':nids' => $subject_nids)) as $row) {
+    $vars['subject_titles'][$row->nid] = $row->title;
+  }
+
+  dpm($vars);
 }
 
