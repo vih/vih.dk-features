@@ -34,7 +34,7 @@ function vih_course_short_view() {
     $courses = db_query("SELECT id, navn, uge, DATE_FORMAT('%Y', 'dato_start') AS aar FROM {kortkursus} WHERE dato_slut > :date", array(':date' => date('Y-m-d')), array('target' => 'vih'));
     
     $table = array();
-    $table['header'] = array('Kursus', 'Uge', '');
+    $table['header'] = array('Kursus', 'Uge', '&nbsp;');
     $table['caption'] = 'Korte kurser';
     $table['attributes'] = array();
     $table['colgroups'] = array();
@@ -42,7 +42,7 @@ function vih_course_short_view() {
     $table['empty'] = array();
     
     foreach ($courses as $course) {
-        $table['rows'][] = array(l($course->navn, 'kortekurser/' . $course->id), $course->uge, '', l('Tilmelding', 'kortekurser/' . $course->id));
+        $table['rows'][] = array(l($course->navn, 'kortekurser/' . $course->id), $course->uge, l('Tilmelding', 'kortekurser/' . $course->id));
     }
   
     return theme_table($table);
