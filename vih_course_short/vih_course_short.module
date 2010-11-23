@@ -1,10 +1,17 @@
 <?php
+/**
+ * Module shows lists with short courses. The single courses
+ * will not be shown here, but in a separate registration system.
+ */
+
+/**
+ * Implementation of hook_menu().
+ */
 function vih_course_short_menu() {
     $items = array();
     $items['kortekurser'] = array(
         'title' => 'Korte kurser',
         'page callback' => 'vih_course_short_view',
-        'page arguments' => array(1),
         'access arguments' => array('access content'),
         'type' => MENU_NORMAL_ITEM,
         'menu_name' => 'main_menu'
@@ -12,28 +19,47 @@ function vih_course_short_menu() {
     return $items;
 }
 
-function vih_course_short_load($id) {
-    return $result = db_query("SELECT navn FROM {kortkursus} WHERE id = :id", array(':id' => $id), array('target' => 'vih'))->fetchObject();
+/**
+ * Implementation of hook_views_api().
+ */
+function vih_course_short_views_api() {
+    return array(
+        'api' => 2,
+        'path' => drupal_get_path('module', 'vih_course_short'),
+    );
 }
 
-function vih_course_short_view($id = 0) {
-    if ($id > 0) {
-        $course = vih_course_short_load($id);
-        if (!$course) {
-            // @todo
-            drupal_add_http_header('Status', '404 Not Found');
-            exit('404 / Page Not Found');
-        }
-        drupal_set_title($course->navn);
-        return $course->navn;
-    }
+function vih_course_short_view() {
     drupal_set_title('Korte kurser');
-    $courses = '';
-    $result = db_query("SELECT navn FROM {kortkursus} WHERE dato_slut > :date", array(':date' => date('2009-m-d')), array('target' => 'vih'));
+    $courses = db_query("SELECT id, navn, uge, DATE_FORMAT('%Y', 'dato_start') AS aar FROM {kortkursus} WHERE dato_slut > :date", array(':date' => date('2009-m-d')), array('target' => 'vih'));
     
-    // @todo HOWTO THEME THIS?
-    foreach ($result as $course) {
-        $courses .= $course->navn;
+    $table = array();
+    $table['header'] = array('Kursus', 'Uge', 'Pladser', '');
+    $table['caption'] = 'Korte kurser';
+    $table['attributes'] = array();
+    $table['colgroups'] = array();
+    $table['sticky'] = array();
+    $table['empty'] = array();
+    
+    foreach ($courses as $course) {
+        $table['rows'][] = array(l($course->navn, 'kortekurser/' . $course->id), $course->uge, '', l('Tilmelding', 'kortekurser/' . $course->id));
     }
-    return $courses;
+  
+    return theme_table($table);
+}
+
+/**
+ * Implementation of hook_theme().
+ */
+function vih_course_short_theme() {
+  return array(
+    'vih_course_short_table' => array(
+      'template' => 'templates/courses',
+      'arguments' => array(
+        'summary' => null,
+        'caption' => null,
+        'courses' => null
+      ),
+    ),
+  );
 }
