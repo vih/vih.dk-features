@@ -54,6 +54,9 @@ function vih_course_registration_long_wizard() {
     ),
   );
 
+  // Get the step keys for easy access in the logic below.
+  $step_keys = array_keys($form_info['order']);
+
   $form_state = array(
     'cache key' => $form_info['id'],
   );
@@ -61,15 +64,37 @@ function vih_course_registration_long_wizard() {
   // Get the cached values.
   $values = ctools_object_cache_get('vih_course_registration_long', $form_state['cache key']);
 
+  // Check if course is set in the REQUEST parameters, and if so, store
+  // it and skip the first step.
+  if (isset($_REQUEST['course']) && $_REQUEST['course'] > 0) {
+    // Cast to integer to make sure the value is safe.
+    $values['course'] = (integer) $_REQUEST['course'];
+
+    // Skip the first step.
+    if (!$step || $step == $step_keys[0]) {
+      return drupal_goto('registration/long/form/' . $step_keys[1]);
+    }
+  }
+
   // Check if we have cached values.
   if (!$values) {
     // If we are not on the first step, redirect to it.
     if (array_search($step, array_keys($form_info['order'])) > 0) {
-      return drupal_goto('registration/long/form' . current(array_keys($form_info['order'])));
+      return drupal_goto('registration/long/form/' . $step_keys[0]);
     }
 
     // Initialise cache to an empty array.
     ctools_object_cache_set('vih_course_registration_long', $form_state['cache key'], array());
+  }
+
+  // Check that we are not skipping steps.
+  if (!isset($values['course']) && array_search($step, $step_keys) > array_search('course', $step_keys)) {
+    drupal_set_message('Please select a course');
+    return drupal_goto('registration/long/form/' . $step_keys[0]);
+  }
+  elseif (!isset($values['subjects']) && array_search($step, $step_keys) > array_search('subjects', $step_keys)) {
+    drupal_set_message('Please select subjects');
+    return drupal_goto('registration/long/form/' . $step_keys[1]);
   }
 
   // Send the cached data along to the form.
