@@ -1,10 +1,40 @@
 <?php
+
 /**
- * From http://drupal.org/node/717736
- * @see form_example_tutorial_6_validate()
- *
+ * @file
+ * Form callbacks for the vih_course_registration_long module.
  */
-function vih_course_registration_long_form($form, &$form_state) {
+
+/**
+ * Long course registration course selection form (step 1).
+ */
+function vih_course_registration_long_course_form($form, &$form_state) {
+  $form['course'] = array(
+    '#type' => 'select',
+    '#title' => t('Select course'),
+    '#options' => array(1, 2, 3),
+  );
+
+  return $form;
+}
+
+/**
+ * Long course registration subject selection form (step 2).
+ */
+function vih_course_registration_long_subjects_form($form, &$form_state) {
+  $form['subjects'] = array(
+    '#type' => 'select',
+    '#title' => t('Select subjects'),
+    '#options' => array(1, 2, 3),
+  );
+
+  return $form;
+}
+
+/**
+ * Long course registration student information form (step 3).
+ */
+function vih_course_registration_long_info_form($form, &$form_state) {
   $form['description'] = array(
     '#type' => 'item',
     '#title' => t('Important: When filling out this form, you also accept our payment conditions. Your registrations is not completed before we receive your payment.'),
@@ -172,22 +202,19 @@ function vih_course_registration_long_form($form, &$form_state) {
     '#type' => 'submit',
     '#value' => 'Submit',
   );
+
   return $form;
 }
 
 /**
- * The value report is
- * $form_state['values'] (see http://drupal.org/node/144132#form-state).
- *
- * Values to validate are in this array: $form_state['values']
- *
- * Notice the name of the function. It is simply the name of the form
- * followed by '_validate'. This is always the name of the default validation
- * function. An alternate list of validation functions could have been provided
- * in $form['#validate'].
- *
- * @see form_example_tutorial_6()
- *
+ * Long course registration confirmation form (step 4).
  */
-function vih_registration_form_validate($form, &$form_state) {
+function vih_course_registration_long_confirm_form($form, &$form_state) {
+  $form['message'] = array(
+    '#markup' => t('Please confirm your registration'),
+  );
+
+
+  return $form;
 }
+
