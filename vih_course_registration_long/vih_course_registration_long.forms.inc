@@ -1,10 +1,119 @@
 <?php
+
 /**
- * From http://drupal.org/node/717736
- * @see form_example_tutorial_6_validate()
- *
+ * @file
+ * Form callbacks for the vih_course_registration_long module.
  */
-function vih_course_registration_long_form($form, &$form_state) {
+
+/**
+ * Long course registration course selection form (step 1).
+ */
+function vih_course_registration_long_course_form($form, &$form_state) {
+  $form['course'] = array(
+    '#type' => 'select',
+    '#title' => t('Select course'),
+    '#options' => vih_course_registration_long_course_options(),
+    '#default_value' => $form_state['cached data']['course'],
+    '#required' => TRUE,
+  );
+
+  return $form;
+}
+
+/**
+ * Helper function to provide a list of available courses.
+ *
+ * This is intended for use with a standard form API select field.
+ *
+ * @return
+ *   Array of course titles, keyed by their node id.
+ */
+function vih_course_registration_long_course_options() {
+  $options = array();
+
+  foreach (node_load_multiple(array(), array('status' => 1, 'type' => 'course_long')) as $node) {
+    $options[$node->nid]  = $node->title;
+  }
+
+  return $options;
+}
+
+/**
+ * Long course registration subject selection form (step 2).
+ */
+function vih_course_registration_long_subjects_form($form, &$form_state) {
+  $course = node_load($form_state['cached data']['course']);
+
+  // Make a list of the nodes we need to load.
+  $nids = array();
+
+  // Group subject groups by period and add them to the nid loading list.
+  $groups = array();
+  foreach ($course->field_course_subject_groups['und'] as $group) {
+    $nids[$group['subject_group_nid']] = $group['subject_group_nid'];
+    $nids[$group['period_nid']] = $group['period_nid'];
+    $groups[$group['period_nid']][] = $group['subject_group_nid'];
+  }
+
+  // Load all the required nodes.
+  $nodes = node_load_multiple($nids);
+
+  // Make a list of all the subjects in question, so we can load their titles.
+  $subject_nids = array();
+  foreach ($nodes as $node) {
+    if (isset($node->field_subject_group_subjects['und'])) {
+      foreach ($node->field_subject_group_subjects['und'] as $subject) {
+        $subject_nids[$subject['nid']] = $subject['nid'];
+      }
+    }
+  }
+
+  // Load the title for each subject.
+  $subject_titles = array();
+  foreach (db_query("SELECT nid, title FROM {node} WHERE nid IN (:nids)", array(':nids' => $subject_nids)) as $row) {
+    $subject_titles[$row->nid] = $row->title;
+  }
+
+  // Now we have all the data we need, start building the form.
+  $form['subjects'] = array(
+    '#tree' => 'TRUE',
+  );
+
+  // Make a fieldset for each period.
+  foreach ($groups as $period_nid => $period_groups) {
+    $form['subjects'][$period_nid] = array(
+      '#tree' => TRUE,
+      '#type' => 'fieldset',
+      '#title' => $nodes[$period_nid]->title,
+    );
+
+    // Make a set of radios for each subject group in each period.
+    foreach ($period_groups as $group_nid) {
+      $group_node = $nodes[$group_nid];
+      $form['subjects'][$period_nid][$group_nid] = array(
+        '#tree' => TRUE,
+        '#type' => 'radios',
+        '#title' => $group_node->title,
+        // If set, use the cached values as default. That was, the user
+        // will see his previous entries if going backwards in the flow.
+        '#default_value' => (isset($form_state['cached data']['subjects'][$period_nid][$group_nid])) ? $form_state['cached data']['subjects'][$period_nid][$group_nid] : NULL,
+        '#options' => array(),
+      );
+
+      // Add each subject as an option to the set of radios.
+      foreach ($group_node->field_subject_group_subjects['und'] as $subject) {
+        $form['subjects'][$period_nid][$group_nid]['#options'][$subject['nid']] = $subject_titles[$subject['nid']];
+      }
+    }
+  }
+
+  return $form;
+}
+
+/**
+ * Long course registration student information form (step 3).
+ */
+function vih_course_registration_long_info_form($form, &$form_state) {
   $form['description'] = array(
     '#type' => 'item',
     '#title' => t('Important: When filling out this form, you also accept our payment conditions. Your registrations is not completed before we receive your payment.'),
@@ -172,22 +281,19 @@ function vih_course_registration_long_form($form, &$form_state) {
     '#type' => 'submit',
     '#value' => 'Submit',
   );
+
   return $form;
 }
 
 /**
- * The value report is
- * $form_state['values'] (see http://drupal.org/node/144132#form-state).
- *
- * Values to validate are in this array: $form_state['values']
- *
- * Notice the name of the function. It is simply the name of the form
- * followed by '_validate'. This is always the name of the default validation
- * function. An alternate list of validation functions could have been provided
- * in $form['#validate'].
- *
- * @see form_example_tutorial_6()
- *
+ * Long course registration confirmation form (step 4).
  */
-function vih_registration_form_validate($form, &$form_state) {
+function vih_course_registration_long_confirm_form($form, &$form_state) {
+  $form['message'] = array(
+    '#markup' => t('Please confirm your registration'),
+  );
+
+
+  return $form;
 }
+
