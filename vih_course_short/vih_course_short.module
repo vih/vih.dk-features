@@ -47,19 +47,3 @@ function vih_course_short_view() {
   
     return theme_table($table);
 }
-
-/**
- * Implementation of hook_theme().
- */
-function vih_course_short_theme() {
-  return array(
-    'vih_course_short_table' => array(
-      'template' => 'templates/courses',
-      'arguments' => array(
-        'summary' => null,
-        'caption' => null,
-        'courses' => null
-      ),
-    ),
-  );
-}
