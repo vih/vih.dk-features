@@ -1,5 +1,5 @@
 core = "7.x"
-description = "Module for short courses."
+description = "Connects to the legacy database for short courses. The module is meant to be temporary until the entire system can be moved to Drupal."
 name = "VIH Short Course"
 package = "VIH"
 php = "5.2.4"
