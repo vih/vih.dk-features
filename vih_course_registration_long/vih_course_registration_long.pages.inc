@@ -72,6 +72,7 @@ function vih_course_registration_long_wizard() {
 
     // Skip the first step.
     if (!$step || $step == $step_keys[0]) {
+      ctools_object_cache_set('vih_course_registration_long', $form_state['cache key'], $values);
       return drupal_goto('registration/long/form/' . $step_keys[1]);
     }
   }
