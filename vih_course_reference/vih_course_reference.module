@@ -268,7 +268,5 @@ function template_preprocess_vih_course_grouped_subjects(&$vars) {
   foreach (db_query("SELECT nid, title FROM {node} WHERE nid IN (:nids)", array(':nids' => $subject_nids)) as $row) {
     $vars['subject_titles'][$row->nid] = $row->title;
   }
-
-  dpm($vars);
 }
 
