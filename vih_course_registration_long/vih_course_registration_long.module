@@ -17,3 +17,17 @@ function vih_course_registration_long_menu() {
   return $items;
 }
 
+/**
+ * Implements hook_node_view().
+ */
+function vih_course_registration_long_node_view($node, $view_mode, $langcode) {
+  // For long courses, add a link to the registration form.
+  if ($node->type == 'course_long') {
+    array_unshift($node->content['links']['#links'], array(
+      'title' => t('Go to registration'),
+      'href' => 'registration/long/form',
+      'query' => array('course' => $node->nid),
+    ));
+  }
+}
+
