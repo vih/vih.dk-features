@@ -114,6 +114,11 @@ function vih_course_registration_long_subjects_form($form, &$form_state) {
  * Long course registration student information form (step 3).
  */
 function vih_course_registration_long_info_form($form, &$form_state) {
+  // Necessary for country_get_list(); not using include_once for performance.
+  if (!function_exists('country_get_list')) {
+    include DRUPAL_ROOT . '/includes/locale.inc';
+  }
+
   $form['description'] = array(
     '#type' => 'item',
     '#title' => t('Important: When filling out this form, you also accept our payment conditions. Your registrations is not completed before we receive your payment.'),
@@ -127,6 +132,7 @@ function vih_course_registration_long_info_form($form, &$form_state) {
     '#collapsible' => FALSE,
     '#collapsed' => FALSE,
   );
+
   $form['personalinfo']['name'] = array(
     '#type' => 'textfield',
     '#title' => t('Name'),
@@ -136,15 +142,44 @@ function vih_course_registration_long_info_form($form, &$form_state) {
     '#size' => 20,
     '#maxlength' => 20,
   );
-  $form['personalinfo']['address'] = array(
-    '#type' => 'addressfield',
+
+  $form['personalinfo']['country'] = array(
+    '#type' => 'select',
+    '#title' => t('Country'),
+    '#options' => country_get_list(),
+    '#required' => TRUE,
+    '#description' => "Select your country",
+  );
+
+  $form['personalinfo']['address1'] = array(
+    '#type' => 'textfield',
     '#title' => t('Address'),
     '#required' => TRUE,
-    '#default_value' => array('country' => 'Denmark'),
     '#description' => "Please enter your address.",
-    '#default_widget' => 'addressfield_standard',
-    '#default_formatter' => 'addressfield_default',
   );
+
+  $form['personalinfo']['address2'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Address, line 2'),
+  );
+
+  $form['personalinfo']['address2'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Address, line 2'),
+  );
+
+  $form['personalinfo']['postal_code'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Postal code'),
+    '#required' => TRUE,
+  );
+
+  $form['personalinfo']['city'] = array(
+    '#type' => 'textfield',
+    '#title' => t('City'),
+    '#required' => TRUE,
+  );
+
   $form['personalinfo']['cpr'] = array(
     '#type' => 'textfield',
     '#title' => t('CPR-number'),
@@ -154,6 +189,7 @@ function vih_course_registration_long_info_form($form, &$form_state) {
     '#size' => 20,
     '#maxlength' => 20,
   );
+
   // @todo change to select box
   $form['personalinfo']['municipality'] = array(
     '#type' => 'textfield',
@@ -164,8 +200,9 @@ function vih_course_registration_long_info_form($form, &$form_state) {
     '#size' => 20,
     '#maxlength' => 20,
   );
-  $form['personalinfo']['email'] = array(
-    '#type' => 'email',
+
+  $form['personalinfo']['mail'] = array(
+    '#type' => 'textfield',
     '#title' => t('Email'),
     '#required' => TRUE,
     '#default_value' => "",
@@ -182,37 +219,30 @@ function vih_course_registration_long_info_form($form, &$form_state) {
     '#collapsible' => FALSE,
     '#collapsed' => FALSE,
   );
-  $form['contactinfo']['name'] = array(
+
+  $form['contactinfo']['contact_name'] = array(
     '#type' => 'textfield',
     '#title' => t('Name'),
     '#required' => TRUE,
     '#default_value' => "",
-    '#description' => "Please enter your name.",
+    '#description' => "Please enter contact’s name.",
     '#size' => 20,
     '#maxlength' => 20,
   );
-  $form['contactinfo']['address'] = array(
-    '#type' => 'addressfield',
-    '#title' => t('Address'),
+
+  $form['contactinfo']['contact_mail'] = array(
+    '#type' => 'textfield',
+    '#title' => t('E-mail-address'),
     '#required' => TRUE,
-    '#default_value' => "Denmark",
-    '#description' => "Please enter your address.",
+    '#description' => "Please enter contact’s e-mail-address.",
   );
-  $form['contactinfo']['phone'] = array(
+
+  $form['contactinfo']['contact_phone'] = array(
     '#type' => 'textfield',
     '#title' => t('Phone number'),
     '#required' => TRUE,
     '#default_value' => "Phone number",
-    '#description' => "Please enter your phone number.",
-    '#size' => 20,
-    '#maxlength' => 20,
-  );
-  $form['contactinfo']['email'] = array(
-    '#type' => 'email',
-    '#title' => t('Email'),
-    '#required' => TRUE,
-    '#default_value' => "E-mail",
-    '#description' => "Please enter your email.",
+    '#description' => "Please enter contact’s phone number.",
     '#size' => 20,
     '#maxlength' => 20,
   );
@@ -226,7 +256,7 @@ function vih_course_registration_long_info_form($form, &$form_state) {
     '#collapsed' => FALSE,
   );
   $form['educationinfo']['education'] = array(
-    '#type' => 'checkboxes',
+    '#type' => 'radios',
     '#title' => t('Education'),
     '#default_value' => '',
     '#options' => array(
@@ -248,8 +278,8 @@ function vih_course_registration_long_info_form($form, &$form_state) {
     '#collapsed' => FALSE,
   );
 
-  $form['paymentinfo']['paymenttype'] = array(
-    '#type' => 'checkboxes',
+  $form['paymentinfo']['payment_type'] = array(
+    '#type' => 'radios',
     '#title' => t('Payment type'),
     '#default_value' => '',
     '#options' => array(
@@ -277,11 +307,6 @@ function vih_course_registration_long_info_form($form, &$form_state) {
     '#required' => FALSE
   );
 
-  $form['submit'] = array(
-    '#type' => 'submit',
-    '#value' => 'Submit',
-  );
-
   return $form;
 }
 
@@ -292,7 +317,6 @@ function vih_course_registration_long_confirm_form($form, &$form_state) {
   $form['message'] = array(
     '#markup' => t('Please confirm your registration'),
   );
-
 
   return $form;
 }
