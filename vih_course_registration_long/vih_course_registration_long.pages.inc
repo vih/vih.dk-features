@@ -130,6 +130,25 @@ function vih_course_registration_long_wizard_next(&$form_state) {
  * log them in, and redirect to dashboard
  */
 function vih_course_registration_long_wizard_finish(&$form_state) {
+  $registration = (object) $form_state['cached data'];
+
+  // Save the registration.
+  drupal_write_record('vih_course_long_registrations', $registration);
+
+  // Save subject choices.
+  foreach ($registration->subjects as $period_nid => $subjects) {
+    foreach ($subjects as $group_nid => $subject_nid) {
+      db_insert('vih_course_long_registration_subjects')
+        ->fields(array(
+          'registration_id' => $registration->registration_id,
+          'period_nid' => $period_nid,
+          'subject_group_nid' => $group_nid,
+          'subject_nid' => $subject_nid,
+        ))
+        ->execute();
+    }
+  }
+
   // Clear the cache
   $values = ctools_object_cache_get('vih_course_registration_long', $form_state['cache key']);
   drupal_set_message(t('Registration for long course completed.'));
