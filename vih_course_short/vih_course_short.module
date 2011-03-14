@@ -1,0 +1,49 @@
+<?php
+/**
+ * Module shows lists with short courses. The single courses
+ * will not be shown here, but in a separate registration system.
+ */
+
+/**
+ * Implementation of hook_menu().
+ */
+function vih_course_short_menu() {
+    $items = array();
+    $items['kortekurser'] = array(
+        'title' => 'Korte kurser',
+        'page callback' => 'vih_course_short_view',
+        'access arguments' => array('access content'),
+        'type' => MENU_NORMAL_ITEM,
+        'menu_name' => 'main-menu'
+    );
+    return $items;
+}
+
+/**
+ * Implementation of hook_views_api().
+ */
+function vih_course_short_views_api() {
+    return array(
+        'api' => 2,
+        'path' => drupal_get_path('module', 'vih_course_short'),
+    );
+}
+
+function vih_course_short_view() {
+    drupal_set_title('Korte kurser');
+    $courses = db_query("SELECT id, navn, uge AS week, DATE_FORMAT('dato_start', '%d-%m-%Y') AS date_start, DATE_FORMAT('dato_slut', '%d-%m-%Y') AS date_end FROM {kortkursus} WHERE dato_slut > :date", array(':date' => date('Y-m-d')), array('target' => 'vih'));
+    
+    $table = array();
+    $table['header'] = array('Kursus', 'Uge', 'Start', 'Slut', '&nbsp;');
+    $table['caption'] = 'Korte kurser';
+    $table['attributes'] = array('class' => 'skema');
+    $table['colgroups'] = array();
+    $table['sticky'] = array();
+    $table['empty'] = array();
+    
+    foreach ($courses as $course) {
+        $table['rows'][] = array(l($course->navn, 'http://tilmelding.vih.dk/kortekurser/' . $course->id), $course->week, $course->date_start, $course->date_end, l('Tilmelding', 'http://tilmelding.vih.dk/kortekurser/' . $course->id));
+    }
+  
+    return theme_table($table);
+}

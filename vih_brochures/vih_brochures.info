@@ -3,6 +3,10 @@ dependencies[] = "addressfield"
 dependencies[] = "email"
 dependencies[] = "features"
 dependencies[] = "menu"
+<<<<<<< HEAD
+=======
+dependencies[] = "vih_stories"
+>>>>>>> f0980b359afa7bf43d591af9098fe5ac285310de
 description = "Order brochures for Vejle Idrætshøjskole"
 features[field][] = "node-brochure_order-field_brochure"
 features[field][] = "node-brochure_order-field_brochure_address"

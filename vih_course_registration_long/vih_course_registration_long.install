@@ -1,0 +1,141 @@
+<?php
+
+/**
+ * @file
+ * Installation code for the long course registration schema.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function vih_course_registration_long_schema() {
+  $schema = array();
+
+  $schema['vih_course_long_registrations'] = array(
+    'description' => 'Track registrations for long courses.',
+    'fields' => array(
+      'registration_id' => array(
+        'description' => 'Unique ID number for this registration.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'name' => array(
+        'description' => 'Name of the registrant.',
+        'type' => 'varchar',
+        'length' => '200',
+        'not null' => TRUE,
+      ),
+      'mail' => array(
+        'description' => 'The registrant’s e-mail address.',
+        'type' => 'varchar',
+        'length' => '200',
+      ),
+      'phone' => array(
+        'description' => 'The registrant’s phone number.',
+        'type' => 'varchar',
+        'length' => '80',
+      ),
+      'address1' => array(
+        'description' => 'The registrant’s address.',
+        'type' => 'varchar',
+        'length' => '200',
+      ),
+      'address2' => array(
+        'description' => 'The registrant’s address, line 2.',
+        'type' => 'varchar',
+        'length' => '200',
+      ),
+      'postal_code' => array(
+        'description' => 'The registrant’s postal code.',
+        'type' => 'varchar',
+        'length' => '40',
+      ),
+      'city' => array(
+        'description' => 'The registrant’s postal city.',
+        'type' => 'varchar',
+        'length' => '200',
+      ),
+      'country' => array(
+        'description' => 'The registrant’s country.',
+        'type' => 'char',
+        'length' => '2',
+      ),
+      'municipality' => array(
+        'description' => 'The registrant’s municipality.',
+        'type' => 'varchar',
+        'length' => '200',
+      ),
+      'cpr' => array(
+        'description' => 'The registrant’s CPR-number.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+      ),
+      'contact_name' => array(
+        'description' => 'The contact person’s name.',
+        'type' => 'varchar',
+        'length' => '200',
+      ),
+      'contact_mail' => array(
+        'description' => 'The contact person’s e-mail address.',
+        'type' => 'varchar',
+        'length' => '200',
+      ),
+      'contact_phone' => array(
+        'description' => 'The contact person’s phone number.',
+        'type' => 'varchar',
+        'length' => '200',
+      ),
+      'education' => array(
+        'description' => 'The registrant’s education level.',
+        'type' => 'varchar',
+        'length' => '200',
+      ),
+      'payment_type' => array(
+        'description' => 'The selected payment type.',
+        'type' => 'varchar',
+        'length' => '200',
+      ),
+      'comment' => array(
+        'description' => 'Comment entered on the registration form.',
+        'type' => 'text',
+        'size' => 'medium',
+      ),
+    ),
+    'primary key' => array('registration_id'),
+  );
+
+  $schema['vih_course_long_registration_subjects'] = array(
+    'description' => 'Track subject choices for long course registrations.',
+    'fields' => array(
+      'registration_id' => array(
+        'description' => 'ID of the registration this choice was made on.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'period_nid' => array(
+        'description' => 'Node ID of the course period.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'subject_group_nid' => array(
+        'description' => 'Node ID of the subject group.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'subject_nid' => array(
+        'description' => 'Node ID of the selected subject.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+    ),
+    'primary key' => array('registration_id', 'period_nid', 'subject_group_nid', 'subject_nid'),
+  );
+
+  return $schema;
+}
+

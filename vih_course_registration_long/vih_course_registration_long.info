@@ -1,0 +1,10 @@
+name = VIH Registration for Long Courses
+description = Registration for courses of longer duration
+files[] = vih_course_registration_long.module
+files[] = vih_course_registration_long.install
+files[] = vih_course_registration_long.forms.inc
+files[] = vih_course_registration_long.pages.inc
+package = VIH
+core = 7.x
+dependencies[] = ctools
+
