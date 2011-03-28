@@ -1,0 +1,5 @@
+name = VIH Registration for Short Courses
+description = Registration for courses of shorter duration
+files[] = vih_course_registration_short.module
+package = VIH
+core = 7.x

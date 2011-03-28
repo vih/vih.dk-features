@@ -1,0 +1,272 @@
+<?php
+
+/**
+ * @file
+ * Defines a field type for referencing courses to a subject group
+ * bound to a period with some special flags.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function vih_course_reference_theme($existing, $type, $theme, $path) {
+  return array(
+    'vih_course_grouped_subjects' => array(
+      'variables' => array('items' => NULL),
+      'template' => 'vih_course_grouped_subjects',
+    ),
+  );
+}
+
+/**
+ * Implements hook_field_info().
+ */
+function vih_course_reference_field_info() {
+  return array(
+    'vih_course_reference' => array(
+      'label'             => t('VIH course reference'),
+      'description'       => t('This field stores a three-way relation between courses, subject groups and periods.'),
+      'default_formatter' => 'vih_course_reference_formatter',
+      'default_widget'    => 'vih_course_reference_select',
+    ),
+  );
+}
+
+/**
+ * Implements hook_field_schema().
+ */
+function vih_course_reference_field_schema($field) {
+  $columns = array(
+    'period_nid' => array(
+      'type'     => 'int',
+      'unsigned' => TRUE,
+      'not null' => FALSE,
+    ),
+    'subject_group_nid' => array(
+      'type'     => 'int',
+      'unsigned' => TRUE,
+      'not null' => FALSE,
+    ),
+    'signup_enabled' => array(
+      'type' => 'int',
+      'unsigned' => TRUE,
+      'size' => 'tiny',
+      'not null' => TRUE,
+      'default' => 0,
+    ),
+  );
+  return array(
+    'columns' => $columns,
+    'indexes' => array('period_nid' => array('period_nid')),
+    'foreign keys' => array(
+      'period_nid' => array(
+        'table' => 'node',
+        'columns' => array('period_nid' => 'nid'),
+      ),
+      'subject_group_nid' => array(
+        'table' => 'node',
+        'columns' => array('subject_group_nid' => 'nid'),
+      ),
+    ),
+  );
+}
+
+/**
+ * Implements hook_field_is_empty().
+ */
+function vih_course_reference_field_is_empty($item, $field) {
+  // nid = 0 is empty too, which is exactly what we want.
+  return empty($item['period_nid']) || empty($item['subject_group_nid']);
+}
+
+/**
+ * Implements hook_field_formatter_info().
+ */
+function vih_course_reference_field_formatter_info() {
+  $ret = array(
+    'vih_course_reference_formatter' => array(
+      'label'       => t('Subject/period groups.'),
+      'description' => t('Display the subject groups, grouped by period.'),
+      'field types' => array('vih_course_reference'),
+    ),
+  );
+  return $ret;
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ */
+function vih_course_reference_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  $result = array();
+
+  switch ($display['type']) {
+    case 'vih_course_reference_formatter':
+      return array(array(
+        '#markup' => theme('vih_course_grouped_subjects', array('items' => $items)),
+      ));
+      break;
+    case 'node_reference_plain':
+      foreach ($items as $delta => $item) {
+        if ($item['access']) {
+          $node = $item['node'];
+          if ($display['type'] == 'node_reference_default') {
+            $uri = entity_uri('node', $node);
+            $result[$delta] = array(
+              '#type' => 'link',
+              '#title' => $node->title,
+              '#href' => $uri['path'],
+              '#options' => $uri['options'],
+            );
+          }
+          else {
+            $result[$delta] = array(
+              '#markup' => check_plain($node->title),
+            );
+          }
+          if (!$node->status) {
+            $result[$delta]['#prefix'] = '<span class="node-unpublished">';
+            $result[$delta]['#suffix'] = '</span>';
+          }
+        }
+      }
+      break;
+  }
+
+  return $result;
+}
+
+/**
+ * Implements hook_field_widget_info().
+ */
+function vih_course_reference_field_widget_info() {
+  return array(
+    'vih_course_reference_select' => array(
+      'label'       => t('Selection widget'),
+      'description' => t('Enables the user to set the options for a course reference.'),
+      'field types' => array('vih_course_reference'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_field_widget_form().
+ */
+function vih_course_reference_field_widget_form(&$form, &$form_state, $field, $instance, $langcode, $items, $delta, $element) {
+  switch ($instance['widget']['type']) {
+    case 'vih_course_reference_select':
+      $element['period_nid'] = array(
+        '#type' => 'select',
+        '#title' => t('Period'),
+        '#options' => vih_course_reference_get_periods(),
+      );
+
+      $element['subject_group_nid'] = array(
+        '#type' => 'select',
+        '#title' => t('Subject group'),
+        '#options' => vih_course_reference_get_subject_groups(),
+      );
+
+      $element['signup_enabled'] = array(
+        '#type' => 'checkbox',
+        '#title' => t('Signup enabled?'),
+      );
+
+      // Get the values for the current widget.
+      $values = (isset($items[$delta])) ? $items[$delta] : array();
+
+      // If available, assign the value from the array to our elements.
+      foreach ($values as $key => $value) {
+        // Check that the element exists before setting a value for it.
+        if (isset($element[$key]) && is_array($element[$key])) {
+          $element[$key]['#default_value'] = $value;
+        }
+      }
+
+      break;
+  }
+
+  return $element;
+}
+
+/**
+ * Get available subject groups.
+ *
+ * @return
+ *   Array of subject group node names, keyed by nid. Suitable for
+ *   select forms.
+ */
+function vih_course_reference_get_periods() {
+  $nodes = node_load_multiple(array(), array(
+    'status' => 1,
+    'type' => 'course_period',
+  ));
+
+  $periods = array();
+  foreach ($nodes as $node) {
+    $periods[$node->nid] = $node->title;
+  }
+
+  return $periods;
+}
+
+/**
+ * Get available subject groups.
+ *
+ * @return
+ *   Array of subject group node names, keyed by nid. Suitable for
+ *   select forms.
+ */
+function vih_course_reference_get_subject_groups() {
+  $nodes = node_load_multiple(array(), array(
+    'status' => 1,
+    'type' => 'course_subject_group',
+  ));
+
+  $groups = array('' => t('Choose subject group'));
+  foreach ($nodes as $node) {
+    $groups[$node->nid] = $node->title;
+  }
+
+  return $groups;
+}
+
+/**
+ * Variable preprocessor for vih_course_grouped_subjects.tpl.php
+ */
+function template_preprocess_vih_course_grouped_subjects(&$vars) {
+  // Collect the node ids of all nodes that should be loaded to
+  // render this view, so we can load them all at once.
+  $nids = array();
+
+  // Group the subject groups by period.
+  $vars['groups'] = array();
+  foreach ($vars['items'] as $delta => $item) {
+    $nids[$item['period_nid']] = $item['period_nid'];
+    $nids[$item['subject_group_nid']] = $item['subject_group_nid'];
+
+    $vars['groups'][$item['period_nid']][$delta] = $item;
+  }
+
+  // Load all the nodes we need to render this stuff.
+  $vars['nodes'] = node_load_multiple($nids, array('status' => 1));
+
+  // Get the nids for all the subjects, so we can load their titles.
+  $subject_nids = array();
+  $vars['group_subject_nids'] = array();
+  foreach ($vars['nodes'] as $node) {
+    if ($node->type == 'course_subject_group') {
+      foreach ($node->field_subject_group_subjects['und'] as $reference) {
+        $nid = (integer) $reference['nid'];
+        $subject_nids[$nid] = $nid;
+        $vars['group_subject_nids'][$node->nid][$nid] = $nid;
+      }
+    }
+  }
+
+  // Load the title for each subject.
+  $vars['subject_titles'] = array();
+  foreach (db_query("SELECT nid, title FROM {node} WHERE nid IN (:nids)", array(':nids' => $subject_nids)) as $row) {
+    $vars['subject_titles'][$row->nid] = $row->title;
+  }
+}
+
