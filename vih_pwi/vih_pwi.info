@@ -1,0 +1,7 @@
+core = "7.x"
+description = "Integrates the pictures from Picasa Web Album as an album."
+name = "VIH Picasa Web Album"
+package = "VIH"
+php = "5.2.4"
+project = "vih_pwi"
+version = "7.x-0.1"
