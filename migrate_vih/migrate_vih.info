@@ -10,4 +10,4 @@ dependencies[] = list
 dependencies[] = number
 
 files[] = MigrateNews.php
-
+files[] = MigrateSubjects.php
