@@ -1,5 +1,5 @@
 <?php
-function vih_course_short_views_data() {
+function vih_course_short_legacy_views_data() {
     // Define the base group of this table. Fields that don't
     // have a group defined will go into this field by default.
     $data['kortkursus']['table']['group'] = t('Korte kurser');
