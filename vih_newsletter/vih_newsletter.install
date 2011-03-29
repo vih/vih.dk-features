@@ -1,0 +1,17 @@
+<?php
+function vih_newsletter_requirements($phase) {
+  $requirements = array();
+  // Ensure translations don't break at install time
+  $t = get_t();
+
+  if ($phase == 'runtime') {
+    if (!variable_get('intraface_public_key') OR !variable_get('intraface_newsletter_list_id')) {
+      $requirements['vih_newsletter'] = array(
+        'description' => $t('The correct settings for integration with the Intraface newsletter has not been setup. Check the help pages for <a href="@url">configuring the intraface integration</a>.', array('@url' => $base_path . '/admin/settings/vih-newsletter')), 
+        'severity' => REQUIREMENT_ERROR, 
+        'value' => $t('Not set'),
+      );
+    }
+  }
+  return $requirements;
+}
