@@ -5,30 +5,15 @@
  */
 
 /**
- * Implementation of hook_menu().
- */
-function vih_course_short_menu() {
-    $items = array();
-    $items['kortekurser'] = array(
-        'title' => 'Korte kurser',
-        'page callback' => 'vih_course_short_view',
-        'access arguments' => array('access content'),
-        'type' => MENU_NORMAL_ITEM,
-        'menu_name' => 'main-menu'
-    );
-    return $items;
-}
-
-/**
  * Implementation of hook_views_api().
  */
 function vih_course_short_views_api() {
     return array(
-        'api' => 2,
+        'api' => 3,
         'path' => drupal_get_path('module', 'vih_course_short'),
     );
 }
-
+/*
 function vih_course_short_view() {
     drupal_set_title('Korte kurser');
     $courses = db_query("SELECT id, navn, uge AS week, DATE_FORMAT('dato_start', '%d-%m-%Y') AS date_start, DATE_FORMAT('dato_slut', '%d-%m-%Y') AS date_end FROM {kortkursus} WHERE dato_slut > :date", array(':date' => date('Y-m-d')), array('target' => 'vih'));
@@ -47,3 +32,4 @@ function vih_course_short_view() {
   
     return theme_table($table);
 }
+*/
