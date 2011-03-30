@@ -1,4 +1,5 @@
 <?php
+require_once 'markdown.php';
 class MigrateNews extends Migration {
   public function __construct() {
     parent::__construct();
@@ -28,12 +29,17 @@ class MigrateNews extends Migration {
         MigrateDestinationNode::getKeySchema()
       );
     $this->addFieldMapping('title', 'overskrift');
-    $this->addFieldMapping('body', 'tekst');
+    $this->addFieldMapping('body', 'tekst')
+         ->description('See prepare method');
     $this->addFieldMapping('uid')
          ->defaultValue(1);
     $this->addFieldMapping('created', 'date_created');
     $this->addFieldMapping('changed', 'date_updated');
     $this->addFieldMapping('status', 'published');
     //$this->addFieldMapping('field_tags', 'terms')->separator(',');
+  }
+
+public function prepareRow(stdClass $row) {
+    $row->tekst = Markdown($row->tekst);
   }
 }
