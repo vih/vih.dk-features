@@ -14,21 +14,21 @@ function vih_course_short_legacy_views_data() {
         'field' => array('handler' => 'views_handler_field'),
         'argument' => array('handler' => 'views_handler_argument_numeric'),
         'filter' => array('handler' => 'views_handler_filter_numeric'),
-        'sort' => array('handler' => 'views_handler_sort_numeric'));
+        'sort' => array('handler' => 'views_handler_sort'));
     $data['kortkursus']['navn'] = array(
         'title' => t('Name'),
         'help' => t('Name of the course'),
         'field' => array('handler' => 'views_handler_field', 'click sortable' => true),
         'argument' => array('handler' => 'views_handler_argument_string'),
         'filter' => array('handler' => 'views_handler_filter_string'),
-        'sort' => array('handler' => 'views_handler_sort_string'));
+        'sort' => array('handler' => 'views_handler_sort'));
     $data['kortkursus']['beskrivelse'] = array(
         'title' => t('Description'),
         'help' => t('Description of the course'),
         'field' => array('handler' => 'views_handler_field'),
         'argument' => array('handler' => 'views_handler_argument_string'),
         'filter' => array('handler' => 'views_handler_filter_string'),
-        'sort' => array('handler' => 'views_handler_sort_string'));
+        'sort' => array('handler' => 'views_handler_sort'));
     $data['kortkursus']['date_created'] = array(
         'title' => t('Date created'),
         'help' => t('Date course has been created'),
@@ -64,21 +64,21 @@ function vih_course_short_legacy_views_data() {
         'field' => array('handler' => 'views_handler_field', 'click sortable' => true),
         'argument' => array('handler' => 'views_handler_argument_string'),
         'filter' => array('handler' => 'views_handler_filter_string'),
-        'sort' => array('handler' => 'views_handler_sort_numeric'));
+        'sort' => array('handler' => 'views_handler_sort'));
     $data['kortkursus']['pris'] = array(
         'title' => t('Price'),
         'help' => t('Price for the adults'),
         'field' => array('handler' => 'views_handler_field'),
         'argument' => array('handler' => 'views_handler_argument_numeric'),
         'filter' => array('handler' => 'views_handler_filter_numeric'),
-        'sort' => array('handler' => 'views_handler_sort_numeric'));
+        'sort' => array('handler' => 'views_handler_sort'));
     $data['kortkursus']['pris_boern'] = array(
         'title' => t('Price for children'),
         'help' => t('Price for the children'),
         'field' => array('handler' => 'views_handler_field'),
         'argument' => array('handler' => 'views_handler_argument_numeric'),
         'filter' => array('handler' => 'views_handler_filter_numeric'),
-        'sort' => array('handler' => 'views_handler_sort_numeric'));
+        'sort' => array('handler' => 'views_handler_sort'));
     $data['kortkursus']['published'] = array(
         'title' => t('Published'),
         'help' => t('Is course published'),
@@ -86,14 +86,14 @@ function vih_course_short_legacy_views_data() {
         'handler' => 'views_handler_field'),
         'argument' => array('handler' => 'views_handler_argument_numeric'),
         'filter' => array('handler' => 'views_handler_filter_numeric'),
-        'sort' => array('handler' => 'views_handler_sort_numeric'));
+        'sort' => array('handler' => 'views_handler_sort'));
     $data['kortkursus']['active'] = array(
         'title' => t('Active'),
         'help' => t('Is course active'),
         'field' => array('handler' => 'views_handler_field'),
         'argument' => array('handler' => 'views_handler_argument_numeric'),
         'filter' => array('handler' => 'views_handler_filter_numeric'),
-        'sort' => array('handler' => 'views_handler_sort_numeric'));
+        'sort' => array('handler' => 'views_handler_sort'));
     return $data;
 }
 
