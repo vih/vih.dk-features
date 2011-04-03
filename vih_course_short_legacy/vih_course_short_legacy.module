@@ -13,23 +13,4 @@ function vih_course_short_legacy_views_api() {
         'path' => drupal_get_path('module', 'vih_course_short_legacy'),
     );
 }
-/*
-function vih_course_short_legacy_view() {
-    drupal_set_title('Korte kurser');
-    $courses = db_query("SELECT id, navn, uge AS week, DATE_FORMAT('dato_start', '%d-%m-%Y') AS date_start, DATE_FORMAT('dato_slut', '%d-%m-%Y') AS date_end FROM {kortkursus} WHERE dato_slut > :date", array(':date' => date('Y-m-d')), array('target' => 'vih'));
-    
-    $table = array();
-    $table['header'] = array('Kursus', 'Uge', 'Start', 'Slut', '&nbsp;');
-    $table['caption'] = 'Korte kurser';
-    $table['attributes'] = array('class' => 'skema');
-    $table['colgroups'] = array();
-    $table['sticky'] = array();
-    $table['empty'] = array();
-    
-    foreach ($courses as $course) {
-        $table['rows'][] = array(l($course->navn, 'http://tilmelding.vih.dk/kortekurser/' . $course->id), $course->week, $course->date_start, $course->date_end, l('Tilmelding', 'http://tilmelding.vih.dk/kortekurser/' . $course->id));
-    }
-  
-    return theme_table($table);
-}
-*/
+
