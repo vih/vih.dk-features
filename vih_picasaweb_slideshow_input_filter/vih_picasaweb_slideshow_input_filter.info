@@ -1,0 +1,7 @@
+core = "7.x"
+description = "Makes a filter for integrating Picasa Webalbum Slideshows"
+name = "VIH Picasa Webalbum Slideshow"
+package = "Input Filter"
+php = "5.2.4"
+project = "vih_picasaweb_slideshow_input_filter"
+version = "7.x-0.1"

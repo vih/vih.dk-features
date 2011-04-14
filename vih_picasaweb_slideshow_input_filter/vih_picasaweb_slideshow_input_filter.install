@@ -1,0 +1,17 @@
+<?php
+function vih_picasaweb_slideshow_input_filter_requirements($phase) {
+  $requirements = array();
+  // Ensure translations don't break at install time
+  $t = get_t();
+
+  if ($phase == 'runtime') {
+    if (!variable_get('picasaweb_authkey') OR !variable_get('picasaweb_user')) {
+      $requirements['vih_newsletter'] = array(
+        'description' => $t('The correct settings for integration with the Picasa Webalbum has not been setup. Check the help pages for <a href="@url">configuring the integration</a>.', array('@url' => $base_path . '/admin/settings/picasawebalbum')), 
+        'severity' => REQUIREMENT_ERROR, 
+        'value' => $t('Not set'),
+      );
+    }
+  }
+  return $requirements;
+}
