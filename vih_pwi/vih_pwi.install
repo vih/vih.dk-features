@@ -1,0 +1,17 @@
+<?php
+function vih_pwi_requirements($phase) {
+  $requirements = array();
+  // Ensure translations don't break at install time
+  $t = get_t();
+
+  if ($phase == 'runtime') {
+    if (!variable_get('picasauser')) {
+      $requirements['vih_pwi'] = array(
+        'description' => $t('The correct settings for integration with the Picasa Webalbum has not been setup. Set it at <a href="@url">configuration page</a>.', array('@url' => $base_path . '/admin/settings/pwi')), 
+        'severity' => REQUIREMENT_ERROR, 
+        'value' => $t('Not set'),
+      );
+    }
+  }
+  return $requirements;
+}

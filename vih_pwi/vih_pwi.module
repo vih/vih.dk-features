@@ -15,7 +15,41 @@ function vih_pwi_menu() {
         'type' => MENU_NORMAL_ITEM,
         'menu_name' => 'main-menu'
     );
+    $items['admin/settings/pwi'] = array(
+        'title' => 'PWI',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('vih_pwi_admin_form'),
+        'access arguments' => array('administer site configuration'),
+        'type' => MENU_NORMAL_ITEM
+    );
     return $items;
+}
+
+function vih_pwi_admin_form($form, &$form_state){
+  $form['picasa_user'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Picasa User'),
+    '#required' => true,
+    '#default_value' => variable_get('picasa_user'),
+  ); 
+  // saves and executes a submission callback, see $form["#submit"] for that
+  $form['save'] = array(
+    '#type' => 'submit',
+    '#value' => t('Save'),
+    '#executes_submit_callback' => true
+  );
+  $form['#submit'] = array(
+    'vih_pwi_admin_form_submit'
+  );
+  return $form;
+}
+
+function vih_pwi_admin_validate($form, &$form_state) {
+}
+
+function vih_pwi_admin_form_submit($form, &$form_state) {
+  variable_set('picasa_user', $form_state['values']['picasa_user']);
+  drupal_set_message(t("Values has been set"));
 }
 
 /**
@@ -23,33 +57,34 @@ function vih_pwi_menu() {
  */
 function vih_pwi_view() {
     drupal_add_css(drupal_get_path('module', 'vih_pwi') . '/jquery.pwi/css/pwi.css');
-    drupal_add_js(drupal_get_path('module', 'vih_pwi') . '/jquery.pwi/js/jquery-1.4.2.min.js');
+    drupal_add_css(drupal_get_path('module', 'vih_pwi') . '/jquery.pwi/js/jquery.slimbox2/jquery.slimbox2.css');
     drupal_add_js(drupal_get_path('module', 'vih_pwi') . '/jquery.pwi/js/jquery.slimbox2/jquery.slimbox2.js');
-    drupal_add_js(drupal_get_path('module', 'vih_pwi') . '/jquery.pwi/js/jquery.blockUI.js');
     drupal_add_js(drupal_get_path('module', 'vih_pwi') . '/jquery.pwi/js/jquery.pwi.js');
-    return '<script type="text/javascript">
-		    $(document).ready(function() {
-
-		        $("#picasaweb").pwi({
-		            username: \'vejleih\',
-					 maxResults: 5,
-					 showAlbumDescription: false,
-					 showPhotoCaption: true,
-					 photoCaptionLength: 5,
-					 showPhotoCaptionDate: true,
-					 thumbSize: 160,
-				     labels: {photo:"billede",	//-- override labels, to translate into your required language
-					          photos: "billeder",
-							  albums: "Tilbage til albums",
-							  slideshow: "Vis slideshow",
-							  loading: "Henter billeder...",
-							  page: "Side",
-						      prev: "Forrige",
-							  next: "Næste",
-							  devider: "|"
-					},
-					months: ["Januar","Februar","Marts","April","Maj","Juni","Juli","August","September","Oktober","November","December"]
-		        });
-		    });
-		</script><div id="picasaweb"></div>';
+    drupal_add_js('
+(function ($) {
+    $(document).ready(function() {
+        $("#picasaweb").pwi({
+		    username: \''.check_plain(variable_get('picasa_user')).'\',
+            maxResults: 12,
+            showAlbumDescription: false,
+            showPhotoCaption: false,
+            photoCaptionLength: 5,
+            thumbSize: 170,
+            thumbCrop: 1,
+            showPhotoDate: false,
+            labels: {photo:"billede",	//-- override labels, to translate into your required language
+                     photos: "billeder",
+                     albums: "Tilbage til albums",
+                     slideshow: "Vis slideshow",
+                     loading: "Henter billeder...",
+                     page: "Side",
+                     prev: "Forrige",
+                     next: "Næste",
+                     devider: "|"
+            },
+            months: ["Januar","Februar","Marts","April","Maj","Juni","Juli","August","September","Oktober","November","December"]
+        });
+    });
+})(jQuery);', 'inline');
+    return '<div id="picasaweb"></div>';
 }
