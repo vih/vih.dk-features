@@ -57,7 +57,8 @@ function vih_pwi_admin_form($form, &$form_state){
   return $form;
 }
 
-function vih_pwi_admin_validate($form, &$form_state) {  $form['picasa_user'] = array(
+function vih_pwi_admin_validate($form, &$form_state) {  
+  $form['picasa_user'] = array(
     '#type' => 'textfield',
     '#title' => t('Picasa User'),
     '#required' => true,
