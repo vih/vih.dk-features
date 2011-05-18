@@ -4,6 +4,26 @@
  */
 
 /**
+ * Implements hook_help().
+ */
+function vih_pwi_help($path, $arg) {
+  switch ($path) {
+    case 'admin/help#vih_pwi':
+      $output = '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('PWI embeds Picasa Webalbum on your site') .'</p>';
+      $output .= '<h3>' . t('Uses') . '</h3>';
+      $output .= '<dl>';
+      $output .= '<dt>' . t('Usage') . '</dt>';
+      $output .= '<dd>' . t('To embed the slideshow, all you need to do is enable the module and configure it at <a href="@pwi">Scribd Input Filter</a>.', array('@pwi' => 'admin/settings/pwi')) . '.</dd>';
+      $output .= '</dl>';
+      return $output;
+    case 'admin/settings/pwi':
+      $output = t('Configure your PWI implementation of Picasa Webalbums');
+      return $output;
+  }
+}
+
+/**
  * Implementation of hook_menu().
  */
 function vih_pwi_menu() {
