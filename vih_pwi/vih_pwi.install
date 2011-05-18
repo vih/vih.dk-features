@@ -1,4 +1,6 @@
 <?php
+// @todo make sure that variables are deleted on removal
+
 function vih_pwi_requirements($phase) {
   global $base_path;
   $requirements = array();
@@ -6,14 +8,7 @@ function vih_pwi_requirements($phase) {
   $t = get_t();
 
   if ($phase == 'runtime') {
-    if (!variable_get('picasauser')) {
-      $requirements['vih_pwi'] = array(
-        'title' => $t('Picasa Web Album Settings'),
-        'description' => $t('The correct settings for integration with the Picasa Webalbum has not been setup. Set it at <a href="@url">configuration page</a>.', array('@url' => $base_path . '/admin/settings/pwi')), 
-        'severity' => REQUIREMENT_ERROR, 
-        'value' => $t('Not set'),
-      );
-    }
+    // @todo write requirements if the block is enabled, but the settings are not set
   }
   return $requirements;
 }

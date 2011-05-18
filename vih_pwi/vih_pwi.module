@@ -15,61 +15,13 @@ function vih_pwi_help($path, $arg) {
       $output .= '<h3>' . t('Uses') . '</h3>';
       $output .= '<dl>';
       $output .= '<dt>' . t('Usage') . '</dt>';
-      $output .= '<dd>' . t('To embed the Picasa Webalbums, you add the the block from the <a href="@pwi">blocks configuration page</a>.', array('@pwi' => $base_path . 'admin/structure/block')) . '.</dd>';
+      $output .= '<dd>' . t('To embed the Picasa Webalbums, you add the the block from the <a href="@pwi">blocks configuration page</a>.', array('@pwi' => $base_path . 'admin/structure/block')) . '. '.t('Remember to configure the block').'</dd>';
       $output .= '</dl>';
       return $output;
     case 'admin/settings/pwi':
       $output = t('Configure your PWI implementation of Picasa Webalbums');
       return $output;
   }
-}
-
-/**
- * Implementation of hook_menu().
- */
-function vih_pwi_menu() {
-    $items = array();
-    $items['admin/settings/pwi'] = array(
-        'title' => 'PWI',
-        'page callback' => 'drupal_get_form',
-        'page arguments' => array('vih_pwi_admin_form'),
-        'access arguments' => array('administer site configuration'),
-        'type' => MENU_NORMAL_ITEM
-    );
-    return $items;
-}
-
-function vih_pwi_admin_form($form, &$form_state){
-  $form['picasa_user'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Picasa User'),
-    '#required' => true,
-    '#default_value' => variable_get('picasa_user'),
-  ); 
-  // saves and executes a submission callback, see $form["#submit"] for that
-  $form['save'] = array(
-    '#type' => 'submit',
-    '#value' => t('Save'),
-    '#executes_submit_callback' => true
-  );
-  $form['#submit'] = array(
-    'vih_pwi_admin_form_submit'
-  );
-  return $form;
-}
-
-function vih_pwi_admin_validate($form, &$form_state) {  
-  $form['picasa_user'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Picasa User'),
-    '#required' => true,
-    '#default_value' => variable_get('picasa_user'),
-  ); 
-}
-
-function vih_pwi_admin_form_submit($form, &$form_state) {
-  variable_set('picasa_user', $form_state['values']['picasa_user']);
-  drupal_set_message(t("Values has been set"));
 }
 
 function vih_pwi_block_info() {
@@ -95,15 +47,36 @@ function vih_pwi_block_view($delta = '') {
   return $block;
 }
 
+/**
+ * @todo Write validator handler
+ */
 function vih_pwi_block_configure($delta = '') {
   // This example comes from node.module.
   $form = array();
   if ($delta == 'vih_pwi') {
-    $form['picasa_user'] = array(
+    $form['vih_pwi'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Settings for Picasa Webalbum block'),
+      '#tree' => TRUE,
+    );
+    $form['vih_pwi']['vih_pwi_picasa_user'] = array(
       '#type' => 'textfield',
       '#title' => t('Picasa User'),
       '#required' => true,
-      '#default_value' => variable_get('picasa_user'),
+      '#default_value' => variable_get('vih_pwi_picasa_user', ''),
+    ); 
+    // @todo create a select box with available sizes
+    $form['vih_pwi']['vih_pwi_thumbsize'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Thumbnail size'),
+      '#required' => true,
+      '#default_value' => variable_get('vih_pwi_thumbsize', 160),
+    ); 
+    $form['vih_pwi']['vih_pwi_max_results'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Max results'),
+      '#required' => true,
+      '#default_value' => variable_get('vih_pwi_max_results', 12),
     ); 
   }
   return $form;
@@ -112,7 +85,9 @@ function vih_pwi_block_configure($delta = '') {
 function vih_pwi_block_save($delta = '', $edit = array()) {
   // This example comes from node.module.
   if ($delta == 'vih_pwi') {
-    variable_set('picasa_user', $edit['picasa_user']);
+    variable_set('vih_pwi_picasa_user', $edit['vih_pwi']['vih_pwi_picasa_user']);
+    variable_set('vih_pwi_thumbsize', $edit['vih_pwi']['vih_pwi_thumbsize']);
+    variable_set('vih_pwi_max_results', $edit['vih_pwi']['vih_pwi_max_results']);        
   }
 }
 
@@ -120,6 +95,9 @@ function vih_pwi_block_save($delta = '', $edit = array()) {
  * Implementation of hook_views_api().
  */
 function vih_pwi_view() {
+    if (variable_get('vih_pwi_picasa_user', '') == '') {
+      drupal_set_message(t('Picasa user has not been set, so the block cannot be shown'), 'error');
+    } 
     drupal_add_css(drupal_get_path('module', 'vih_pwi') . '/jquery.pwi/css/pwi.css');
     drupal_add_css(drupal_get_path('module', 'vih_pwi') . '/jquery.pwi/js/jquery.slimbox2/jquery.slimbox2.css');
     drupal_add_js(drupal_get_path('module', 'vih_pwi') . '/jquery.pwi/js/jquery.slimbox2/jquery.slimbox2.js');
@@ -128,25 +106,41 @@ function vih_pwi_view() {
 (function ($) {
     $(document).ready(function() {
         $("#picasaweb").pwi({
-		    username: \''.check_plain(variable_get('picasa_user')).'\',
-            maxResults: 12,
+            username: \''.check_plain(variable_get('vih_pwi_picasa_user')).'\',
+            maxResults: '.check_plain(variable_get('vih_pwi_max_results', 12)).',
             showAlbumDescription: false,
             showPhotoCaption: false,
             photoCaptionLength: 5,
-            thumbSize: 170,
+            thumbSize: '.check_plain(variable_get('vih_pwi_thumbsize', 160)).',
             thumbCrop: 1,
             showPhotoDate: false,
-            labels: {photo:"billede",	//-- override labels, to translate into your required language
-                     photos: "billeder",
-                     albums: "Tilbage til albums",
-                     slideshow: "Vis slideshow",
-                     loading: "Henter billeder...",
-                     page: "Side",
-                     prev: "Forrige",
-                     next: "Næste",
+            showSlideshowLink: true,
+            labels: {photo:"'.t('photo').'",	//-- override labels, to translate into your required language
+                     photos: "'.t('photos').'",
+                     albums: "'.t('Back to albums').'",
+                     slideshow: "'.t('Show slideshow').'",
+                     loading: "'.t('Fetching pictures').'",
+                     page: "'.t('Page').'",
+                     prev: "'.t('Previous').'",
+                     next: "'.t('Next').'",
                      devider: "|"
             },
-            months: ["Januar","Februar","Marts","April","Maj","Juni","Juli","August","September","Oktober","November","December"]
+            months: ["'.t('January').'","'.t('Februrary').'","'.t('March').'","'.t('April').'","'.t('May').'","'.t('June').'","'.t('July').'","'.t('August').'","'.t('September').'","'.t('October').'","'.t('November').'","'.t('December').'"],
+            slimbox_config: {
+                loop: true,
+                overlayOpacity: 0.6,
+                overlayFadeDuration: 400,
+                resizeDuration: 400,
+                resizeEasing: "swing",
+                initialWidth: 250,
+                initlaHeight: 250,
+                imageFadeDuration: 400,
+                captionAnimationDuration: 400,
+                counterText: "{x}/{y}",
+                closeKeys: [27, 88, 67, 70],
+                prevKeys: [37, 80],
+                nextKeys: [39, 83]
+            }, //-- overrule defaults is needed
         });
     });
 })(jQuery);', 'inline');

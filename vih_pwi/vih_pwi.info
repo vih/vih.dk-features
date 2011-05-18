@@ -4,5 +4,3 @@ name = "VIH Picasa Web Album"
 package = "VIH"
 php = "5.2.4"
 version = "7.x-0.1"
-
-configure = admin/settings/pwi
