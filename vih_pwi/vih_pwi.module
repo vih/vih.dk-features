@@ -7,6 +7,7 @@
  * Implements hook_help().
  */
 function vih_pwi_help($path, $arg) {
+  global $base_path;
   switch ($path) {
     case 'admin/help#vih_pwi':
       $output = '<h3>' . t('About') . '</h3>';
@@ -14,7 +15,7 @@ function vih_pwi_help($path, $arg) {
       $output .= '<h3>' . t('Uses') . '</h3>';
       $output .= '<dl>';
       $output .= '<dt>' . t('Usage') . '</dt>';
-      $output .= '<dd>' . t('To embed the slideshow, all you need to do is enable the module and configure it at <a href="@pwi">Scribd Input Filter</a>.', array('@pwi' => 'admin/settings/pwi')) . '.</dd>';
+      $output .= '<dd>' . t('To embed the Picasa Webalbums, you add the the block from the <a href="@pwi">blocks configuration page</a>.', array('@pwi' => $base_path . 'admin/structure/block')) . '.</dd>';
       $output .= '</dl>';
       return $output;
     case 'admin/settings/pwi':
