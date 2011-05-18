@@ -3,5 +3,6 @@ description = "Integrates with the newsletters in Intraface."
 name = "VIH Intraface Newsletter"
 package = "VIH"
 php = "5.2.4"
-project = "vih_newsletter"
 version = "7.x-0.1"
+
+configure = admin/config/vih/newsletter
