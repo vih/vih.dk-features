@@ -58,7 +58,7 @@ function vih_newsletter_form($form, &$form_state) {
     '#type' => 'submit',
     '#value' => t('Submit'),
   );
-  return system_settings_form($form);
+  return $form;
 }
 
 function vih_newsletter_form_validate($form, &$form_state) {
