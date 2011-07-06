@@ -49,6 +49,10 @@ function ideainformer_menu() {
 }
 
 function ideainformer_page_alter(&$page) {
+  if (!variable_get('ideainformer_domain') OR !variable_get('ideainformer_short_title') OR !variable_get('ideainformer_long_title')) {
+    return;
+  }
+
   drupal_add_js('reformal_wdg_domain    = "'.variable_get('ideainformer_domain').'";
 reformal_wdg_mode    = 0;
 reformal_wdg_title   = "'.variable_get('ideainformer_short_title').'";
