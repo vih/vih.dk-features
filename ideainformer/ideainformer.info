@@ -1,0 +1,6 @@
+core = "7.x"
+description = "Provides a block for idea.informer.com feedback mechanism."
+name = "Idea Informer Block"
+package = "VIH"
+php = "5.2.4"
+version = "7.x-0.1"

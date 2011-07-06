@@ -1,0 +1,71 @@
+<?php
+/**
+ * Shows Picasa Web Albums on a page
+ */
+
+/**
+ * Implements hook_help().
+ */
+function ideainformer_help($path, $arg) {
+  global $base_path;
+  switch ($path) {
+    case 'admin/help#ideainformer':
+      $output = '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Implements Idea Informer feedback on the page') .'</p>';
+      $output .= '<h3>' . t('Uses') . '</h3>';
+      $output .= '<dl>';
+      $output .= '<dt>' . t('Usage') . '</dt>';
+      $output .= '<dd>' . t('To embed the the feedback mechanism, you add configure the module <a href="@ideainformer">configuration page</a>.', array('@ideainformer' => $base_path . 'admin/settings/ideainformer')) . '. '.t('Remember to configure the block').'</dd>';
+      $output .= '</dl>';
+      return $output;
+    case 'admin/settings/ideainformer':
+      $output = t('Configure your Idea Informer feedback widget');
+      return $output;
+  }
+}
+
+/**
+ * Implementation of hook_menu().
+ */
+function ideainformer_menu() {
+  $items = array();
+  $items['admin/system/ideainformer'] = array(
+    'title' => 'Idea Informer Widget',
+    'description' => 'Configure the Idea Informer Widget',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('ideainformer_admin_form'),
+    'access arguments' => array('administer permissions'),
+    'file' => 'ideainformer.admin.inc'
+  );
+  $items['admin/config/ideainformer'] = array(
+    'title' => 'Idea Informer Widget',
+    'description' => 'Configure the Idea Informer Widget',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('ideainformer_admin_form'),
+    'access arguments' => array('administer permissions'),
+    'file' => 'ideainformer.admin.inc'
+  );
+  return $items;
+}
+
+function ideainformer_page_alter(&$page) {
+  drupal_add_js('reformal_wdg_domain    = "'.variable_get('ideainformer_domain').'";
+reformal_wdg_mode    = 0;
+reformal_wdg_title   = "'.variable_get('ideainformer_short_title').'";
+reformal_wdg_ltitle  = "'.variable_get('ideainformer_long_title').'";
+reformal_wdg_lfont   = "";
+reformal_wdg_lsize   = "";
+reformal_wdg_color   = "#FFA000";
+reformal_wdg_bcolor  = "#516683";
+reformal_wdg_tcolor  = "#FFFFFF";
+reformal_wdg_align   = "left";
+reformal_wdg_waction = 0;
+reformal_wdg_vcolor  = "#9FCE54";
+reformal_wdg_cmline  = "#E0E0E0";
+reformal_wdg_glcolor  = "#105895";
+reformal_wdg_tbcolor  = "#FFFFFF";
+ 
+reformal_wdg_bimage = "8489db229aa0a66ab6b80ebbe0bb26cd.png";', 'inline');
+
+  drupal_add_js('http://idea.informer.com/tab6.js?domain=' . variable_get('ideainformer_domain'), 'external');
+}
