@@ -15,10 +15,10 @@ function ideainformer_help($path, $arg) {
       $output .= '<h3>' . t('Uses') . '</h3>';
       $output .= '<dl>';
       $output .= '<dt>' . t('Usage') . '</dt>';
-      $output .= '<dd>' . t('To embed the the feedback mechanism, you add configure the module <a href="@ideainformer">configuration page</a>.', array('@ideainformer' => $base_path . 'admin/settings/ideainformer')) . '. '.t('Remember to configure the block').'</dd>';
+      $output .= '<dd>' . t('To embed the the feedback mechanism, you add configure the module <a href="@ideainformer">configuration page</a>.', array('@ideainformer' => $base_path . 'admin/config/system/ideainformer')) . '. '.t('Remember to configure the block').'</dd>';
       $output .= '</dl>';
       return $output;
-    case 'admin/settings/ideainformer':
+    case 'admin/config/system/ideainformer':
       $output = t('Configure your Idea Informer feedback widget');
       return $output;
   }
@@ -29,15 +29,7 @@ function ideainformer_help($path, $arg) {
  */
 function ideainformer_menu() {
   $items = array();
-  $items['admin/system/ideainformer'] = array(
-    'title' => 'Idea Informer Widget',
-    'description' => 'Configure the Idea Informer Widget',
-    'page callback' => 'drupal_get_form',
-    'page arguments' => array('ideainformer_admin_form'),
-    'access arguments' => array('administer permissions'),
-    'file' => 'ideainformer.admin.inc'
-  );
-  $items['admin/config/ideainformer'] = array(
+  $items['admin/config/system/ideainformer'] = array(
     'title' => 'Idea Informer Widget',
     'description' => 'Configure the Idea Informer Widget',
     'page callback' => 'drupal_get_form',
