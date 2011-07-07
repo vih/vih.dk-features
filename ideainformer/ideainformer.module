@@ -45,10 +45,10 @@ function ideainformer_page_alter(&$page) {
     return;
   }
 
-  drupal_add_js('reformal_wdg_domain    = "'.variable_get('ideainformer_domain').'";
+  drupal_add_js('reformal_wdg_domain    = "'.check_plain(variable_get('ideainformer_domain')).'";
 reformal_wdg_mode    = 0;
-reformal_wdg_title   = "'.variable_get('ideainformer_short_title').'";
-reformal_wdg_ltitle  = "'.variable_get('ideainformer_long_title').'";
+reformal_wdg_title   = "'.check_plain(variable_get('ideainformer_short_title')).'";
+reformal_wdg_ltitle  = "'.check_plain(variable_get('ideainformer_long_title')).'";
 reformal_wdg_lfont   = "";
 reformal_wdg_lsize   = "";
 reformal_wdg_color   = "#FFA000";
@@ -63,5 +63,5 @@ reformal_wdg_tbcolor  = "#FFFFFF";
  
 reformal_wdg_bimage = "8489db229aa0a66ab6b80ebbe0bb26cd.png";', 'inline');
 
-  drupal_add_js('http://idea.informer.com/tab6.js?domain=' . variable_get('ideainformer_domain'), 'external');
+  drupal_add_js('http://idea.informer.com/tab6.js?domain=' . check_plain(variable_get('ideainformer_domain')), 'external');
 }
