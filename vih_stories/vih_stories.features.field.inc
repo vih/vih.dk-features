@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file
+ * vih_stories.features.field.inc
+ */
 
 /**
  * Implementation of hook_field_default_fields().
@@ -13,7 +17,7 @@ function vih_stories_field_default_fields() {
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(
-        '0' => 'node',
+        0 => 'node',
       ),
       'field_name' => 'body',
       'foreign keys' => array(
@@ -26,7 +30,7 @@ function vih_stories_field_default_fields() {
       ),
       'indexes' => array(
         'format' => array(
-          '0' => 'format',
+          0 => 'format',
         ),
       ),
       'module' => 'text',
@@ -45,7 +49,7 @@ function vih_stories_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 0,
+          'weight' => '0',
         ),
         'full' => array(
           'label' => 'above',
@@ -88,6 +92,7 @@ function vih_stories_field_default_fields() {
       'settings' => array(
         'display_summary' => TRUE,
         'text_processing' => 1,
+        'user_register_form' => FALSE,
       ),
       'widget' => array(
         'module' => 'text',
@@ -96,7 +101,7 @@ function vih_stories_field_default_fields() {
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => -4,
+        'weight' => '1',
       ),
       'widget_type' => 'text_textarea_with_summary',
     ),
@@ -113,7 +118,7 @@ function vih_stories_field_default_fields() {
       'foreign keys' => array(),
       'indexes' => array(
         'fid' => array(
-          '0' => 'fid',
+          0 => 'fid',
         ),
       ),
       'module' => 'image',
@@ -134,10 +139,10 @@ function vih_stories_field_default_fields() {
           'module' => 'image',
           'settings' => array(
             'image_link' => '',
-            'image_style' => 'large',
+            'image_style' => 'medium',
           ),
           'type' => 'image',
-          'weight' => -1,
+          'weight' => '-1',
         ),
         'full' => array(
           'label' => 'above',
@@ -186,6 +191,7 @@ function vih_stories_field_default_fields() {
         'max_resolution' => '',
         'min_resolution' => '',
         'title_field' => '',
+        'user_register_form' => FALSE,
       ),
       'widget' => array(
         'module' => 'image',
@@ -194,7 +200,7 @@ function vih_stories_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'image_image',
-        'weight' => -1,
+        'weight' => '4',
       ),
     ),
   );
@@ -210,13 +216,13 @@ function vih_stories_field_default_fields() {
       'foreign keys' => array(),
       'indexes' => array(
         'tid' => array(
-          '0' => 'tid',
+          0 => 'tid',
         ),
       ),
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
-          '0' => array(
+          0 => array(
             'parent' => 0,
             'vocabulary' => 'tags',
           ),
@@ -232,11 +238,11 @@ function vih_stories_field_default_fields() {
       'description' => 'Enter a comma-separated list of words to describe your content.',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'hidden',
           'module' => 'taxonomy',
           'settings' => array(),
           'type' => 'taxonomy_term_reference_link',
-          'weight' => 10,
+          'weight' => '10',
         ),
         'full' => array(
           'label' => 'above',
@@ -274,7 +280,9 @@ function vih_stories_field_default_fields() {
       'field_name' => 'field_tags',
       'label' => 'Tags',
       'required' => FALSE,
-      'settings' => array(),
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
       'widget' => array(
         'module' => 'taxonomy',
         'settings' => array(
@@ -282,10 +290,126 @@ function vih_stories_field_default_fields() {
           'size' => 60,
         ),
         'type' => 'taxonomy_autocomplete',
-        'weight' => -4,
+        'weight' => '2',
       ),
     ),
   );
+
+  // Exported field: 'node-story-meta_description'
+  $fields['node-story-meta_description'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'meta_description',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'metatags_quick',
+      'settings' => array(
+        0 => 'meta_name',
+        'meta_name' => 'description',
+      ),
+      'translatable' => '0',
+      'type' => 'metatags_quick',
+    ),
+    'field_instance' => array(
+      'bundle' => 'story',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'Valgfri, kort sigende beskrivelse der maksimalt må være 160 tegn lang.',
+      'display' => array(
+        'default' => array(
+          'label' => 'hidden',
+          'module' => 'metatags_quick',
+          'settings' => array(),
+          'type' => 'metatags_quick_default',
+          'weight' => '11',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'meta_description',
+      'formatter' => 'metatags_quick_default',
+      'label' => 'Beskrivelse til søgemaskinerne',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 0,
+        'module' => 'metatags_quick',
+        'settings' => array(),
+        'type' => 'metatags_quick_textarea',
+        'weight' => '3',
+      ),
+    ),
+  );
+
+  // Exported field: 'taxonomy_term-tags-meta_description'
+  $fields['taxonomy_term-tags-meta_description'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'meta_description',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'metatags_quick',
+      'settings' => array(
+        0 => 'meta_name',
+        'meta_name' => 'description',
+      ),
+      'translatable' => '0',
+      'type' => 'metatags_quick',
+    ),
+    'field_instance' => array(
+      'bundle' => 'tags',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'metatags_quick',
+          'settings' => array(),
+          'type' => 'metatags_quick_default',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'taxonomy_term',
+      'field_name' => 'meta_description',
+      'formatter' => 'metatags_quick_default',
+      'label' => 'Beskrivelse',
+      'required' => FALSE,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'module' => 'metatags_quick',
+        'settings' => array(),
+        'type' => 'metatags_quick_textarea',
+        'weight' => 0,
+      ),
+    ),
+  );
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Beskrivelse');
+  t('Beskrivelse til søgemaskinerne');
+  t('Body');
+  t('Enter a comma-separated list of words to describe your content.');
+  t('Image');
+  t('Tags');
+  t('Upload an image to go with this article.');
+  t('Valgfri, kort sigende beskrivelse der maksimalt må være 160 tegn lang.');
 
   return $fields;
 }

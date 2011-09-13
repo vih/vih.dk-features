@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file
+ * vih_stories.features.menu_custom.inc
+ */
 
 /**
  * Implementation of hook_menu_default_menu_custom().
