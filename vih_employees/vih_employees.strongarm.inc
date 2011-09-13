@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file
+ * vih_employees.strongarm.inc
+ */
 
 /**
  * Implementation of hook_strongarm().

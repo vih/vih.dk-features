@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file
+ * vih_employees.features.field.inc
+ */
 
 /**
  * Implementation of hook_field_default_fields().
@@ -13,7 +17,7 @@ function vih_employees_field_default_fields() {
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(
-        '0' => 'node',
+        0 => 'node',
       ),
       'field_name' => 'body',
       'foreign keys' => array(
@@ -26,7 +30,7 @@ function vih_employees_field_default_fields() {
       ),
       'indexes' => array(
         'format' => array(
-          '0' => 'format',
+          0 => 'format',
         ),
       ),
       'module' => 'text',
@@ -45,7 +49,7 @@ function vih_employees_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 0,
+          'weight' => '2',
         ),
         'full' => array(
           'label' => 'above',
@@ -88,6 +92,7 @@ function vih_employees_field_default_fields() {
       'settings' => array(
         'display_summary' => TRUE,
         'text_processing' => 1,
+        'user_register_form' => FALSE,
       ),
       'widget' => array(
         'module' => 'text',
@@ -96,7 +101,7 @@ function vih_employees_field_default_fields() {
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => '-4',
+        'weight' => '1',
       ),
       'widget_type' => 'text_textarea_with_summary',
     ),
@@ -120,7 +125,7 @@ function vih_employees_field_default_fields() {
       ),
       'indexes' => array(
         'format' => array(
-          '0' => 'format',
+          0 => 'format',
         ),
       ),
       'module' => 'text',
@@ -137,11 +142,11 @@ function vih_employees_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'hidden',
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 2,
+          'weight' => '1',
         ),
         'full' => array(
           'label' => 'above',
@@ -180,6 +185,7 @@ function vih_employees_field_default_fields() {
       'required' => 0,
       'settings' => array(
         'text_processing' => '0',
+        'user_register_form' => FALSE,
       ),
       'widget' => array(
         'active' => 1,
@@ -188,7 +194,7 @@ function vih_employees_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '-2',
+        'weight' => '3',
       ),
     ),
   );
@@ -211,7 +217,7 @@ function vih_employees_field_default_fields() {
       ),
       'indexes' => array(
         'format' => array(
-          '0' => 'format',
+          0 => 'format',
         ),
       ),
       'module' => 'text',
@@ -230,7 +236,7 @@ function vih_employees_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 1,
+          'weight' => '3',
         ),
         'full' => array(
           'label' => 'above',
@@ -268,7 +274,8 @@ function vih_employees_field_default_fields() {
       'label' => 'Information',
       'required' => 0,
       'settings' => array(
-        'text_processing' => '0',
+        'text_processing' => '1',
+        'user_register_form' => FALSE,
       ),
       'widget' => array(
         'active' => 1,
@@ -277,7 +284,7 @@ function vih_employees_field_default_fields() {
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '-3',
+        'weight' => '2',
       ),
     ),
   );
@@ -293,7 +300,7 @@ function vih_employees_field_default_fields() {
       'foreign keys' => array(),
       'indexes' => array(
         'fid' => array(
-          '0' => 'fid',
+          0 => 'fid',
         ),
       ),
       'module' => 'image',
@@ -311,14 +318,14 @@ function vih_employees_field_default_fields() {
       'description' => 'The picture has to be 305 x 445 px',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'hidden',
           'module' => 'image',
           'settings' => array(
             'image_link' => '',
-            'image_style' => '',
+            'image_style' => 'sidepicture',
           ),
           'type' => 'image',
-          'weight' => 3,
+          'weight' => '0',
         ),
         'full' => array(
           'label' => 'above',
@@ -363,6 +370,7 @@ function vih_employees_field_default_fields() {
         'max_resolution' => '305x445',
         'min_resolution' => '305x445',
         'title_field' => 0,
+        'user_register_form' => FALSE,
       ),
       'widget' => array(
         'active' => 1,
@@ -372,10 +380,76 @@ function vih_employees_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'image_image',
-        'weight' => 0,
+        'weight' => '4',
       ),
     ),
   );
+
+  // Exported field: 'node-employee-meta_description'
+  $fields['node-employee-meta_description'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'meta_description',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'metatags_quick',
+      'settings' => array(
+        0 => 'meta_name',
+        'meta_name' => 'description',
+      ),
+      'translatable' => '0',
+      'type' => 'metatags_quick',
+    ),
+    'field_instance' => array(
+      'bundle' => 'employee',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'Valgfri, kort beskrivelse af siden til søgemaskinerne. Teksten skal indeholde så mange nøgleord som muligt og maksimalt være på 160 tegn.',
+      'display' => array(
+        'default' => array(
+          'label' => 'hidden',
+          'module' => 'metatags_quick',
+          'settings' => array(),
+          'type' => 'metatags_quick_default',
+          'weight' => '4',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'meta_description',
+      'formatter' => 'metatags_quick_default',
+      'label' => 'Beskrivelse til søgemaskinerne',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 0,
+        'module' => 'metatags_quick',
+        'settings' => array(),
+        'type' => 'metatags_quick_textarea',
+        'weight' => '5',
+      ),
+    ),
+  );
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Beskrivelse til søgemaskinerne');
+  t('Body');
+  t('E-mail');
+  t('Information');
+  t('Picture');
+  t('The picture has to be 305 x 445 px');
+  t('Valgfri, kort beskrivelse af siden til søgemaskinerne. Teksten skal indeholde så mange nøgleord som muligt og maksimalt være på 160 tegn.');
 
   return $fields;
 }
