@@ -1,29 +1,56 @@
 <?php
+/**
+ * @file
+ * vih_subjects.features.taxonomy.inc
+ */
 
 /**
  * Implementation of hook_taxonomy_default_vocabularies().
  */
 function vih_subjects_taxonomy_default_vocabularies() {
   return array(
-    'subjects' => array(
-      'name' => 'Subjects',
-      'machine_name' => 'subjects',
+    'subject_category' => array(
+      'name' => 'Subject Category',
+      'machine_name' => 'subject_category',
       'description' => 'Categories for subjects',
       'hierarchy' => '0',
       'module' => 'taxonomy',
-      'weight' => '-10',
+      'weight' => '0',
       'rdf_mapping' => array(
         'rdftype' => array(
-          '0' => 'skos:ConceptScheme',
+          0 => 'skos:ConceptScheme',
         ),
         'name' => array(
           'predicates' => array(
-            '0' => 'dc:title',
+            0 => 'dc:title',
           ),
         ),
         'description' => array(
           'predicates' => array(
-            '0' => 'rdfs:comment',
+            0 => 'rdfs:comment',
+          ),
+        ),
+      ),
+    ),
+    'subject_packages' => array(
+      'name' => 'Subject Packages',
+      'machine_name' => 'subject_packages',
+      'description' => '',
+      'hierarchy' => '0',
+      'module' => 'taxonomy',
+      'weight' => '9',
+      'rdf_mapping' => array(
+        'rdftype' => array(
+          0 => 'skos:ConceptScheme',
+        ),
+        'name' => array(
+          'predicates' => array(
+            0 => 'dc:title',
+          ),
+        ),
+        'description' => array(
+          'predicates' => array(
+            0 => 'rdfs:comment',
           ),
         ),
       ),
