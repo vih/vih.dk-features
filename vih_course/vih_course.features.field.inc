@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file
+ * vih_course.features.field.inc
+ */
 
 /**
  * Implementation of hook_field_default_fields().
@@ -13,7 +17,7 @@ function vih_course_field_default_fields() {
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(
-        '0' => 'node',
+        0 => 'node',
       ),
       'field_name' => 'body',
       'foreign keys' => array(
@@ -26,7 +30,7 @@ function vih_course_field_default_fields() {
       ),
       'indexes' => array(
         'format' => array(
-          '0' => 'format',
+          0 => 'format',
         ),
       ),
       'module' => 'text',
@@ -88,6 +92,7 @@ function vih_course_field_default_fields() {
       'settings' => array(
         'display_summary' => TRUE,
         'text_processing' => 1,
+        'user_register_form' => FALSE,
       ),
       'widget' => array(
         'module' => 'text',
@@ -120,7 +125,7 @@ function vih_course_field_default_fields() {
       ),
       'indexes' => array(
         'nid' => array(
-          '0' => 'nid',
+          0 => 'nid',
         ),
       ),
       'module' => 'node_reference',
@@ -132,6 +137,11 @@ function vih_course_field_default_fields() {
           'course_subject' => 0,
           'course_subject_group' => 0,
           'page' => 0,
+        ),
+        'view' => array(
+          'args' => array(),
+          'display_name' => '',
+          'view_name' => '',
         ),
       ),
       'translatable' => '1',
@@ -185,7 +195,9 @@ function vih_course_field_default_fields() {
       'field_name' => 'field_course_periods',
       'label' => 'Periods',
       'required' => 1,
-      'settings' => array(),
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
       'widget' => array(
         'active' => 1,
         'module' => 'options',
@@ -224,7 +236,7 @@ function vih_course_field_default_fields() {
       ),
       'indexes' => array(
         'period_nid' => array(
-          '0' => 'period_nid',
+          0 => 'period_nid',
         ),
       ),
       'module' => 'vih_course_reference',
@@ -280,7 +292,9 @@ function vih_course_field_default_fields() {
       'field_name' => 'field_course_subject_groups',
       'label' => 'Subject groups',
       'required' => 0,
-      'settings' => array(),
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
       'widget' => array(
         'active' => 0,
         'module' => 'vih_course_reference',
@@ -381,6 +395,7 @@ function vih_course_field_default_fields() {
         'default_value2' => 'blank',
         'default_value_code' => '',
         'default_value_code2' => '',
+        'user_register_form' => FALSE,
       ),
       'widget' => array(
         'active' => 1,
@@ -408,7 +423,7 @@ function vih_course_field_default_fields() {
           'text_parts' => array(),
           'year_range' => '-5:+5',
         ),
-        'type' => 'date_popup',
+        'type' => 'date_select',
         'weight' => '-3',
       ),
     ),
@@ -421,7 +436,7 @@ function vih_course_field_default_fields() {
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(
-        '0' => 'node',
+        0 => 'node',
       ),
       'field_name' => 'body',
       'foreign keys' => array(
@@ -434,7 +449,7 @@ function vih_course_field_default_fields() {
       ),
       'indexes' => array(
         'format' => array(
-          '0' => 'format',
+          0 => 'format',
         ),
       ),
       'module' => 'text',
@@ -496,6 +511,7 @@ function vih_course_field_default_fields() {
       'settings' => array(
         'display_summary' => TRUE,
         'text_processing' => 1,
+        'user_register_form' => FALSE,
       ),
       'widget' => array(
         'module' => 'text',
@@ -600,6 +616,7 @@ function vih_course_field_default_fields() {
         'default_value2' => 'blank',
         'default_value_code' => '',
         'default_value_code2' => '',
+        'user_register_form' => FALSE,
       ),
       'widget' => array(
         'active' => 1,
@@ -640,7 +657,7 @@ function vih_course_field_default_fields() {
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(
-        '0' => 'node',
+        0 => 'node',
       ),
       'field_name' => 'body',
       'foreign keys' => array(
@@ -653,7 +670,7 @@ function vih_course_field_default_fields() {
       ),
       'indexes' => array(
         'format' => array(
-          '0' => 'format',
+          0 => 'format',
         ),
       ),
       'module' => 'text',
@@ -715,6 +732,7 @@ function vih_course_field_default_fields() {
       'settings' => array(
         'display_summary' => TRUE,
         'text_processing' => 1,
+        'user_register_form' => FALSE,
       ),
       'widget' => array(
         'module' => 'text',
@@ -723,7 +741,7 @@ function vih_course_field_default_fields() {
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => -4,
+        'weight' => '-4',
       ),
       'widget_type' => 'text_textarea_with_summary',
     ),
@@ -736,7 +754,7 @@ function vih_course_field_default_fields() {
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(
-        '0' => 'node',
+        0 => 'node',
       ),
       'field_name' => 'body',
       'foreign keys' => array(
@@ -749,7 +767,7 @@ function vih_course_field_default_fields() {
       ),
       'indexes' => array(
         'format' => array(
-          '0' => 'format',
+          0 => 'format',
         ),
       ),
       'module' => 'text',
@@ -811,6 +829,7 @@ function vih_course_field_default_fields() {
       'settings' => array(
         'display_summary' => TRUE,
         'text_processing' => 1,
+        'user_register_form' => FALSE,
       ),
       'widget' => array(
         'module' => 'text',
@@ -843,7 +862,7 @@ function vih_course_field_default_fields() {
       ),
       'indexes' => array(
         'nid' => array(
-          '0' => 'nid',
+          0 => 'nid',
         ),
       ),
       'module' => 'node_reference',
@@ -855,6 +874,11 @@ function vih_course_field_default_fields() {
           'course_subject' => 'course_subject',
           'course_subject_group' => 0,
           'page' => 0,
+        ),
+        'view' => array(
+          'args' => array(),
+          'display_name' => '',
+          'view_name' => '',
         ),
       ),
       'translatable' => '1',
@@ -908,7 +932,9 @@ function vih_course_field_default_fields() {
       'field_name' => 'field_subject_group_subjects',
       'label' => 'Subjects',
       'required' => 1,
-      'settings' => array(),
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
       'widget' => array(
         'active' => 0,
         'module' => 'options',
@@ -918,6 +944,15 @@ function vih_course_field_default_fields() {
       ),
     ),
   );
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Body');
+  t('Periods');
+  t('Start & end date');
+  t('Start and end date');
+  t('Subject groups');
+  t('Subjects');
 
   return $fields;
 }

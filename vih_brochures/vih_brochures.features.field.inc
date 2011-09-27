@@ -345,65 +345,9 @@ function vih_brochures_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-brochure_order-meta_description'
-  $fields['node-brochure_order-meta_description'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'meta_description',
-      'foreign keys' => array(),
-      'indexes' => array(),
-      'module' => 'metatags_quick',
-      'settings' => array(
-        0 => 'meta_name',
-        'meta_name' => 'description',
-      ),
-      'translatable' => '0',
-      'type' => 'metatags_quick',
-    ),
-    'field_instance' => array(
-      'bundle' => 'brochure_order',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'metatags_quick',
-          'settings' => array(),
-          'type' => 'metatags_quick_default',
-          'weight' => 7,
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'meta_description',
-      'formatter' => 'metatags_quick_default',
-      'label' => 'Beskrivelse',
-      'required' => FALSE,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'module' => 'metatags_quick',
-        'settings' => array(),
-        'type' => 'metatags_quick_textarea',
-        'weight' => 0,
-      ),
-    ),
-  );
-
   // Translatables
   // Included for use with string extractors like potx.
   t('Address');
-  t('Beskrivelse');
   t('Comment');
   t('E-mail');
   t('Type');

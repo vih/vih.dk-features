@@ -385,36 +385,61 @@ function vih_employees_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-employee-meta_description'
-  $fields['node-employee-meta_description'] = array(
+  // Exported field: 'node-employee-field_subjects'
+  $fields['node-employee-field_subjects'] = array(
     'field_config' => array(
       'active' => '1',
-      'cardinality' => '1',
+      'cardinality' => '-1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'meta_description',
-      'foreign keys' => array(),
-      'indexes' => array(),
-      'module' => 'metatags_quick',
+      'field_name' => 'field_subjects',
+      'foreign keys' => array(
+        'nid' => array(
+          'columns' => array(
+            'nid' => 'nid',
+          ),
+          'table' => 'node',
+        ),
+      ),
+      'indexes' => array(
+        'nid' => array(
+          0 => 'nid',
+        ),
+      ),
+      'module' => 'node_reference',
       'settings' => array(
-        0 => 'meta_name',
-        'meta_name' => 'description',
+        'referenceable_types' => array(
+          'brochure_order' => 0,
+          'course_long' => 0,
+          'course_period' => 0,
+          'course_subject' => 0,
+          'course_subject_group' => 0,
+          'employee' => 0,
+          'page' => 0,
+          'story' => 0,
+          'subject' => 'subject',
+        ),
+        'view' => array(
+          'args' => array(),
+          'display_name' => '',
+          'view_name' => '',
+        ),
       ),
       'translatable' => '0',
-      'type' => 'metatags_quick',
+      'type' => 'node_reference',
     ),
     'field_instance' => array(
       'bundle' => 'employee',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => 'Valgfri, kort beskrivelse af siden til søgemaskinerne. Teksten skal indeholde så mange nøgleord som muligt og maksimalt være på 160 tegn.',
+      'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'hidden',
-          'module' => 'metatags_quick',
+          'label' => 'above',
+          'module' => 'node_reference',
           'settings' => array(),
-          'type' => 'metatags_quick_default',
-          'weight' => '4',
+          'type' => 'node_reference_default',
+          'weight' => 4,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -424,32 +449,30 @@ function vih_employees_field_default_fields() {
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'meta_description',
-      'formatter' => 'metatags_quick_default',
-      'label' => 'Beskrivelse til søgemaskinerne',
+      'field_name' => 'field_subjects',
+      'label' => 'Fag',
       'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
       'widget' => array(
-        'active' => 0,
-        'module' => 'metatags_quick',
+        'active' => 1,
+        'module' => 'options',
         'settings' => array(),
-        'type' => 'metatags_quick_textarea',
-        'weight' => '5',
+        'type' => 'options_select',
+        'weight' => '11',
       ),
     ),
   );
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Beskrivelse til søgemaskinerne');
   t('Body');
   t('E-mail');
+  t('Fag');
   t('Information');
   t('Picture');
   t('The picture has to be 305 x 445 px');
-  t('Valgfri, kort beskrivelse af siden til søgemaskinerne. Teksten skal indeholde så mange nøgleord som muligt og maksimalt være på 160 tegn.');
 
   return $fields;
 }

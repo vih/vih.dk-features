@@ -16,6 +16,7 @@ function vih_stories_taxonomy_default_vocabularies() {
       'hierarchy' => '1',
       'module' => 'taxonomy',
       'weight' => '-10',
+      'metatags' => array(),
       'rdf_mapping' => array(
         'rdftype' => array(
           0 => 'skos:ConceptScheme',

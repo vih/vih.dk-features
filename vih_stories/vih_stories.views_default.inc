@@ -16,7 +16,7 @@ function vih_stories_views_default_views() {
   $view->description = 'Shows a list of published stories.';
   $view->tag = 'story';
   $view->base_table = 'node';
-  $view->human_name = 'story_teasers';
+  $view->human_name = 'Story teasers';
   $view->core = 0;
   $view->api_version = '3.0-alpha1';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
@@ -107,7 +107,6 @@ function vih_stories_views_default_views() {
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'block_news_teaser');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Story teasers';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '5';
@@ -312,7 +311,6 @@ function vih_stories_views_default_views() {
     t('Forskydning'),
     t('Alle'),
     t('Block'),
-    t('Story teasers'),
     t('<h2>[title]</h2>'),
     t('Page'),
     t('Nyheder'),

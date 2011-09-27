@@ -295,121 +295,13 @@ function vih_stories_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-story-meta_description'
-  $fields['node-story-meta_description'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'meta_description',
-      'foreign keys' => array(),
-      'indexes' => array(),
-      'module' => 'metatags_quick',
-      'settings' => array(
-        0 => 'meta_name',
-        'meta_name' => 'description',
-      ),
-      'translatable' => '0',
-      'type' => 'metatags_quick',
-    ),
-    'field_instance' => array(
-      'bundle' => 'story',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => 'Valgfri, kort sigende beskrivelse der maksimalt må være 160 tegn lang.',
-      'display' => array(
-        'default' => array(
-          'label' => 'hidden',
-          'module' => 'metatags_quick',
-          'settings' => array(),
-          'type' => 'metatags_quick_default',
-          'weight' => '11',
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'meta_description',
-      'formatter' => 'metatags_quick_default',
-      'label' => 'Beskrivelse til søgemaskinerne',
-      'required' => 0,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 0,
-        'module' => 'metatags_quick',
-        'settings' => array(),
-        'type' => 'metatags_quick_textarea',
-        'weight' => '3',
-      ),
-    ),
-  );
-
-  // Exported field: 'taxonomy_term-tags-meta_description'
-  $fields['taxonomy_term-tags-meta_description'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'meta_description',
-      'foreign keys' => array(),
-      'indexes' => array(),
-      'module' => 'metatags_quick',
-      'settings' => array(
-        0 => 'meta_name',
-        'meta_name' => 'description',
-      ),
-      'translatable' => '0',
-      'type' => 'metatags_quick',
-    ),
-    'field_instance' => array(
-      'bundle' => 'tags',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'metatags_quick',
-          'settings' => array(),
-          'type' => 'metatags_quick_default',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'taxonomy_term',
-      'field_name' => 'meta_description',
-      'formatter' => 'metatags_quick_default',
-      'label' => 'Beskrivelse',
-      'required' => FALSE,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'module' => 'metatags_quick',
-        'settings' => array(),
-        'type' => 'metatags_quick_textarea',
-        'weight' => 0,
-      ),
-    ),
-  );
-
   // Translatables
   // Included for use with string extractors like potx.
-  t('Beskrivelse');
-  t('Beskrivelse til søgemaskinerne');
   t('Body');
   t('Enter a comma-separated list of words to describe your content.');
   t('Image');
   t('Tags');
   t('Upload an image to go with this article.');
-  t('Valgfri, kort sigende beskrivelse der maksimalt må være 160 tegn lang.');
 
   return $fields;
 }

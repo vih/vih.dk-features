@@ -409,6 +409,86 @@ function vih_subjects_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-subject-field_teachers'
+  $fields['node-subject-field_teachers'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_teachers',
+      'foreign keys' => array(
+        'nid' => array(
+          'columns' => array(
+            'nid' => 'nid',
+          ),
+          'table' => 'node',
+        ),
+      ),
+      'indexes' => array(
+        'nid' => array(
+          0 => 'nid',
+        ),
+      ),
+      'module' => 'node_reference',
+      'settings' => array(
+        'referenceable_types' => array(
+          'brochure_order' => 0,
+          'course_long' => 0,
+          'course_period' => 0,
+          'course_subject' => 0,
+          'course_subject_group' => 0,
+          'employee' => 'employee',
+          'page' => 0,
+          'story' => 0,
+          'subject' => 0,
+        ),
+        'view' => array(
+          'args' => array(),
+          'display_name' => '',
+          'view_name' => '',
+        ),
+      ),
+      'translatable' => '0',
+      'type' => 'node_reference',
+    ),
+    'field_instance' => array(
+      'bundle' => 'subject',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'node_reference',
+          'settings' => array(),
+          'type' => 'node_reference_default',
+          'weight' => 6,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_teachers',
+      'label' => 'Underviser',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '11',
+      ),
+    ),
+  );
+
   // Exported field: 'node-subject-field_terms'
   $fields['node-subject-field_terms'] = array(
     'field_config' => array(
@@ -521,62 +601,6 @@ function vih_subjects_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-subject-meta_description'
-  $fields['node-subject-meta_description'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'meta_description',
-      'foreign keys' => array(),
-      'indexes' => array(),
-      'module' => 'metatags_quick',
-      'settings' => array(
-        0 => 'meta_name',
-        'meta_name' => 'description',
-      ),
-      'translatable' => '0',
-      'type' => 'metatags_quick',
-    ),
-    'field_instance' => array(
-      'bundle' => 'subject',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => 'Beskrivelsen til søgemaskinen skal indeholde så mange nøgleord som muligt, men teksten skal være let forståelig. Du har maksimalt 160 karakterer at gøre godt med, så du skal også være lidt skarp i replikken.',
-      'display' => array(
-        'default' => array(
-          'label' => 'hidden',
-          'module' => 'metatags_quick',
-          'settings' => array(),
-          'type' => 'metatags_quick_default',
-          'weight' => '6',
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'meta_description',
-      'formatter' => 'metatags_quick_default',
-      'label' => 'Beskrivelse til søgemaskinerne',
-      'required' => 1,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 0,
-        'module' => 'metatags_quick',
-        'settings' => array(),
-        'type' => 'metatags_quick_textarea',
-        'weight' => '5',
-      ),
-    ),
-  );
-
   // Exported field: 'taxonomy_term-subject_category-field_category_picture'
   $fields['taxonomy_term-subject_category-field_category_picture'] = array(
     'field_config' => array(
@@ -645,55 +669,6 @@ function vih_subjects_field_default_fields() {
         ),
         'type' => 'image_image',
         'weight' => '31',
-      ),
-    ),
-  );
-
-  // Exported field: 'taxonomy_term-subject_category-meta_description'
-  $fields['taxonomy_term-subject_category-meta_description'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'meta_description',
-      'foreign keys' => array(),
-      'indexes' => array(),
-      'module' => 'metatags_quick',
-      'settings' => array(
-        0 => 'meta_name',
-        'meta_name' => 'description',
-      ),
-      'translatable' => '0',
-      'type' => 'metatags_quick',
-    ),
-    'field_instance' => array(
-      'bundle' => 'subject_category',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'metatags_quick',
-          'settings' => array(),
-          'type' => 'metatags_quick_default',
-          'weight' => 1,
-        ),
-      ),
-      'entity_type' => 'taxonomy_term',
-      'field_name' => 'meta_description',
-      'formatter' => 'metatags_quick_default',
-      'label' => 'Beskrivelse',
-      'required' => FALSE,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'module' => 'metatags_quick',
-        'settings' => array(),
-        'type' => 'metatags_quick_textarea',
-        'weight' => 0,
       ),
     ),
   );
@@ -776,71 +751,14 @@ function vih_subjects_field_default_fields() {
     ),
   );
 
-  // Exported field: 'taxonomy_term-subject_packages-meta_description'
-  $fields['taxonomy_term-subject_packages-meta_description'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'meta_description',
-      'foreign keys' => array(),
-      'indexes' => array(),
-      'module' => 'metatags_quick',
-      'settings' => array(
-        0 => 'meta_name',
-        'meta_name' => 'description',
-      ),
-      'translatable' => '0',
-      'type' => 'metatags_quick',
-    ),
-    'field_instance' => array(
-      'bundle' => 'subject_packages',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'metatags_quick',
-          'settings' => array(),
-          'type' => 'metatags_quick_default',
-          'weight' => 1,
-        ),
-        'full' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'taxonomy_term',
-      'field_name' => 'meta_description',
-      'formatter' => 'metatags_quick_default',
-      'label' => 'Beskrivelse',
-      'required' => FALSE,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'module' => 'metatags_quick',
-        'settings' => array(),
-        'type' => 'metatags_quick_textarea',
-        'weight' => 0,
-      ),
-    ),
-  );
-
   // Translatables
   // Included for use with string extractors like potx.
-  t('Beskrivelse');
-  t('Beskrivelse til søgemaskinerne');
-  t('Beskrivelsen til søgemaskinen skal indeholde så mange nøgleord som muligt, men teksten skal være let forståelig. Du har maksimalt 160 karakterer at gøre godt med, så du skal også være lidt skarp i replikken.');
   t('Billede');
   t('Kategori');
   t('Pakke');
   t('Picture');
   t('Teaser');
+  t('Underviser');
   t('Video');
   t('Video fra youtube-kanalen');
   t('Værd at vide om');
