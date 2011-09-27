@@ -5,7 +5,7 @@
  */
 
 /**
- * Implementation of hook_field_default_fields().
+ * Implements hook_field_default_fields().
  */
 function vih_subjects_field_default_fields() {
   $fields = array();
@@ -229,8 +229,8 @@ function vih_subjects_field_default_fields() {
       'settings' => array(
         'allowed_values' => array(
           0 => array(
-            'parent' => '0',
             'vocabulary' => 'subject_packages',
+            'parent' => '0',
           ),
         ),
       ),
@@ -385,6 +385,7 @@ function vih_subjects_field_default_fields() {
       'label' => 'Video',
       'required' => 0,
       'settings' => array(
+        'file_extensions' => 'jpg jpeg gif png txt doc xls pdf ppt pps odt ods odp mp3 mov m4v mp4 mpeg avi ogg wmv ico',
         'user_register_form' => FALSE,
       ),
       'widget' => array(
@@ -514,8 +515,8 @@ function vih_subjects_field_default_fields() {
       'settings' => array(
         'allowed_values' => array(
           0 => array(
-            'parent' => '0',
             'vocabulary' => 'subject_category',
+            'parent' => '0',
           ),
         ),
       ),
