@@ -18,7 +18,7 @@ function vih_employees_views_default_views() {
   $view->base_table = 'node';
   $view->human_name = 'Ansatte';
   $view->core = 0;
-  $view->api_version = '3.0-alpha1';
+  $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
 
   /* Display: Defaults */
@@ -62,11 +62,10 @@ function vih_employees_views_default_views() {
   $handler->display->display_options['fields']['title']['hide_empty'] = 0;
   $handler->display->display_options['fields']['title']['empty_zero'] = 0;
   $handler->display->display_options['fields']['title']['link_to_node'] = 1;
-  /* Felt: Indhold: Picture */
+  /* Felt: Felt: Billede */
   $handler->display->display_options['fields']['entity_id']['id'] = 'entity_id';
   $handler->display->display_options['fields']['entity_id']['table'] = 'field_data_field_picture';
   $handler->display->display_options['fields']['entity_id']['field'] = 'field_picture';
-  $handler->display->display_options['fields']['entity_id']['label'] = 'Billede';
   /* Filterkriterie: Indhold: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
@@ -145,7 +144,7 @@ function vih_employees_views_default_views() {
   $handler->display->display_options['fields']['title']['hide_empty'] = 0;
   $handler->display->display_options['fields']['title']['empty_zero'] = 0;
   $handler->display->display_options['fields']['title']['link_to_node'] = 1;
-  /* Felt: Indhold: Picture */
+  /* Felt: Felt: Billede */
   $handler->display->display_options['fields']['entity_id']['id'] = 'entity_id';
   $handler->display->display_options['fields']['entity_id']['table'] = 'field_data_field_picture';
   $handler->display->display_options['fields']['entity_id']['field'] = 'field_picture';

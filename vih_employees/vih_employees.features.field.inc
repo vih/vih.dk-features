@@ -305,7 +305,7 @@ function vih_employees_field_default_fields() {
       ),
       'module' => 'image',
       'settings' => array(
-        'default_image' => 0,
+        'default_image' => '178',
         'uri_scheme' => 'public',
       ),
       'translatable' => '1',
@@ -363,7 +363,7 @@ function vih_employees_field_default_fields() {
       'label' => 'Picture',
       'required' => 0,
       'settings' => array(
-        'alt_field' => 0,
+        'alt_field' => 1,
         'file_directory' => 'employees',
         'file_extensions' => 'png jpg jpeg',
         'max_filesize' => '',
@@ -385,91 +385,10 @@ function vih_employees_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-employee-field_subjects'
-  $fields['node-employee-field_subjects'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '-1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_subjects',
-      'foreign keys' => array(
-        'nid' => array(
-          'columns' => array(
-            'nid' => 'nid',
-          ),
-          'table' => 'node',
-        ),
-      ),
-      'indexes' => array(
-        'nid' => array(
-          0 => 'nid',
-        ),
-      ),
-      'module' => 'node_reference',
-      'settings' => array(
-        'referenceable_types' => array(
-          'brochure_order' => 0,
-          'course_long' => 0,
-          'course_period' => 0,
-          'course_subject' => 0,
-          'course_subject_group' => 0,
-          'employee' => 0,
-          'page' => 0,
-          'story' => 0,
-          'subject' => 'subject',
-        ),
-        'view' => array(
-          'args' => array(),
-          'display_name' => '',
-          'view_name' => '',
-        ),
-      ),
-      'translatable' => '0',
-      'type' => 'node_reference',
-    ),
-    'field_instance' => array(
-      'bundle' => 'employee',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'node_reference',
-          'settings' => array(),
-          'type' => 'node_reference_default',
-          'weight' => 4,
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_subjects',
-      'label' => 'Fag',
-      'required' => 0,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'options',
-        'settings' => array(),
-        'type' => 'options_select',
-        'weight' => '11',
-      ),
-    ),
-  );
-
   // Translatables
   // Included for use with string extractors like potx.
   t('Body');
   t('E-mail');
-  t('Fag');
   t('Information');
   t('Picture');
   t('The picture has to be 305 x 445 px');

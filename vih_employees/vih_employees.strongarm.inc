@@ -62,6 +62,13 @@ function vih_employees_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'language_content_type_employee';
+  $strongarm->value = '0';
+  $export['language_content_type_employee'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'menu_options_employee';
   $strongarm->value = array();
   $export['menu_options_employee'] = $strongarm;
@@ -78,7 +85,8 @@ function vih_employees_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'node_options_employee';
   $strongarm->value = array(
-    0 => 'status',
+    0 => 'moderation',
+    1 => 'revision',
   );
   $export['node_options_employee'] = $strongarm;
 
