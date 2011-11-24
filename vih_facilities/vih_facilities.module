@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the VIH Facilities feature.
+ */
+
+include_once('vih_facilities.features.inc');
