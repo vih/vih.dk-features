@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the VIH_Lectures feature.
+ */
+
+include_once('vih_lectures.features.inc');
