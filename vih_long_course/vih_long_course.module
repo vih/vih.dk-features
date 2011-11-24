@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the VIH Long Course feature.
+ */
+
+include_once('vih_long_course.features.inc');
