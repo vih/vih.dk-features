@@ -1,7 +1,0 @@
-core = "7.x"
-description = "Redirects to legacy application."
-name = "VIH Redirect"
-package = "VIH"
-php = "5.2.4"
-project = "vih_redirect"
-version = "7.x-0.1"
