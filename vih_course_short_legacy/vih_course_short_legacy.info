@@ -1,8 +1,0 @@
-core = "7.x"
-description = "Connects to the legacy database for short courses. The module is meant to be temporary until the entire system can be moved to Drupal."
-name = "VIH Short Course Legacy"
-package = "VIH"
-php = "5.2.4"
-project = "vih_course_short_legacy"
-version = "7.x-0.1"
-files[] = "vih_course_short_legacy_handler_filter_datetime.inc"
