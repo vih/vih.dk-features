@@ -98,10 +98,11 @@ function vih_pwi_view() {
     if (variable_get('vih_pwi_picasa_user', '') == '') {
       drupal_set_message(t('Picasa user has not been set, so the block cannot be shown'), 'error');
     } 
-    drupal_add_css(drupal_get_path('module', 'vih_pwi') . '/jquery.pwi/css/pwi.css');
-    drupal_add_css(drupal_get_path('module', 'vih_pwi') . '/jquery.pwi/js/jquery.slimbox2/jquery.slimbox2.css');
-    drupal_add_js(drupal_get_path('module', 'vih_pwi') . '/jquery.pwi/js/jquery.slimbox2/jquery.slimbox2.js');
-    drupal_add_js(drupal_get_path('module', 'vih_pwi') . '/jquery.pwi/js/jquery.pwi.js');
+    
+    drupal_add_css(libraries_get_path('jquery.pwi') . '/css/pwi.css');
+    drupal_add_css(libraries_get_path('jquery.pwi') . '/js/jquery.colorbox/colorbox.css');
+    drupal_add_js(libraries_get_path('jquery.pwi') . '/js/jquery.colorbox/jquery.colorbox-min.js');
+    drupal_add_js(libraries_get_path('jquery.pwi') . '/js/jquery.pwi.js');
     drupal_add_js('
 (function ($) {
     $(document).ready(function() {
