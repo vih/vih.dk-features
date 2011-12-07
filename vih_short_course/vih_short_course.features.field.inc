@@ -49,7 +49,7 @@ function vih_short_course_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '2',
+          'weight' => '3',
         ),
         'teaser' => array(
           'label' => 'hidden',
@@ -118,10 +118,10 @@ function vih_short_course_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'inline',
           'module' => 'entityreference',
           'settings' => array(
-            'link' => FALSE,
+            'link' => 1,
           ),
           'type' => 'entityreference_label',
           'weight' => '6',
@@ -328,7 +328,7 @@ function vih_short_course_field_default_fields() {
       'indexes' => array(),
       'module' => 'fixed_field',
       'settings' => array(
-        'content' => '<p><em>Tilmeldingen åbner 3. december kl. 9.00. Hvis du har spørgsmål til kurserne, kan du skrive til henriette@vih.dk.</em></p>',
+        'content' => '<p><em>Tilmeldingen åbner lørdag den 3. december kl. 9.00. Hvis du har spørgsmål til kurserne, kan du skrive til henriette@vih.dk. Læg mærke til at skolens telefon ikke er bemandet i weekenden.</em></p>',
         'text_format' => 'filtered_html',
       ),
       'translatable' => '0',
@@ -342,10 +342,9 @@ function vih_short_course_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'hidden',
-          'module' => 'fixed_field',
           'settings' => array(),
-          'type' => 'fixed_field_formatter',
-          'weight' => '1',
+          'type' => 'hidden',
+          'weight' => '2',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -409,7 +408,7 @@ function vih_short_course_field_default_fields() {
             'image_style' => 'sidepicture',
           ),
           'type' => 'image',
-          'weight' => '0',
+          'weight' => '1',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -625,11 +624,11 @@ function vih_short_course_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'inline',
+          'label' => 'hidden',
           'module' => 'link',
           'settings' => array(),
           'type' => 'link_default',
-          'weight' => '3',
+          'weight' => '0',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -699,6 +698,16 @@ function vih_short_course_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
+          'label' => 'hidden',
+          'module' => 'image',
+          'settings' => array(
+            'image_link' => '',
+            'image_style' => 'content_width',
+          ),
+          'type' => 'image',
+          'weight' => '0',
+        ),
+        'full' => array(
           'label' => 'hidden',
           'module' => 'image',
           'settings' => array(
@@ -782,11 +791,16 @@ function vih_short_course_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
-          'module' => 'list',
+          'label' => 'hidden',
           'settings' => array(),
-          'type' => 'list_default',
-          'weight' => 1,
+          'type' => 'hidden',
+          'weight' => '1',
+        ),
+        'full' => array(
+          'label' => 'hidden',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '1',
         ),
       ),
       'entity_type' => 'taxonomy_term',
@@ -808,61 +822,6 @@ function vih_short_course_field_default_fields() {
     ),
   );
 
-  // Exported field: 'taxonomy_term-short_course_type-field_weight'
-  $fields['taxonomy_term-short_course_type-field_weight'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_weight',
-      'foreign keys' => array(),
-      'indexes' => array(),
-      'module' => 'number',
-      'settings' => array(),
-      'translatable' => '0',
-      'type' => 'number_integer',
-    ),
-    'field_instance' => array(
-      'bundle' => 'short_course_type',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'number',
-          'settings' => array(
-            'decimal_separator' => '.',
-            'prefix_suffix' => TRUE,
-            'scale' => 0,
-            'thousand_separator' => ' ',
-          ),
-          'type' => 'number_integer',
-          'weight' => 2,
-        ),
-      ),
-      'entity_type' => 'taxonomy_term',
-      'field_name' => 'field_weight',
-      'label' => 'Vægt',
-      'required' => 0,
-      'settings' => array(
-        'max' => '100',
-        'min' => '-100',
-        'prefix' => '',
-        'suffix' => '',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 0,
-        'module' => 'number',
-        'settings' => array(),
-        'type' => 'number',
-        'weight' => '4',
-      ),
-    ),
-  );
-
   // Translatables
   // Included for use with string extractors like potx.
   t('Billede');
@@ -875,7 +834,6 @@ function vih_short_course_field_default_fields() {
   t('Pris (børn)');
   t('Tidspunkt');
   t('Tilmelding');
-  t('Vægt');
 
   return $fields;
 }

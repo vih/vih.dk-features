@@ -77,7 +77,7 @@ function vih_long_course_field_default_fields() {
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => '5',
+        'weight' => '2',
       ),
     ),
   );
@@ -160,7 +160,7 @@ function vih_long_course_field_default_fields() {
           'year_range' => '-3:+3',
         ),
         'type' => 'date_select',
-        'weight' => '6',
+        'weight' => '1',
       ),
     ),
   );
@@ -225,7 +225,7 @@ function vih_long_course_field_default_fields() {
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => '12',
+        'weight' => '4',
       ),
     ),
   );
@@ -296,7 +296,7 @@ function vih_long_course_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'image_image',
-        'weight' => '9',
+        'weight' => '7',
       ),
     ),
   );
@@ -361,7 +361,7 @@ function vih_long_course_field_default_fields() {
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => '11',
+        'weight' => '3',
       ),
     ),
   );
@@ -426,7 +426,7 @@ function vih_long_course_field_default_fields() {
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => '13',
+        'weight' => '5',
       ),
     ),
   );
@@ -496,7 +496,7 @@ function vih_long_course_field_default_fields() {
           'apply_chosen' => 0,
         ),
         'type' => 'options_select',
-        'weight' => '7',
+        'weight' => '8',
       ),
     ),
   );
@@ -561,7 +561,7 @@ function vih_long_course_field_default_fields() {
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => '10',
+        'weight' => '6',
       ),
     ),
   );

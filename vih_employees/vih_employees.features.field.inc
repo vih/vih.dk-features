@@ -49,7 +49,7 @@ function vih_employees_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '2',
+          'weight' => '1',
         ),
         'full' => array(
           'label' => 'above',
@@ -142,11 +142,11 @@ function vih_employees_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'hidden',
+          'label' => 'above',
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '1',
+          'weight' => '3',
         ),
         'full' => array(
           'label' => 'above',
@@ -229,14 +229,14 @@ function vih_employees_field_default_fields() {
       'bundle' => 'employee',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => '',
+      'description' => 'En listeopstilling af den ansattes præstationer',
       'display' => array(
         'default' => array(
           'label' => 'above',
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '3',
+          'weight' => '2',
         ),
         'full' => array(
           'label' => 'above',
@@ -271,7 +271,7 @@ function vih_employees_field_default_fields() {
       ),
       'entity_type' => 'node',
       'field_name' => 'field_info',
-      'label' => 'Information',
+      'label' => 'Værd at vide',
       'required' => 0,
       'settings' => array(
         'text_processing' => '1',
@@ -389,9 +389,10 @@ function vih_employees_field_default_fields() {
   // Included for use with string extractors like potx.
   t('Body');
   t('E-mail');
-  t('Information');
+  t('En listeopstilling af den ansattes præstationer');
   t('Picture');
   t('The picture has to be 305 x 445 px');
+  t('Værd at vide');
 
   return $fields;
 }

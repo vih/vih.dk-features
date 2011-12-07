@@ -13,8 +13,8 @@ function vih_lectures_views_default_views() {
   // Exported view: vih_lectures
   $view = new view;
   $view->name = 'vih_lectures';
-  $view->description = '';
-  $view->tag = 'default';
+  $view->description = 'Views with lectures - e.g. feeds.';
+  $view->tag = 'VIH';
   $view->base_table = 'node';
   $view->human_name = 'Foredrag';
   $view->core = 7;
@@ -195,7 +195,7 @@ function vih_lectures_views_default_views() {
   $handler->display->display_options['fields']['field_picture']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_picture']['settings'] = array(
     'image_style' => 'square_thumbnail',
-    'image_link' => '',
+    'image_link' => 'content',
   );
   $handler->display->display_options['fields']['field_picture']['field_api_classes'] = 0;
   /* Felt: Indhold: Foredragsholder */
@@ -295,6 +295,14 @@ function vih_lectures_views_default_views() {
     'show_repeat_rule' => 'show',
   );
   $handler->display->display_options['fields']['field_date']['field_api_classes'] = 0;
+  $handler->display->display_options['metatags'] = array(
+    'description' => array(
+      'value' => 'Foredrag på Vejle Idrætshøjskole er åbne for alle. Vi behandler en lang række forskellige emner. Vel mødt',
+    ),
+    'keywords' => array(
+      'value' => 'foredrag vejle',
+    ),
+  );
   $handler->display->display_options['path'] = 'foredrag';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Foredrag';
@@ -612,7 +620,7 @@ function vih_lectures_views_default_views() {
   $handler->display->display_options['filters']['field_date_value']['table'] = 'field_data_field_date';
   $handler->display->display_options['filters']['field_date_value']['field'] = 'field_date_value';
   $handler->display->display_options['filters']['field_date_value']['operator'] = '<';
-  $handler->display->display_options['filters']['field_date_value']['default_date'] = '+50 day';
+  $handler->display->display_options['filters']['field_date_value']['default_date'] = '+70 day';
 
   /* Display: Slideshow */
   $handler = $view->new_display('block', 'Slideshow', 'block_2');

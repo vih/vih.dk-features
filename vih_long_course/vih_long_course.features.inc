@@ -22,7 +22,7 @@ function vih_long_course_node_info() {
     'vih_long_course' => array(
       'name' => t('Long course'),
       'base' => 'node_content',
-      'description' => '',
+      'description' => t('Use <em>Long course</em> for long courses.'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',
