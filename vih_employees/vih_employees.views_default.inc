@@ -14,7 +14,7 @@ function vih_employees_views_default_views() {
   $view = new view;
   $view->name = 'employees_list';
   $view->description = 'List with employees';
-  $view->tag = 'employees';
+  $view->tag = 'VIH';
   $view->base_table = 'node';
   $view->human_name = 'Ansatte';
   $view->core = 0;
@@ -66,6 +66,10 @@ function vih_employees_views_default_views() {
   $handler->display->display_options['fields']['entity_id']['id'] = 'entity_id';
   $handler->display->display_options['fields']['entity_id']['table'] = 'field_data_field_picture';
   $handler->display->display_options['fields']['entity_id']['field'] = 'field_picture';
+  /* Sorteringskriterie: Indhold: Titel */
+  $handler->display->display_options['sorts']['title']['id'] = 'title';
+  $handler->display->display_options['sorts']['title']['table'] = 'node';
+  $handler->display->display_options['sorts']['title']['field'] = 'title';
   /* Filterkriterie: Indhold: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
@@ -81,6 +85,7 @@ function vih_employees_views_default_views() {
 
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'employees_list_block');
+  $handler->display->display_options['display_description'] = 'Text links to employees (used in the sidebar).';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['pager']['options']['offset'] = '0';
@@ -107,12 +112,13 @@ function vih_employees_views_default_views() {
   $handler = $view->new_display('page', 'Page', 'employees_list_page');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Holdning til sig selv og sin sport';
+  $handler->display->display_options['display_description'] = 'Page view with the employees.';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'grid';
-  $handler->display->display_options['style_options']['columns'] = '6';
+  $handler->display->display_options['style_options']['columns'] = '5';
   $handler->display->display_options['style_options']['fill_single_line'] = 1;
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
@@ -152,17 +158,26 @@ function vih_employees_views_default_views() {
   $handler->display->display_options['fields']['entity_id']['alter']['alter_text'] = 0;
   $handler->display->display_options['fields']['entity_id']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['entity_id']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['entity_id']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['entity_id']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['entity_id']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['entity_id']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['entity_id']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['entity_id']['alter']['ellipsis'] = 1;
   $handler->display->display_options['fields']['entity_id']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['entity_id']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['entity_id']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['entity_id']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['entity_id']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['entity_id']['hide_empty'] = 0;
   $handler->display->display_options['fields']['entity_id']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['entity_id']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['entity_id']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['entity_id']['settings'] = array(
-    'image_style' => 'thumbnail',
+    'image_style' => 'thumbnail_tall_employee',
     'image_link' => 'content',
   );
+  $handler->display->display_options['fields']['entity_id']['field_api_classes'] = 0;
   $handler->display->display_options['path'] = 'underviser';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Underviser';
@@ -184,8 +199,10 @@ function vih_employees_views_default_views() {
     t('Titel'),
     t('Billede'),
     t('Block'),
+    t('Text links to employees (used in the sidebar).'),
     t('Page'),
     t('Holdning til sig selv og sin sport'),
+    t('Page view with the employees.'),
   );
 
   $views[$view->name] = $view;

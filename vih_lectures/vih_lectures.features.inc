@@ -22,15 +22,15 @@ function vih_lectures_node_info() {
     'vih_lecture' => array(
       'name' => t('Foredrag'),
       'base' => 'node_content',
-      'description' => '',
+      'description' => t('Bruges til at indtaste de enkelte foredrag.'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',
     ),
     'vih_lectures' => array(
-      'name' => t('VIH Lectures'),
+      'name' => t('Foredragsrække'),
       'base' => 'node_content',
-      'description' => '',
+      'description' => t('Brug <em>foredragsrække</em> til at samle foredrag, som skal udskrives i et hæfte.'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',
@@ -38,7 +38,7 @@ function vih_lectures_node_info() {
     'vih_partner' => array(
       'name' => t('Samarbejdspartner'),
       'base' => 'node_content',
-      'description' => '',
+      'description' => t('Brug <em>samarbejdspartner</em> til organisationer, vi samarbejder med - fx omkring foredragsrækken.'),
       'has_title' => '1',
       'title_label' => t('Navn'),
       'help' => '',

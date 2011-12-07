@@ -13,10 +13,10 @@ function vih_facilities_views_default_views() {
   // Exported view: faciliteter
   $view = new view;
   $view->name = 'faciliteter';
-  $view->description = '';
-  $view->tag = 'default';
+  $view->description = 'Views with facilities.';
+  $view->tag = 'VIH';
   $view->base_table = 'node';
-  $view->human_name = 'Faciliteter';
+  $view->human_name = 'Facilities';
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
@@ -165,6 +165,9 @@ function vih_facilities_views_default_views() {
 
   /* Display: Blok */
   $handler = $view->new_display('block', 'Blok', 'block_1');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Kig rundt på vores faciliteter';
+  $handler->display->display_options['display_description'] = 'Thumbnails of facilities with titles.';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'grid';
   $handler->display->display_options['style_options']['columns'] = '3';
@@ -261,6 +264,8 @@ function vih_facilities_views_default_views() {
     t('Billede'),
     t('Brødtekst'),
     t('Blok'),
+    t('Kig rundt på vores faciliteter'),
+    t('Thumbnails of facilities with titles.'),
   );
 
   $views[$view->name] = $view;

@@ -123,7 +123,7 @@ function vih_stories_field_default_fields() {
       ),
       'module' => 'image',
       'settings' => array(
-        'default_image' => FALSE,
+        'default_image' => 0,
         'uri_scheme' => 'public',
       ),
       'translatable' => '1',
@@ -136,12 +136,15 @@ function vih_stories_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'hidden',
-          'module' => 'image',
+          'module' => 'colorbox',
           'settings' => array(
-            'image_link' => '',
-            'image_style' => 'medium',
+            'colorbox_caption' => 'auto',
+            'colorbox_gallery' => 'post',
+            'colorbox_gallery_custom' => '',
+            'colorbox_image_style' => 'large',
+            'colorbox_node_style' => 'square_thumbnail',
           ),
-          'type' => 'image',
+          'type' => 'colorbox',
           'weight' => '-1',
         ),
         'full' => array(
@@ -182,11 +185,11 @@ function vih_stories_field_default_fields() {
       'entity_type' => 'node',
       'field_name' => 'field_image',
       'label' => 'Image',
-      'required' => FALSE,
+      'required' => 0,
       'settings' => array(
         'alt_field' => TRUE,
         'file_directory' => 'field/image',
-        'file_extensions' => 'png gif jpg jpeg',
+        'file_extensions' => 'png jpg jpeg',
         'max_filesize' => '',
         'max_resolution' => '',
         'min_resolution' => '',
@@ -194,16 +197,20 @@ function vih_stories_field_default_fields() {
         'user_register_form' => FALSE,
       ),
       'widget' => array(
+        'active' => 1,
         'module' => 'media',
         'settings' => array(
           'allowed_schemes' => array(
-            0 => 'public',
-            1 => 'private',
+            'private' => 'private',
+            'public' => 'public',
+            'youtube' => 0,
           ),
           'allowed_types' => array(
-            0 => 'image',
+            'audio' => 0,
+            'default' => 0,
+            'image' => 'image',
+            'video' => 0,
           ),
-          'preview_image_style' => 'thumbnail',
           'progress_indicator' => 'throbber',
         ),
         'type' => 'media_generic',

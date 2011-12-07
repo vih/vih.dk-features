@@ -22,7 +22,7 @@ function vih_facilities_node_info() {
     'vih_facilities' => array(
       'name' => t('Faciliteter'),
       'base' => 'node_content',
-      'description' => '',
+      'description' => t('Beskrivelse af faciliteter.'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',

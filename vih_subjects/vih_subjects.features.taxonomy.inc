@@ -12,7 +12,7 @@ function vih_subjects_taxonomy_default_vocabularies() {
     'subject_category' => array(
       'name' => 'Subject Category',
       'machine_name' => 'subject_category',
-      'description' => 'Categories for subjects',
+      'description' => 'Used for categorization according to the weekly schedule.',
       'hierarchy' => '0',
       'module' => 'taxonomy',
       'weight' => '0',
@@ -36,7 +36,7 @@ function vih_subjects_taxonomy_default_vocabularies() {
     'subject_packages' => array(
       'name' => 'Subject Packages',
       'machine_name' => 'subject_packages',
-      'description' => '',
+      'description' => 'Used to group subjects based on interest.',
       'hierarchy' => '0',
       'module' => 'taxonomy',
       'weight' => '9',

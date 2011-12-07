@@ -49,7 +49,7 @@ function vih_lectures_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '1',
+          'weight' => '2',
         ),
         'rss' => array(
           'label' => 'hidden',
@@ -134,7 +134,7 @@ function vih_lectures_field_default_fields() {
             'show_repeat_rule' => 'show',
           ),
           'type' => 'date_default',
-          'weight' => '3',
+          'weight' => '4',
         ),
         'rss' => array(
           'label' => 'inline',
@@ -305,13 +305,13 @@ function vih_lectures_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'inline',
           'module' => 'entityreference',
           'settings' => array(
             'link' => 1,
           ),
           'type' => 'entityreference_label',
-          'weight' => '7',
+          'weight' => '6',
         ),
         'rss' => array(
           'label' => 'above',
@@ -378,10 +378,10 @@ function vih_lectures_field_default_fields() {
           'module' => 'image',
           'settings' => array(
             'image_link' => '',
-            'image_style' => 'large',
+            'image_style' => 'sidepicture',
           ),
           'type' => 'image',
-          'weight' => '6',
+          'weight' => '1',
         ),
         'rss' => array(
           'label' => 'hidden',
@@ -466,7 +466,7 @@ function vih_lectures_field_default_fields() {
             'thousand_separator' => ' ',
           ),
           'type' => 'number_integer',
-          'weight' => '2',
+          'weight' => '3',
         ),
         'rss' => array(
           'label' => 'inline',
@@ -548,7 +548,7 @@ function vih_lectures_field_default_fields() {
           'module' => 'link',
           'settings' => array(),
           'type' => 'link_default',
-          'weight' => '4',
+          'weight' => '7',
         ),
         'rss' => array(
           'label' => 'inline',
@@ -577,15 +577,15 @@ function vih_lectures_field_default_fields() {
           'title' => '',
         ),
         'display' => array(
-          'url_cutoff' => '80',
+          'url_cutoff' => '128',
         ),
         'enable_tokens' => 1,
         'title' => 'optional',
-        'title_maxlength' => 128,
+        'title_maxlength' => '128',
         'title_value' => '',
         'url' => 0,
         'user_register_form' => FALSE,
-        'validate_url' => 1,
+        'validate_url' => 0,
       ),
       'widget' => array(
         'active' => 0,
@@ -805,11 +805,17 @@ function vih_lectures_field_default_fields() {
       ),
       'widget' => array(
         'active' => 1,
-        'module' => 'options',
+        'module' => 'entityreference',
         'settings' => array(
-          'apply_chosen' => 0,
+          'match_operator' => 'CONTAINS',
+          'path' => '',
+          'references_dialog_add' => 1,
+          'references_dialog_edit' => 1,
+          'references_dialog_search' => 1,
+          'references_dialog_search_view' => '',
+          'size' => '60',
         ),
-        'type' => 'options_select',
+        'type' => 'entityreference_autocomplete',
         'weight' => '35',
       ),
     ),

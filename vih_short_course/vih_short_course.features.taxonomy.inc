@@ -12,7 +12,7 @@ function vih_short_course_taxonomy_default_vocabularies() {
     'short_course_type' => array(
       'name' => 'Short Course Type',
       'machine_name' => 'short_course_type',
-      'description' => '',
+      'description' => 'Used to group the short courses',
       'hierarchy' => '0',
       'module' => 'taxonomy',
       'weight' => '0',

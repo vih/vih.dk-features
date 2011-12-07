@@ -13,8 +13,8 @@ function vih_long_course_views_default_views() {
   // Exported view: lange_kurser
   $view = new view;
   $view->name = 'lange_kurser';
-  $view->description = '';
-  $view->tag = 'default';
+  $view->description = 'Views with long courses.';
+  $view->tag = 'VIH';
   $view->base_table = 'node';
   $view->human_name = 'Lange kurser';
   $view->core = 7;
