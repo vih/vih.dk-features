@@ -25,7 +25,6 @@ function vih_pwi_help($path, $arg) {
 }
 
 function vih_pwi_block_info() {
-  // This example comes from node.module.
   $blocks['vih_pwi'] = array(
     'info' => t('Picasa Webalbums'), 
     // DRUPAL_CACHE_PER_ROLE will be assumed.
@@ -35,7 +34,6 @@ function vih_pwi_block_info() {
 }
 
 function vih_pwi_block_view($delta = '') {
-  // This example is adapted from node.module.
   $block = array();
 
   switch ($delta) {
@@ -51,7 +49,6 @@ function vih_pwi_block_view($delta = '') {
  * @todo Write validator handler
  */
 function vih_pwi_block_configure($delta = '') {
-  // This example comes from node.module.
   $form = array();
   if ($delta == 'vih_pwi') {
     $form['vih_pwi'] = array(
@@ -83,7 +80,6 @@ function vih_pwi_block_configure($delta = '') {
 }
 
 function vih_pwi_block_save($delta = '', $edit = array()) {
-  // This example comes from node.module.
   if ($delta == 'vih_pwi') {
     variable_set('vih_pwi_picasa_user', $edit['vih_pwi']['vih_pwi_picasa_user']);
     variable_set('vih_pwi_thumbsize', $edit['vih_pwi']['vih_pwi_thumbsize']);
