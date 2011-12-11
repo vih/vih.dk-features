@@ -3,6 +3,14 @@
  * @file
  */
 
+function vih_general_preprocess_node(&$variables) {
+  $variables['submitted'] =  t('!datetime | <em>af !username</em>',
+    array(
+      '!username' => $variables['name'],
+      '!datetime' => strtolower(t(date('l')) . date(', j. ') . t(date('F')) . date(' Y')),
+    ));
+}
+
 /**
  * Implements hook_menu_alter().
  *
