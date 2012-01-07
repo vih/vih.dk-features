@@ -10,24 +10,6 @@ function vih_general_preprocess_node(&$variables) {
       '!datetime' => strtolower(format_date($variables['created'], 'custom', 'l, j. F Y'))
     ));
 }
-
-/**
- * Implements hook_menu_alter().
- *
- * Change node delete menu callback to an accessible tab on the node page.
- */
-/* 
-function vih_general_menu() {
-  $items = array();
-  $items['node/%node/delete'] = array(
-    'title' => t('Delete'),
-    'type' => MENU_LOCAL_TASK,
-    'weight' => 2,
-    'access arguments' => array('access content'),
-  );
-  return $items;
-}
-*/
 /*
 function vih_general_username_alter(&$name, $account) {
   // Display the user's uid instead of name.
