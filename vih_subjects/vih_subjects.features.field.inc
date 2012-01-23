@@ -108,6 +108,84 @@ function vih_subjects_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-subject-field_employee_reference'
+  $fields['node-subject-field_employee_reference'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_employee_reference',
+      'foreign keys' => array(),
+      'indexes' => array(
+        'target_entity' => array(
+          0 => 'target_type',
+          1 => 'target_id',
+        ),
+      ),
+      'module' => 'entityreference',
+      'settings' => array(
+        'handler' => 'base',
+        'handler_settings' => array(
+          'sort' => array(
+            'direction' => 'ASC',
+            'field' => 'body:value',
+            'property' => 'nid',
+            'type' => 'none',
+          ),
+          'target_bundles' => array(
+            'employee' => 'employee',
+          ),
+        ),
+        'handler_submit' => 'Change handler',
+        'target_type' => 'node',
+      ),
+      'translatable' => '0',
+      'type' => 'entityreference',
+    ),
+    'field_instance' => array(
+      'bundle' => 'subject',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'entityreference',
+          'settings' => array(
+            'view_mode' => 'teaser',
+          ),
+          'type' => 'entityreference_entity_view',
+          'weight' => '6',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_employee_reference',
+      'label' => 'Underviser',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'entityreference',
+        'settings' => array(
+          'match_operator' => 'CONTAINS',
+          'path' => '',
+          'size' => '60',
+        ),
+        'type' => 'entityreference_autocomplete',
+        'weight' => '7',
+      ),
+    ),
+  );
+
   // Exported field: 'node-subject-field_picture'
   $fields['node-subject-field_picture'] = array(
     'field_config' => array(
@@ -206,7 +284,7 @@ function vih_subjects_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'media_generic',
-        'weight' => '6',
+        'weight' => '5',
       ),
     ),
   );
@@ -411,7 +489,7 @@ function vih_subjects_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'media_generic',
-        'weight' => '7',
+        'weight' => '6',
       ),
     ),
   );
@@ -571,7 +649,13 @@ function vih_subjects_field_default_fields() {
             'image_style' => '',
           ),
           'type' => 'image',
-          'weight' => 0,
+          'weight' => '0',
+        ),
+        'full' => array(
+          'label' => 'hidden',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '0',
         ),
       ),
       'entity_type' => 'taxonomy_term',
@@ -601,19 +685,19 @@ function vih_subjects_field_default_fields() {
     ),
   );
 
-  // Exported field: 'taxonomy_term-subject_packages-field_sp_fixed'
-  $fields['taxonomy_term-subject_packages-field_sp_fixed'] = array(
+  // Exported field: 'taxonomy_term-subject_packages-field_packages_fixed'
+  $fields['taxonomy_term-subject_packages-field_packages_fixed'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_sp_fixed',
+      'field_name' => 'field_packages_fixed',
       'foreign keys' => array(),
       'indexes' => array(),
       'module' => 'fixed_field',
       'settings' => array(
-        'content' => '<p><strong>Der er desværre i øjeblikket en fejl på vores hjemmeside, der gør at ikke alle fagmulighederne i denne fagpakke vises af denne oversigt. For en komplet oversigt over de fag vi har, kig på <a href="/fag">vores fag</a>.</strong></p>',
+        'content' => '<p><strong>Vores fagpakker er eksempler på, hvilke fag du kan vælge, hvis du har specifikke interesser. Det er vigtigt at understrege, at du kan vælge frit mellem fagene i de forskellige perioder.</strong></p>',
         'text_format' => 'filtered_html',
       ),
       'translatable' => '0',
@@ -623,7 +707,7 @@ function vih_subjects_field_default_fields() {
       'bundle' => 'subject_packages',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => '',
+      'description' => 'Dette felt vises på alle fagpakkerne.',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -641,8 +725,8 @@ function vih_subjects_field_default_fields() {
         ),
       ),
       'entity_type' => 'taxonomy_term',
-      'field_name' => 'field_sp_fixed',
-      'label' => 'Fast tekst',
+      'field_name' => 'field_packages_fixed',
+      'label' => 'Fast besked',
       'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
@@ -655,7 +739,7 @@ function vih_subjects_field_default_fields() {
           'formatter_settings' => array(),
         ),
         'type' => 'field_extrawidgets_read_only',
-        'weight' => '1',
+        'weight' => '7',
       ),
     ),
   );
@@ -704,7 +788,7 @@ function vih_subjects_field_default_fields() {
           'label' => 'hidden',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '0',
+          'weight' => '2',
         ),
       ),
       'entity_type' => 'taxonomy_term',
@@ -747,11 +831,13 @@ function vih_subjects_field_default_fields() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Billede');
-  t('Fast tekst');
+  t('Dette felt vises på alle fagpakkerne.');
+  t('Fast besked');
   t('Kategori');
   t('Pakke');
   t('Picture');
   t('Teaser');
+  t('Underviser');
   t('Video');
   t('Video fra youtube-kanalen');
   t('Værd at vide');
