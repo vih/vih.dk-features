@@ -49,6 +49,15 @@ function vih_short_course_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
+          'weight' => '2',
+        ),
+        'ical' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(
+            'trim_length' => 600,
+          ),
+          'type' => 'text_summary_or_trimmed',
           'weight' => '3',
         ),
         'teaser' => array(
@@ -101,8 +110,15 @@ function vih_short_course_field_default_fields() {
       'settings' => array(
         'handler' => 'base',
         'handler_settings' => array(
+          'sort' => array(
+            'direction' => 'ASC',
+            'field' => 'body:value',
+            'property' => 'nid',
+            'type' => 'none',
+          ),
           'target_bundles' => array(
             'employee' => 'employee',
+            'employee_context' => 'employee_context',
           ),
         ),
         'handler_submit' => 'Change handler',
@@ -118,12 +134,18 @@ function vih_short_course_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'inline',
+          'label' => 'above',
           'module' => 'entityreference',
           'settings' => array(
-            'link' => 1,
+            'view_mode' => 'teaser',
           ),
-          'type' => 'entityreference_label',
+          'type' => 'entityreference_entity_view',
+          'weight' => '3',
+        ),
+        'ical' => array(
+          'label' => 'inline',
+          'settings' => array(),
+          'type' => 'hidden',
           'weight' => '6',
         ),
         'teaser' => array(
@@ -143,9 +165,7 @@ function vih_short_course_field_default_fields() {
       'widget' => array(
         'active' => 1,
         'module' => 'options',
-        'settings' => array(
-          'apply_chosen' => 0,
-        ),
+        'settings' => array(),
         'type' => 'options_select',
         'weight' => '9',
       ),
@@ -197,6 +217,12 @@ function vih_short_course_field_default_fields() {
             'show_repeat_rule' => 'show',
           ),
           'type' => 'date_default',
+          'weight' => '4',
+        ),
+        'ical' => array(
+          'label' => 'inline',
+          'settings' => array(),
+          'type' => 'hidden',
           'weight' => '5',
         ),
         'teaser' => array(
@@ -229,6 +255,7 @@ function vih_short_course_field_default_fields() {
         'active' => 1,
         'module' => 'date',
         'settings' => array(
+          'display_all_day' => 0,
           'increment' => '15',
           'input_format' => 'm/d/Y - H:i:s',
           'input_format_custom' => '',
@@ -283,10 +310,17 @@ function vih_short_course_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'inline',
+          'label' => 'hidden',
           'module' => 'taxonomy',
           'settings' => array(),
           'type' => 'taxonomy_term_reference_link',
+          'weight' => '7',
+        ),
+        'ical' => array(
+          'label' => 'inline',
+          'module' => 'taxonomy',
+          'settings' => array(),
+          'type' => 'taxonomy_term_reference_plain',
           'weight' => '4',
         ),
         'teaser' => array(
@@ -341,6 +375,12 @@ function vih_short_course_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
+          'label' => 'hidden',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '8',
+        ),
+        'ical' => array(
           'label' => 'hidden',
           'settings' => array(),
           'type' => 'hidden',
@@ -408,6 +448,12 @@ function vih_short_course_field_default_fields() {
             'image_style' => 'sidepicture',
           ),
           'type' => 'image',
+          'weight' => '1',
+        ),
+        'ical' => array(
+          'label' => 'hidden',
+          'settings' => array(),
+          'type' => 'hidden',
           'weight' => '1',
         ),
         'teaser' => array(
@@ -497,6 +543,12 @@ function vih_short_course_field_default_fields() {
             'thousand_separator' => '.',
           ),
           'type' => 'number_integer',
+          'weight' => '5',
+        ),
+        'ical' => array(
+          'label' => 'inline',
+          'settings' => array(),
+          'type' => 'hidden',
           'weight' => '7',
         ),
         'teaser' => array(
@@ -558,6 +610,12 @@ function vih_short_course_field_default_fields() {
             'thousand_separator' => '.',
           ),
           'type' => 'number_integer',
+          'weight' => '6',
+        ),
+        'ical' => array(
+          'label' => 'inline',
+          'settings' => array(),
+          'type' => 'hidden',
           'weight' => '8',
         ),
         'teaser' => array(
@@ -628,6 +686,12 @@ function vih_short_course_field_default_fields() {
           'module' => 'link',
           'settings' => array(),
           'type' => 'link_default',
+          'weight' => '0',
+        ),
+        'ical' => array(
+          'label' => 'hidden',
+          'settings' => array(),
+          'type' => 'hidden',
           'weight' => '0',
         ),
         'teaser' => array(
