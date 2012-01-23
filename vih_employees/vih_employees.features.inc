@@ -15,6 +15,16 @@ function vih_employees_ctools_plugin_api() {
 }
 
 /**
+ * Implements hook_views_api().
+ */
+function vih_employees_views_api() {
+  list($module, $api) = func_get_args();
+  if ($module == "views" && $api == "views_default") {
+    return array("version" => "3.0");
+  }
+}
+
+/**
  * Implements hook_node_info().
  */
 function vih_employees_node_info() {
@@ -27,15 +37,14 @@ function vih_employees_node_info() {
       'title_label' => t('Title'),
       'help' => '',
     ),
+    'employee_context' => array(
+      'name' => t('Employee Context'),
+      'base' => 'node_content',
+      'description' => t('Bruges til ansatte som skal vises i en bestemt sammenhæng på hjemmesiden, fx lærere der underviser i specielle fag eller er kursusledere.'),
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
   );
   return $items;
-}
-
-/**
- * Implements hook_views_api().
- */
-function vih_employees_views_api() {
-  return array(
-    'api' => '3.0',
-  );
 }
