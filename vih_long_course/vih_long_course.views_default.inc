@@ -8,9 +8,8 @@
  * Implements hook_views_default_views().
  */
 function vih_long_course_views_default_views() {
-  $views = array();
+  $export = array();
 
-  // Exported view: lange_kurser
   $view = new view;
   $view->name = 'lange_kurser';
   $view->description = 'Views with long courses.';
@@ -26,7 +25,9 @@ function vih_long_course_views_default_views() {
   $handler->display->display_options['title'] = 'Lange kurser';
   $handler->display->display_options['use_more_text'] = 'mere';
   $handler->display->display_options['access']['type'] = 'perm';
-  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['cache']['type'] = 'time';
+  $handler->display->display_options['cache']['results_lifespan'] = '21600';
+  $handler->display->display_options['cache']['output_lifespan'] = '21600';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['query']['options']['query_comment'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
@@ -35,11 +36,15 @@ function vih_long_course_views_default_views() {
   $handler->display->display_options['exposed_form']['options']['sort_asc_label'] = 'Stigende';
   $handler->display->display_options['exposed_form']['options']['sort_desc_label'] = 'Faldende';
   $handler->display->display_options['pager']['type'] = 'full';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '50';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['pager']['options']['expose']['items_per_page_label'] = 'Elementer pr. side';
+  $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all'] = 0;
   $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all_label'] = '- Alle -';
   $handler->display->display_options['pager']['options']['expose']['offset_label'] = 'Forskydning';
   $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['grouping'] = '';
   $handler->display->display_options['style_options']['columns'] = array(
     'field_picture' => 'field_picture',
     'title' => 'title',
@@ -111,6 +116,7 @@ function vih_long_course_views_default_views() {
     'image_style' => 'square_thumbnail',
     'image_link' => 'content',
   );
+  $handler->display->display_options['fields']['field_picture']['group_column'] = 'fid';
   $handler->display->display_options['fields']['field_picture']['field_api_classes'] = 0;
   /* Felt: Indhold: Titel */
   $handler->display->display_options['fields']['title']['id'] = 'title';
@@ -185,7 +191,7 @@ function vih_long_course_views_default_views() {
   $handler->display->display_options['fields']['field_course_time']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_course_time']['hide_alter_empty'] = 0;
   $handler->display->display_options['fields']['field_course_time']['settings'] = array(
-    'format_type' => 'short',
+    'format_type' => 'medium_date_without_time',
     'fromto' => 'both',
     'multiple_number' => '',
     'multiple_from' => '',
@@ -201,6 +207,12 @@ function vih_long_course_views_default_views() {
   $handler->display->display_options['sorts']['field_course_time_value2']['id'] = 'field_course_time_value2';
   $handler->display->display_options['sorts']['field_course_time_value2']['table'] = 'field_data_field_course_time';
   $handler->display->display_options['sorts']['field_course_time_value2']['field'] = 'field_course_time_value2';
+  /* Kontekstuelt filter: Indhold: Nid */
+  $handler->display->display_options['arguments']['nid']['id'] = 'nid';
+  $handler->display->display_options['arguments']['nid']['table'] = 'node';
+  $handler->display->display_options['arguments']['nid']['field'] = 'nid';
+  $handler->display->display_options['arguments']['nid']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['nid']['summary']['format'] = 'default_summary';
   /* Filterkriterie: Indhold: Udgivet */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -215,9 +227,39 @@ function vih_long_course_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'vih_long_course' => 'vih_long_course',
   );
+  $handler->display->display_options['filters']['type']['group'] = '0';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
+  $handler->display->display_options['defaults']['header'] = FALSE;
+  /* Overskrift: Global: Tekstområde */
+  $handler->display->display_options['header']['area']['id'] = 'area';
+  $handler->display->display_options['header']['area']['table'] = 'views';
+  $handler->display->display_options['header']['area']['field'] = 'area';
+  $handler->display->display_options['header']['area']['empty'] = FALSE;
+  $handler->display->display_options['header']['area']['content'] = '<p>Det lange højskoleophold på Vejle Idrætshøjskole er udfordrende på mange niveauer. Du sammensætter dit eget skema ud fra alle vores <a href="/fag">fag</a>, og du vil blive en del af et inspirerende fællesskab med nogle dygtige <a href="/underviser">lærere</a>. Hvis du har spørgsmål om de lange kurser er du meget velkommen til at <a href="/kontakt">ringe til skolen</a>.</p>
+
+<p>Nedenunder kan du se de, hvornår du kan starte på Vejle Idrætshøjskoles lange kurser. God fornøjelse</p>';
+  $handler->display->display_options['header']['area']['format'] = 'filtered_html';
+  $handler->display->display_options['header']['area']['tokenize'] = 0;
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Kontekstuelt filter: Indhold: Nid */
+  $handler->display->display_options['arguments']['nid']['id'] = 'nid';
+  $handler->display->display_options['arguments']['nid']['table'] = 'node';
+  $handler->display->display_options['arguments']['nid']['field'] = 'nid';
+  $handler->display->display_options['arguments']['nid']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['nid']['default_argument_skip_url'] = 0;
+  $handler->display->display_options['arguments']['nid']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['nid']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['nid']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['nid']['specify_validation'] = 1;
+  $handler->display->display_options['arguments']['nid']['validate']['type'] = 'node';
+  $handler->display->display_options['arguments']['nid']['validate_options']['types'] = array(
+    'vih_long_course' => 'vih_long_course',
+  );
+  $handler->display->display_options['arguments']['nid']['validate_options']['access'] = '1';
+  $handler->display->display_options['arguments']['nid']['break_phrase'] = 0;
+  $handler->display->display_options['arguments']['nid']['not'] = 0;
   $handler->display->display_options['path'] = 'langekurser';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Lange kurser';
@@ -228,6 +270,8 @@ function vih_long_course_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['style_plugin'] = 'rss';
   $handler->display->display_options['row_plugin'] = 'node_rss';
+  $handler->display->display_options['row_options']['item_length'] = 'title';
+  $handler->display->display_options['row_options']['links'] = 0;
   $handler->display->display_options['path'] = 'langekurser.xml';
   $handler->display->display_options['displays'] = array(
     'default' => 'default',
@@ -248,11 +292,14 @@ function vih_long_course_views_default_views() {
     t('<p>Gør dig klar til at tage livtag med resten af livet. Gør det for udfordringens skyld. En dag på Vejle Idrætshøjskole er nemlig aldrig en typisk dag — både når du vælger <a href="/fag">fag</a> og trives i hverdagen. Hvis du har nogle spørgsmål om de lange kurser kan du fx <a href="/kontakt">ringe til skolen</a> eller <a href="/underviser">kontakte lærerne</a>.</p>'),
     t('<h3>[title]</h3>'),
     t('Tidspunkt'),
+    t('Alle'),
     t('Page'),
+    t('<p>Det lange højskoleophold på Vejle Idrætshøjskole er udfordrende på mange niveauer. Du sammensætter dit eget skema ud fra alle vores <a href="/fag">fag</a>, og du vil blive en del af et inspirerende fællesskab med nogle dygtige <a href="/underviser">lærere</a>. Hvis du har spørgsmål om de lange kurser er du meget velkommen til at <a href="/kontakt">ringe til skolen</a>.</p>
+
+<p>Nedenunder kan du se de, hvornår du kan starte på Vejle Idrætshøjskoles lange kurser. God fornøjelse</p>'),
     t('Feed'),
   );
+  $export['lange_kurser'] = $view;
 
-  $views[$view->name] = $view;
-
-  return $views;
+  return $export;
 }
