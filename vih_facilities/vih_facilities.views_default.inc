@@ -8,9 +8,8 @@
  * Implements hook_views_default_views().
  */
 function vih_facilities_views_default_views() {
-  $views = array();
+  $export = array();
 
-  // Exported view: faciliteter
   $view = new view;
   $view->name = 'faciliteter';
   $view->description = 'Views with facilities.';
@@ -44,6 +43,7 @@ function vih_facilities_views_default_views() {
   $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all_label'] = '- Alle -';
   $handler->display->display_options['pager']['options']['expose']['offset_label'] = 'Forskydning';
   $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['grouping'] = '';
   $handler->display->display_options['style_options']['columns'] = array(
     'field_picture' => 'field_picture',
     'title' => 'title',
@@ -99,6 +99,7 @@ function vih_facilities_views_default_views() {
     'image_style' => 'thumbnail',
     'image_link' => 'content',
   );
+  $handler->display->display_options['fields']['field_picture']['group_column'] = 'fid';
   $handler->display->display_options['fields']['field_picture']['field_api_classes'] = 0;
   /* Felt: Indhold: Titel */
   $handler->display->display_options['fields']['title']['id'] = 'title';
@@ -170,6 +171,7 @@ function vih_facilities_views_default_views() {
   $handler->display->display_options['display_description'] = 'Thumbnails of facilities with titles.';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'grid';
+  $handler->display->display_options['style_options']['grouping'] = '';
   $handler->display->display_options['style_options']['columns'] = '3';
   $handler->display->display_options['style_options']['fill_single_line'] = 1;
   $handler->display->display_options['defaults']['style_options'] = FALSE;
@@ -204,6 +206,7 @@ function vih_facilities_views_default_views() {
     'image_style' => 'short_course_types',
     'image_link' => 'content',
   );
+  $handler->display->display_options['fields']['field_picture']['group_column'] = 'fid';
   $handler->display->display_options['fields']['field_picture']['field_api_classes'] = 0;
   /* Felt: Indhold: Titel */
   $handler->display->display_options['fields']['title']['id'] = 'title';
@@ -267,8 +270,7 @@ function vih_facilities_views_default_views() {
     t('Kig rundt på vores faciliteter'),
     t('Thumbnails of facilities with titles.'),
   );
+  $export['faciliteter'] = $view;
 
-  $views[$view->name] = $view;
-
-  return $views;
+  return $export;
 }
