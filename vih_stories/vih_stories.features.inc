@@ -15,6 +15,16 @@ function vih_stories_ctools_plugin_api() {
 }
 
 /**
+ * Implements hook_views_api().
+ */
+function vih_stories_views_api() {
+  list($module, $api) = func_get_args();
+  if ($module == "views" && $api == "views_default") {
+    return array("version" => "3.0");
+  }
+}
+
+/**
  * Implements hook_node_info().
  */
 function vih_stories_node_info() {
@@ -29,13 +39,4 @@ function vih_stories_node_info() {
     ),
   );
   return $items;
-}
-
-/**
- * Implements hook_views_api().
- */
-function vih_stories_views_api() {
-  return array(
-    'api' => '3.0',
-  );
 }
