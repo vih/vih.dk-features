@@ -7,6 +7,15 @@ Enable the block and configure it with your username, and you have Picasa Webalb
 
 Make sure that you <a href="http://code.google.com/p/pwi/downloads/list">download the javascript plugin</a> and install it into your libraries folder with all the contents being in the jquery.pwi-folder. 
 
+Drush Integration
+--
+
+Instead of downloading PWI manually, drush could be used to download the plugin in sites/all/libraries if libraries module is enabled.
+
+Drush command: drush dl-pwi
+
+In the source is also included an example on howto download PWI using drush make.
+
 Dependencies
 --
 
