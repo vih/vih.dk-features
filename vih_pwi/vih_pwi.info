@@ -7,3 +7,5 @@ version = "7.x-0.2"
 
 dependencies[] = libraries
 dependencies[] = colorbox
+
+files[] = drush/vih_pwi.drush.inc
