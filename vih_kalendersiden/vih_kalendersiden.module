@@ -42,13 +42,14 @@ function vih_kalendersiden_pdf() {
   $array[] = 'info[]=holidays';
   $array[] = 'info[]=weeks';
   
-  $post = implode(',', $array);
+  $post = implode('&', $array);
 
   $options = array(
     'method' => 'POST',
     'data' => $post,
     'timeout' => 15,
     'headers' => array('Content-Type' => 'application/x-www-form-urlencoded'),
+    'context' => true
   );
 
   $result = drupal_http_request('http://kalendersiden.dk/generate.php', $options);
