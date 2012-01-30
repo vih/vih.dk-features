@@ -1,0 +1,57 @@
+<?php
+/**
+ * @file
+ */
+
+function vih_kalendersiden_menu() {
+  $items = array();  
+  $items['kalender/pdf'] = array(
+    'title' => 'PDF',
+    'page callback' => 'vih_kalendersiden_pdf',
+    'page arguments' => array(1),
+    'access callback' => 'vih_kalendersiden_access',
+    'access arguments' => array(1),
+    'type' => MENU_LOCAL_ACTION,    
+
+  );  
+  return $items;
+}
+
+function vih_kalendersiden_access($node) {
+  return true;
+}
+
+function vih_kalendersiden_pdf() {
+  $data = array(
+    'month' => 3,
+    'year' => 2012,
+    'months' => 3,
+    'pages' => 1,
+    'format' => 'landscape',
+    'head' => 'Vejle Idrætshøjskole',
+    'userdata' => '22.3.: Mit event'
+  );
+
+  $array = array();
+
+  foreach ($data as $key => $value) {
+    $array[] = $key . '=' . $value;
+  }
+  
+  $array[] = 'info[]=showyear';
+  $array[] = 'info[]=holidays';
+  $array[] = 'info[]=weeks';
+  
+  $post = implode(',', $array);
+
+  $options = array(
+    'method' => 'POST',
+    'data' => $post,
+    'timeout' => 15,
+    'headers' => array('Content-Type' => 'application/x-www-form-urlencoded'),
+  );
+
+  $result = drupal_http_request('http://kalendersiden.dk/generate.php', $options);
+
+  return $result;
+}
