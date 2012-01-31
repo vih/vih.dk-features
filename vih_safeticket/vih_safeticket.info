@@ -1,0 +1,6 @@
+core = "7.x"
+description = "Talks with the Safeticket Service"
+name = "VIH Safeticket"
+package = "VIH"
+version = "7.x-0.1"
+

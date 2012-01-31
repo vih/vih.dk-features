@@ -1,0 +1,93 @@
+<?php
+/**
+ * @file
+ */
+
+function vih_safeticket_sales() {
+  if ($cache = cache_get('vih_safeticket')) {
+    $response = $cache->data;
+  }
+  else {
+    $version = 1;
+    $t1 = date('Y-m-d', strtotime('-1 day'));
+    $t2 = date('Y-m-d');
+    $cash = 0;
+    $user = 'tester';
+    $secret = '45fc4d030cfe51f9d245111b74b634fd6e043596323c00ec1a7dad72a2015dd6';
+
+    $sha = hash('sha256', $version . ":" . $user . ":" . $cash . ":" . $t1.":" . $t2 . ":" . $secret);
+  
+    $params = array(
+      'version' => $version,
+      'user' => $user,
+      'cash' => $cash,
+      't1' => $t1,
+      't2' => $t2,
+      'sha' => $sha
+    );
+  
+    $url = 'https://tilmelding.vih.dk/api/stats';
+  
+    $response = drupal_http_request($url, array(
+      'method' => 'POST',
+      'data' => http_build_query($params), // see comments below - you may need to change this
+      'headers' => array('Content-Type' => 'application/x-www-form-urlencoded')
+    ));
+    $tickets = new SimpleXMLElement($response->data);
+    $amount = 0;
+    
+    foreach ($tickets->event as $event) {
+      foreach ($event->tickets->ticket as $ticket) {
+        $amount += $ticket->prices->price->amount * $ticket->prices->price->count;
+      }
+    }
+
+    cache_set('my_module_data', $response, 'cache', time() + 3600);
+  }
+  /*
+  $chart = array(
+    '#chart_id' => 'amount_sold',
+    '#title' => t('Omsætning korte kurser'),
+    '#type' => CHART_TYPE_PIE_3D,
+  );
+
+  $potentiel = 6000000;
+
+  $chart['#data']['potentiel'] = ($potentiel - $amount) / 10000;
+  $chart['#data']['earned']  = $amount / 10000;
+
+  $chart['#labels'][] = t('Potentiel');
+  $chart['#labels'][] = t('Solgt');
+  
+  $chart['#data_colors'][] = 'ff0000';
+  $chart['#data_colors'][] = '00ff00';
+  
+  theme('chart', array('chart' => $chart));
+  */
+  return '<h3>Solgt seneste døgn</h3>' 
+    . '<p style="font-size: 2em; text-align: center;">' . $amount . ' kroner</p>';  
+}
+
+/**
+ * Implementation of hook_block_info().
+ */
+function vih_safeticket_block_info() {
+  $blocks['vih_safeticket'] = array(
+    'info' => t('Safeticket sales'),
+  );
+  return $blocks;
+}
+ 
+/**
+ * Implementation of hook_block_view().
+ */
+function vih_safeticket_block_view($delta='') {
+  $block = array();
+  switch ($delta) {
+    case 'vih_safeticket':
+      $block['subject'] = t('Safeticket sales');
+      $block['content'] = vih_safeticket_sales();
+      break;
+  }
+  return $block;
+}
