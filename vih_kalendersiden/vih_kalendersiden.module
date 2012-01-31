@@ -3,6 +3,9 @@
  * @file
  */
 
+/**
+ * Implements hook_menu()
+ */
 function vih_kalendersiden_menu() {
   $items = array();  
   $items['kalender/pdf'] = array(
@@ -17,25 +20,55 @@ function vih_kalendersiden_menu() {
   return $items;
 }
 
+/**
+ * Checks permissions
+ *
+ * Everybody should be able to get the pdf
+ */
 function vih_kalendersiden_access($node) {
   return true;
 }
 
+/**
+ * Posts data from a view to kalendersiden.dk and gets the pdf created
+ */
 function vih_kalendersiden_pdf() {
+  $result = views_get_view_result('vih_calendar', $display_id);
+
+  $events = array();
+
+  foreach ($result as $event) {
+    if (date('dmY', strtotime($event->field_field_date[0]['raw']['value'])) !=  date('dmY', strtotime($event->field_field_date_1[0]['raw']['value2']))) {
+      $events[] = 'fra ' .  date('d.m. ', strtotime($event->field_field_date[0]['raw']['value'])) . 'til ' . date('d.m.:', strtotime($event->field_field_date[0]['raw']['value2'])) . $event->node_title;
+    } 
+    else {
+      $events[] = date('d.m.: ', strtotime($event->field_field_date[0]['raw']['value'])) . ' ' . $event->node_title;
+    } 
+  }
+
+  $month = 3;
+  $year = 2012;
+  $months = 4;
+  $pages = 1;
+  $format = 'landscape';
+
+  $event_data = implode("\n", $events);
+
   $data = array(
-    'month' => 3,
-    'year' => 2012,
-    'months' => 3,
-    'pages' => 1,
-    'format' => 'landscape',
+    'month' => $month,
+    'year' => $year,
+    'months' => $months,
+    'pages' => $pages,
+    'format' => $format,
     'head' => 'Vejle Idrætshøjskole',
-    'userdata' => '22.3.: Mit event'
+    'userdata' => $event_data
   );
+
 
   $array = array();
 
   foreach ($data as $key => $value) {
-    $array[] = $key . '=' . $value;
+    $array[] = $key . '=' . rawurlencode($value);
   }
   
   $array[] = 'info[]=showyear';
@@ -48,11 +81,15 @@ function vih_kalendersiden_pdf() {
     'method' => 'POST',
     'data' => $post,
     'timeout' => 15,
-    'headers' => array('Content-Type' => 'application/x-www-form-urlencoded'),
-    'context' => true
+    'headers' => array('Content-Type' => 'application/x-www-form-urlencoded')
   );
 
-  $result = drupal_http_request('http://kalendersiden.dk/generate.php', $options);
+  $url = 'http://kalendersiden.dk/generate.php';
 
-  return $result;
+  $result = drupal_http_request($url, $options);
+
+  drupal_add_http_header('Content-type','application/pdf');
+  drupal_add_http_header('content-disposition','attachment; filename="vih-kalender-' . check_plain($year) . '-' . check_plain($month) . '.pdf');
+  
+  echo $result->data;
 }
