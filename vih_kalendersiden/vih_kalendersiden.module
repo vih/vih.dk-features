@@ -60,7 +60,7 @@ function vih_kalendersiden_form($form_state) {
     '#title' => t('Starting month'),
     '#required' => true,
     '#options' => $months,
-    '#default_value' => date('j'),
+    '#default_value' => date('n'),
   ); 
 
   $form['vih_kalendersiden']['months'] = array(
