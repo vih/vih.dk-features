@@ -104,11 +104,28 @@ function vih_kalendersiden_form($form_state) {
  * @todo write validation functions
  */
 function vih_kalendersiden_form_validate($form, &$form_state) {
+  /*
+  if (intval($form_state['values']['vih_kalendersiden']['month']) > 0 ) {
+    form_set_error('', t('Unknown format.'));
+  }
+  if (!in_array(array($form_state['values']['vih_kalendersiden']['format'], 'landscape', 'portrait'))) {
+    form_set_error('', t('Unknown format.'));
+  } 
+  */ 
   return true;
 }
 
 function vih_kalendersiden_form_submit($form, &$form_state) {
-  echo vih_kalendersiden_pdf($form_state['values']['vih_kalendersiden']['month'], $form_state['values']['vih_kalendersiden']['year'], $form_state['values']['vih_kalendersiden']['months'], $form_state['values']['vih_kalendersiden']['pages'], $form_state['values']['vih_kalendersiden']['format']);
+  $year = check_plain(intval($form_state['values']['vih_kalendersiden']['year']));
+  $month = check_plain(intval($form_state['values']['vih_kalendersiden']['month']));
+  $months = check_plain(intval($form_state['values']['vih_kalendersiden']['months']));
+  $pages = check_plain(intval($form_state['values']['vih_kalendersiden']['pages']));
+  $format = check_plain($form_state['values']['vih_kalendersiden']['format']);
+
+  drupal_add_http_header('Content-type','application/pdf');
+  drupal_add_http_header('content-disposition','attachment; filename="vih-kalender-' . check_plain($year) . '-' . check_plain($month) . '.pdf');
+
+  echo vih_kalendersiden_pdf($month, $year, $months, $pages, $format);
 }
 
 /**
@@ -163,9 +180,6 @@ function vih_kalendersiden_pdf($month = 3, $year = 2012, $months = 4, $pages = 1
   $url = 'http://kalendersiden.dk/generate.php';
 
   $result = drupal_http_request($url, $options);
-
-  drupal_add_http_header('Content-type','application/pdf');
-  drupal_add_http_header('content-disposition','attachment; filename="vih-kalender-' . check_plain($year) . '-' . check_plain($month) . '.pdf');
-  
-  echo $result->data;
+    
+  return $result->data;
 }
