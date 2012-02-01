@@ -10,10 +10,10 @@ function vih_kalendersiden_menu() {
   $items = array();  
   $items['kalender/pdf'] = array(
     'title' => 'PDF',
-    'page callback' => 'vih_kalendersiden_pdf',
-    'page arguments' => array(1),
+    'page callback' => 'vih_kalendersiden_view',
+    'page arguments' => array(),
     'access callback' => 'vih_kalendersiden_access',
-    'access arguments' => array(1),
+    'access arguments' => array(),
     'type' => MENU_LOCAL_ACTION,    
 
   );  
@@ -25,14 +25,96 @@ function vih_kalendersiden_menu() {
  *
  * Everybody should be able to get the pdf
  */
-function vih_kalendersiden_access($node) {
+function vih_kalendersiden_access() {
   return true;
+}
+
+function vih_kalendersiden_view() {
+  return drupal_get_form('vih_kalendersiden_form');
+}
+
+function vih_kalendersiden_form($form_state) {
+  $form['vih_kalendersiden'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Settings for the PDF calendar'),
+    '#tree' => TRUE,
+  );
+  
+  $months = array(
+    1 => t('January'),
+    2 => t('February'),
+    3 => t('March'), 
+    4 => t('April'),
+    5 => t('May'),
+    6 => t('June'),
+    7 => t('July'),
+    8 => t('August'),
+    9 => t('September'),
+    10 => t('October'),
+    11 => t('November'),
+    12 => t('December')
+  );  
+    
+  $form['vih_kalendersiden']['month'] = array(
+    '#type' => 'select',
+    '#title' => t('Starting month'),
+    '#required' => true,
+    '#options' => $months,
+    '#default_value' => date('j'),
+  ); 
+
+  $form['vih_kalendersiden']['months'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Number of months'),
+    '#required' => true,
+    '#default_value' => 3,
+  ); 
+  
+  $form['vih_kalendersiden']['year'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Starting year'),
+    '#required' => true,
+    '#default_value' => date('Y'),
+  );
+  
+  $form['vih_kalendersiden']['pages'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Printed on number of pages'),
+    '#required' => true,
+    '#default_value' => 1,
+  );  
+
+  $form['vih_kalendersiden']['format'] = array(
+    '#type' => 'select',
+    '#title' => t('Format'),
+    '#required' => true,
+    '#options' => array('landscape', 'portrait'),
+    '#default_value' => 'landscape',
+  );  
+  
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Get PDF'),
+  );
+  
+  return $form;
+}
+
+/**
+ * @todo write validation functions
+ */
+function vih_kalendersiden_form_validate($form, &$form_state) {
+  return true;
+}
+
+function vih_kalendersiden_form_submit($form, &$form_state) {
+  echo vih_kalendersiden_pdf($form_state['values']['vih_kalendersiden']['month'], $form_state['values']['vih_kalendersiden']['year'], $form_state['values']['vih_kalendersiden']['months'], $form_state['values']['vih_kalendersiden']['pages'], $form_state['values']['vih_kalendersiden']['format']);
 }
 
 /**
  * Posts data from a view to kalendersiden.dk and gets the pdf created
  */
-function vih_kalendersiden_pdf() {
+function vih_kalendersiden_pdf($month = 3, $year = 2012, $months = 4, $pages = 1, $format = 'landscape') {
   $result = views_get_view_result('vih_calendar', $display_id);
 
   $events = array();
@@ -45,12 +127,6 @@ function vih_kalendersiden_pdf() {
       $events[] = date('d.m.: ', strtotime($event->field_field_date[0]['raw']['value'])) . ' ' . $event->node_title;
     } 
   }
-
-  $month = 3;
-  $year = 2012;
-  $months = 4;
-  $pages = 1;
-  $format = 'landscape';
 
   $event_data = implode("\n", $events);
 
