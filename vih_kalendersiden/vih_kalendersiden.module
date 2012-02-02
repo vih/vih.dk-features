@@ -10,30 +10,23 @@ function vih_kalendersiden_menu() {
   $items = array();  
   $items['kalender/pdf'] = array(
     'title' => 'PDF',
-    'page callback' => 'vih_kalendersiden_view',
+    'page callback' => 'vih_kalendersiden_view_pdf_form',
     'page arguments' => array(),
-    'access callback' => 'vih_kalendersiden_access',
-    'access arguments' => array(),
-    'type' => MENU_LOCAL_ACTION,    
+    'access arguments' => array('access content'),
+    'type' => MENU_LOCAL_ACTION,  
+    'description' => t('Create PDF')  
 
-  );  
+  );     
   return $items;
 }
 
-/**
- * Checks permissions
- *
- * Everybody should be able to get the pdf
- */
-function vih_kalendersiden_access() {
-  return true;
-}
-
-function vih_kalendersiden_view() {
+function vih_kalendersiden_view_pdf_form() {
   return drupal_get_form('vih_kalendersiden_form');
 }
 
 function vih_kalendersiden_form($form_state) {
+  $form['#method'] = 'POST';
+
   $form['vih_kalendersiden'] = array(
     '#type' => 'fieldset',
     '#title' => t('Settings for the PDF calendar'),
@@ -112,9 +105,11 @@ function vih_kalendersiden_form_validate($form, &$form_state) {
     form_set_error('', t('Unknown format.'));
   } 
   */ 
-  return true;
 }
 
+/**
+ * Implements hook_form_submit();
+ */
 function vih_kalendersiden_form_submit($form, &$form_state) {
   $year = check_plain(intval($form_state['values']['vih_kalendersiden']['year']));
   $month = check_plain(intval($form_state['values']['vih_kalendersiden']['month']));
@@ -122,16 +117,24 @@ function vih_kalendersiden_form_submit($form, &$form_state) {
   $pages = check_plain(intval($form_state['values']['vih_kalendersiden']['pages']));
   $format = check_plain($form_state['values']['vih_kalendersiden']['format']);
 
-  drupal_add_http_header('Content-type','application/pdf');
-  drupal_add_http_header('content-disposition','attachment; filename="vih-kalender-' . check_plain($year) . '-' . check_plain($month) . '.pdf');
+  $content = vih_kalendersiden_pdf_generate($month, $year, $months, $pages, $format);
 
-  echo vih_kalendersiden_pdf($month, $year, $months, $pages, $format);
+  if (headers_sent()) {
+    drupal_set_message(t('Headers already sent - could not open pdf'));
+    return;
+  }
+
+  drupal_add_http_header('Cache-Control', 'must-revalidate, post-check=0, pre-check=0');
+  drupal_add_http_header('Content-type', 'application/pdf');
+  drupal_add_http_header('content-disposition', 'attachment; filename="vih-kalender-' . check_plain($year) . '-' . check_plain($month) . '.pdf');
+  
+  print $content;
 }
 
 /**
  * Posts data from a view to kalendersiden.dk and gets the pdf created
  */
-function vih_kalendersiden_pdf($month = 3, $year = 2012, $months = 4, $pages = 1, $format = 'landscape') {
+function vih_kalendersiden_pdf_generate($month = 3, $year = 2012, $months = 4, $pages = 1, $format = 'landscape') {
   $result = views_get_view_result('vih_calendar', $display_id);
 
   $events = array();
@@ -180,6 +183,6 @@ function vih_kalendersiden_pdf($month = 3, $year = 2012, $months = 4, $pages = 1
   $url = 'http://kalendersiden.dk/generate.php';
 
   $result = drupal_http_request($url, $options);
-    
+
   return $result->data;
 }

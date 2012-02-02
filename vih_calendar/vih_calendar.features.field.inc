@@ -46,10 +46,10 @@ function vih_calendar_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'hidden',
-          'module' => 'text',
+          'module' => 'vih_viggo',
           'settings' => array(),
-          'type' => 'text_default',
-          'weight' => 0,
+          'type' => 'vih_viggo_formatter',
+          'weight' => '0',
         ),
         'teaser' => array(
           'label' => 'hidden',
@@ -126,7 +126,7 @@ function vih_calendar_field_default_fields() {
             'multiple_to' => '',
           ),
           'type' => 'date_default',
-          'weight' => 1,
+          'weight' => '1',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -203,7 +203,7 @@ function vih_calendar_field_default_fields() {
           'module' => 'link',
           'settings' => array(),
           'type' => 'link_default',
-          'weight' => 2,
+          'weight' => '2',
         ),
         'teaser' => array(
           'label' => 'above',

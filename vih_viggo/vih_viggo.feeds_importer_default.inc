@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * vih_calendar.feeds_importer_default.inc
+ * vih_viggo.feeds_importer_default.inc
  */
 
 /**
  * Implements hook_feeds_importer_default().
  */
-function vih_calendar_feeds_importer_default() {
+function vih_viggo_feeds_importer_default() {
   $export = array();
 
   $feeds_importer = new stdClass;
@@ -34,7 +34,7 @@ function vih_calendar_feeds_importer_default() {
       'config' => array(
         'content_type' => 'vih_calendar',
         'expire' => '-1',
-        'author' => '1',
+        'author' => '3',
         'mappings' => array(
           0 => array(
             'source' => 'summary',
@@ -68,10 +68,10 @@ function vih_calendar_feeds_importer_default() {
     ),
     'content_type' => '',
     'update' => 0,
-    'import_period' => '1800',
+    'import_period' => '86400',
     'expire_period' => 3600,
     'import_on_create' => 1,
-    'process_in_background' => 0,
+    'process_in_background' => 1,
   );
   $export['viggo_calendar'] = $feeds_importer;
 

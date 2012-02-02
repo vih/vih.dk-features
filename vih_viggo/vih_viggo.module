@@ -1,0 +1,39 @@
+<?php
+/**
+ * @file
+ * Adds formatter to display calendar items for Viggo properly
+ */
+
+/**
+ * Implements hook_field_formatter_info().
+ *
+ * Adds formatter to display calendar items for Viggo without unneccessary information
+ */
+function vih_viggo_field_formatter_info() {
+  return array(
+    'vih_viggo_formatter' => array( //Machine name of the formatter
+      'label' => t('Viggo Calendar Description'),
+      'field types' => array('text_with_summary', 'text_long'), //This will only be available to text fields
+    ),
+  );
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ */
+function vih_viggo_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  $element = array(); // Initialize the var
+  foreach ($items as $delta => $item) {
+    $text = $item['safe_value']; // Getting the actual value
+  }
+
+  if (isset($text)) {
+    $text = str_replace("Beskrivelse:", '', $text);
+    $text = strstr($text, 'Opdateret: ', true);
+    $element[0]['#markup'] = check_markup($text, 'filtered_html'); // Assign it to the #markup of the element
+  }
+  return $element;
+}
+
+
+
