@@ -579,7 +579,7 @@ function vih_employees_field_default_fields() {
           'label' => 'hidden',
           'module' => 'text',
           'settings' => array(
-            'trim_length' => '300',
+            'trim_length' => 600,
           ),
           'type' => 'text_summary_or_trimmed',
           'weight' => '2',
@@ -765,6 +765,7 @@ function vih_employees_field_default_fields() {
             'image' => 'image',
             'video' => 0,
           ),
+          'browser_plugins' => array(),
           'progress_indicator' => 'throbber',
         ),
         'type' => 'media_generic',
