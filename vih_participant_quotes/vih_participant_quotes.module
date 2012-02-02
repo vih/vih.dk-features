@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the VIH Participant Quotes feature.
+ */
+
+include_once('vih_participant_quotes.features.inc');

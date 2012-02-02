@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the VIH Middleman Redirect feature.
+ */
+
+include_once('vih_middleman_redirect.features.inc');

@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the VIH Student Quotes feature.
+ */
+
+include_once('vih_student_quotes.features.inc');
