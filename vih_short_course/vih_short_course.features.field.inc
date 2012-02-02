@@ -49,7 +49,7 @@ function vih_short_course_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '2',
+          'weight' => '1',
         ),
         'ical' => array(
           'label' => 'hidden',
@@ -140,7 +140,7 @@ function vih_short_course_field_default_fields() {
             'view_mode' => 'teaser',
           ),
           'type' => 'entityreference_entity_view',
-          'weight' => '3',
+          'weight' => '2',
         ),
         'ical' => array(
           'label' => 'inline',
@@ -214,10 +214,9 @@ function vih_short_course_field_default_fields() {
             'multiple_from' => '',
             'multiple_number' => '',
             'multiple_to' => '',
-            'show_repeat_rule' => 'show',
           ),
           'type' => 'date_default',
-          'weight' => '4',
+          'weight' => '3',
         ),
         'ical' => array(
           'label' => 'inline',
@@ -311,9 +310,8 @@ function vih_short_course_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'hidden',
-          'module' => 'taxonomy',
           'settings' => array(),
-          'type' => 'taxonomy_term_reference_link',
+          'type' => 'hidden',
           'weight' => '7',
         ),
         'ical' => array(
@@ -448,7 +446,7 @@ function vih_short_course_field_default_fields() {
             'image_style' => 'sidepicture',
           ),
           'type' => 'image',
-          'weight' => '1',
+          'weight' => '0',
         ),
         'ical' => array(
           'label' => 'hidden',
@@ -488,6 +486,7 @@ function vih_short_course_field_default_fields() {
           'allowed_types' => array(
             0 => 'image',
           ),
+          'browser_plugins' => array(),
           'filefield_sources' => array(
             'filefield_sources' => array(
               'attach' => 'attach',
@@ -543,7 +542,7 @@ function vih_short_course_field_default_fields() {
             'thousand_separator' => '.',
           ),
           'type' => 'number_integer',
-          'weight' => '5',
+          'weight' => '4',
         ),
         'ical' => array(
           'label' => 'inline',
@@ -610,7 +609,7 @@ function vih_short_course_field_default_fields() {
             'thousand_separator' => '.',
           ),
           'type' => 'number_integer',
-          'weight' => '6',
+          'weight' => '5',
         ),
         'ical' => array(
           'label' => 'inline',
@@ -686,7 +685,7 @@ function vih_short_course_field_default_fields() {
           'module' => 'link',
           'settings' => array(),
           'type' => 'link_default',
-          'weight' => '0',
+          'weight' => '6',
         ),
         'ical' => array(
           'label' => 'hidden',
@@ -807,6 +806,7 @@ function vih_short_course_field_default_fields() {
           'allowed_types' => array(
             0 => 'image',
           ),
+          'browser_plugins' => array(),
           'preview_image_style' => 'thumbnail',
           'progress_indicator' => 'throbber',
         ),
