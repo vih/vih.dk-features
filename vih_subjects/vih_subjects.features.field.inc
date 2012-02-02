@@ -280,6 +280,7 @@ function vih_subjects_field_default_fields() {
           'allowed_types' => array(
             0 => 'image',
           ),
+          'browser_plugins' => array(),
           'preview_image_style' => 'thumbnail',
           'progress_indicator' => 'throbber',
         ),
@@ -438,7 +439,7 @@ function vih_subjects_field_default_fields() {
           0 => 'fid',
         ),
       ),
-      'module' => 'media',
+      'module' => 'mediafield',
       'settings' => array(),
       'translatable' => '1',
       'type' => 'media',
@@ -450,7 +451,7 @@ function vih_subjects_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'hidden',
-          'module' => 'media',
+          'module' => 'mediafield',
           'settings' => array(
             'file_view_mode' => 'media_large',
           ),
@@ -486,6 +487,7 @@ function vih_subjects_field_default_fields() {
             'image' => 0,
             'video' => 'video',
           ),
+          'browser_plugins' => array(),
           'progress_indicator' => 'throbber',
         ),
         'type' => 'media_generic',
@@ -820,6 +822,7 @@ function vih_subjects_field_default_fields() {
             'image' => 'image',
             'video' => 0,
           ),
+          'browser_plugins' => array(),
           'progress_indicator' => 'throbber',
         ),
         'type' => 'media_generic',
