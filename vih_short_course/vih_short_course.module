@@ -103,6 +103,17 @@ function vih_short_course_node_view($node, $view_mode, $langcode) {
   }
 }
 
-
+/**
+ * Implements hook_commerce_price_component_type_info().
+ */
+function vih_short_course_commerce_price_component_type_info() {
+  return array(
+    'vih_kayak_fee' => array(
+      'title' => t('Kayak fee'),
+      'display_title' => t('Kayak fee'),
+      'weight' => -50,
+    ),
+  );
+}
 
 include_once('vih_short_course.features.inc');
