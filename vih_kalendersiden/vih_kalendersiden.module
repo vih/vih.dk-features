@@ -129,7 +129,7 @@ function vih_kalendersiden_form_submit($form, &$form_state) {
   $pages = check_plain(intval($form_state['values']['vih_kalendersiden']['pages']));
   $format = check_plain($form_state['values']['vih_kalendersiden']['format']);
 
-  $form_state['redirect'] = "kalender/view/$month/$year/$month/$pages/$format";
+  $form_state['redirect'] = "kalender/view/$month/$year/$months/$pages/$format";
 }
 
 /**
