@@ -10,6 +10,194 @@
 function vih_short_course_field_default_fields() {
   $fields = array();
 
+  // Exported field: 'commerce_line_item-vih_short_course_golf-field_vih_golf_handicap'
+  $fields['commerce_line_item-vih_short_course_golf-field_vih_golf_handicap'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_vih_golf_handicap',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'number',
+      'settings' => array(),
+      'translatable' => '0',
+      'type' => 'number_integer',
+    ),
+    'field_instance' => array(
+      'bundle' => 'vih_short_course_golf',
+      'commerce_cart_settings' => array(
+        'field_access' => 1,
+      ),
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => ' ',
+          ),
+          'type' => 'number_integer',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'commerce_line_item',
+      'field_name' => 'field_vih_golf_handicap',
+      'label' => 'Handicap',
+      'required' => 1,
+      'settings' => array(
+        'max' => '99',
+        'min' => '1',
+        'prefix' => '',
+        'suffix' => '',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 0,
+        'module' => 'number',
+        'settings' => array(),
+        'type' => 'number',
+        'weight' => '4',
+      ),
+    ),
+  );
+
+  // Exported field: 'commerce_line_item-vih_short_course_golf-field_vih_short_course_mail'
+  $fields['commerce_line_item-vih_short_course_golf-field_vih_short_course_mail'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_vih_short_course_mail',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'vih_short_course_golf',
+      'commerce_cart_settings' => array(
+        'field_access' => 1,
+      ),
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 5,
+        ),
+      ),
+      'entity_type' => 'commerce_line_item',
+      'field_name' => 'field_vih_short_course_mail',
+      'label' => 'E-mail',
+      'required' => 1,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '3',
+      ),
+    ),
+  );
+
+  // Exported field: 'commerce_line_item-vih_short_course_golf-field_vih_short_course_name'
+  $fields['commerce_line_item-vih_short_course_golf-field_vih_short_course_name'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_vih_short_course_name',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'vih_short_course_golf',
+      'commerce_cart_settings' => array(
+        'field_access' => 1,
+      ),
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 4,
+        ),
+      ),
+      'entity_type' => 'commerce_line_item',
+      'field_name' => 'field_vih_short_course_name',
+      'label' => 'Name',
+      'required' => 1,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '2',
+      ),
+    ),
+  );
+
   // Exported field: 'commerce_product-vih_short_course-field_vih_product_description'
   $fields['commerce_product-vih_short_course-field_vih_product_description'] = array(
     'field_config' => array(
@@ -106,7 +294,7 @@ function vih_short_course_field_default_fields() {
     'field_instance' => array(
       'bundle' => 'vih_short_course',
       'commerce_cart_settings' => array(
-        'attribute_field' => 0,
+        'attribute_field' => 1,
         'attribute_widget' => 'select',
       ),
       'default_value' => NULL,
