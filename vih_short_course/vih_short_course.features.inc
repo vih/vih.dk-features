@@ -41,6 +41,30 @@ function vih_short_course_node_info() {
       'title_label' => t('Title'),
       'help' => '',
     ),
+    'vih_short_course_golf' => array(
+      'name' => t('Short Course Golf'),
+      'base' => 'node_content',
+      'description' => t('Used for the golf courses.'),
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
+    'vih_short_course_kajak' => array(
+      'name' => t('Short Course Kajak'),
+      'base' => 'node_content',
+      'description' => t('Used for the kayak courses.'),
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
+    'vih_short_course_sport_camp' => array(
+      'name' => t('Short Course Sport Camp'),
+      'base' => 'node_content',
+      'description' => '',
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
   );
   return $items;
 }
