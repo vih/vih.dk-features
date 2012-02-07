@@ -4,4 +4,50 @@
  * Code for the VIH Short Course feature.
  */
 
+
+/**
+ * Implements hook_commerce_product_type_info().
+ */
+function vih_short_course_commerce_product_type_info() {
+  return array(
+    'vih_short_course' => array(
+      'type' => 'vih_short_course',
+      'name' => t('Short course'),
+      'description' => t('Defines a short course product that users can sign up for.'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_commerce_line_item_type_info().
+ */
+function vih_short_course_commerce_line_item_type_info() {
+  return array(
+    'vih_short_course' => array(
+      'name' => t('Standard short course'),
+      'description' => t('Used for short courses, which no additional information.'),
+      'add_form_submit_value' => t('Sign up'),
+      'base' => 'vih_short_course',
+    ),
+    'vih_short_course_golf' => array(
+      'name' => t('Golf short course'),
+      'description' => t('Used for short couses, where you can can select a golf handicap.'),
+      'add_form_submit_value' => t('Sign up'),
+      'base' => 'vih_short_course',
+    ),
+    'vih_short_course_kayak' => array(
+      'name' => t('Kayak short course'),
+      'description' => t('Used for short couses, where you can rent a kayak.'),
+      'add_form_submit_value' => t('Sign up'),
+      'base' => 'vih_short_course',
+    ),
+    'vih_short_course_sport' => array(
+      'name' => t('Sport short course'),
+      'description' => t('Used for short couses, where you can can select a sport activity.'),
+      'add_form_submit_value' => t('Sign up'),
+      'base' => 'vih_short_course',
+    ),
+  );
+}
+
 include_once('vih_short_course.features.inc');
