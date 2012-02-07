@@ -22,7 +22,7 @@ function vih_kalendersiden_menu() {
     'page callback' => 'vih_kalendersiden_pdf_generate',
     'page arguments' => array(),
     'access arguments' => array('access content'),
-    'type' => MENU_LOCAL_ACTION,
+    'type' => MENU_LOCAL_TASK,
     'description' => t('Create PDF'),
   );
 
