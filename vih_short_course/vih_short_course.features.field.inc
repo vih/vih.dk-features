@@ -1446,6 +1446,83 @@ function vih_short_course_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-vih_short_course_golf-field_vih_product_courses'
+  $fields['node-vih_short_course_golf-field_vih_product_courses'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_vih_product_courses',
+      'foreign keys' => array(
+        'product_id' => array(
+          'columns' => array(
+            'product_id' => 'product_id',
+          ),
+          'table' => 'commerce_product',
+        ),
+      ),
+      'indexes' => array(
+        'product_id' => array(
+          0 => 'product_id',
+        ),
+      ),
+      'module' => 'commerce_product_reference',
+      'settings' => array(),
+      'translatable' => '0',
+      'type' => 'commerce_product_reference',
+    ),
+    'field_instance' => array(
+      'bundle' => 'vih_short_course_golf',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'hidden',
+          'module' => 'commerce_cart',
+          'settings' => array(
+            'combine' => 1,
+            'default_quantity' => '1',
+            'line_item_type' => 'vih_short_course_golf',
+            'show_quantity' => 0,
+          ),
+          'type' => 'commerce_cart_add_to_cart_form',
+          'weight' => '6',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_vih_product_courses',
+      'label' => 'Cources',
+      'required' => 0,
+      'settings' => array(
+        'field_injection' => 1,
+        'referenceable_types' => array(
+          'product' => 0,
+          'vih_short_course' => 'vih_short_course',
+        ),
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'commerce_product_reference',
+        'settings' => array(
+          'autocomplete_match' => 'contains',
+          'autocomplete_path' => 'commerce_product/autocomplete',
+          'size' => '60',
+        ),
+        'type' => 'commerce_product_reference_autocomplete',
+        'weight' => '31',
+      ),
+    ),
+  );
+
   // Exported field: 'node-vih_short_course_kajak-body'
   $fields['node-vih_short_course_kajak-body'] = array(
     'field_config' => array(
