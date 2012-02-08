@@ -182,7 +182,6 @@ function vih_short_course_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Korte kurser';
   $handler->display->display_options['use_more_text'] = 'mere';
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'time';
@@ -195,8 +194,8 @@ function vih_short_course_views_default_views() {
   $handler->display->display_options['exposed_form']['options']['exposed_sorts_label'] = 'Sortér efter';
   $handler->display->display_options['exposed_form']['options']['sort_asc_label'] = 'Stigende';
   $handler->display->display_options['exposed_form']['options']['sort_desc_label'] = 'Faldende';
-  $handler->display->display_options['pager']['type'] = 'full';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '30';
+  $handler->display->display_options['pager']['type'] = 'mini';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '50';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['pager']['options']['expose']['items_per_page_label'] = 'Elementer pr. side';
@@ -246,16 +245,6 @@ function vih_short_course_views_default_views() {
   $handler->display->display_options['style_options']['sticky'] = 1;
   $handler->display->display_options['style_options']['summary'] = 'Korte kurser på Vejle Idrætshøjskole - sommerhøjskole, familiehøjskole, familiekurser, golfhøjskole, golfkurser';
   $handler->display->display_options['style_options']['empty_table'] = 0;
-  /* Overskrift: Global: Tekstområde */
-  $handler->display->display_options['header']['area']['id'] = 'area';
-  $handler->display->display_options['header']['area']['table'] = 'views';
-  $handler->display->display_options['header']['area']['field'] = 'area';
-  $handler->display->display_options['header']['area']['empty'] = FALSE;
-  /* Sidefod: Global: Tekstområde */
-  $handler->display->display_options['footer']['area']['id'] = 'area';
-  $handler->display->display_options['footer']['area']['table'] = 'views';
-  $handler->display->display_options['footer']['area']['field'] = 'area';
-  $handler->display->display_options['footer']['area']['empty'] = FALSE;
   /* Felt: Felt: Billede */
   $handler->display->display_options['fields']['field_picture']['id'] = 'field_picture';
   $handler->display->display_options['fields']['field_picture']['table'] = 'field_data_field_picture';
@@ -280,7 +269,7 @@ function vih_short_course_views_default_views() {
   $handler->display->display_options['fields']['field_picture']['hide_alter_empty'] = 0;
   $handler->display->display_options['fields']['field_picture']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_picture']['settings'] = array(
-    'image_style' => 'thumbnail',
+    'image_style' => 'thumbnail_tall',
     'image_link' => 'content',
   );
   $handler->display->display_options['fields']['field_picture']['group_column'] = 'fid';
@@ -412,151 +401,19 @@ function vih_short_course_views_default_views() {
   $handler->display->display_options['filters']['field_course_time_value']['default_date'] = '+1 day';
   $handler->display->display_options['filters']['field_course_time_value']['year_range'] = '-0:+3';
 
-  /* Display: Page */
-  $handler = $view->new_display('page', 'Page', 'page');
-  $handler->display->display_options['defaults']['cache'] = FALSE;
-  $handler->display->display_options['cache']['type'] = 'time';
-  $handler->display->display_options['cache']['results_lifespan'] = '21600';
-  $handler->display->display_options['cache']['output_lifespan'] = '21600';
-  $handler->display->display_options['defaults']['header'] = FALSE;
-  /* Overskrift: Global: Tekstområde */
-  $handler->display->display_options['header']['area']['id'] = 'area';
-  $handler->display->display_options['header']['area']['table'] = 'views';
-  $handler->display->display_options['header']['area']['field'] = 'area';
-  $handler->display->display_options['header']['area']['empty'] = FALSE;
-  $handler->display->display_options['header']['area']['content'] = '<p>Vi har en lang række forskellige korte højskolekurser. Du sparker til livet gennem legen og fordybelsen, diskussionerne og festlighederne. Hvis du har spørgsmål om kurserne, er du meget velkommen til at ringe til skolen eller kursuslederne for de enkelte kurser.</p>';
-  $handler->display->display_options['header']['area']['format'] = 'filtered_html';
-  $handler->display->display_options['header']['area']['tokenize'] = 0;
-  $handler->display->display_options['defaults']['footer'] = FALSE;
-  /* Sidefod: Global: Tekstområde */
-  $handler->display->display_options['footer']['area']['id'] = 'area';
-  $handler->display->display_options['footer']['area']['table'] = 'views';
-  $handler->display->display_options['footer']['area']['field'] = 'area';
-  $handler->display->display_options['footer']['area']['empty'] = FALSE;
-  $handler->display->display_options['footer']['area']['content'] = '
-
-';
-  $handler->display->display_options['footer']['area']['format'] = 'filtered_html';
-  $handler->display->display_options['footer']['area']['tokenize'] = 0;
-  $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Felt: Felt: Billede */
-  $handler->display->display_options['fields']['field_picture']['id'] = 'field_picture';
-  $handler->display->display_options['fields']['field_picture']['table'] = 'field_data_field_picture';
-  $handler->display->display_options['fields']['field_picture']['field'] = 'field_picture';
-  $handler->display->display_options['fields']['field_picture']['label'] = '';
-  $handler->display->display_options['fields']['field_picture']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_picture']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['field_picture']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['field_picture']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['field_picture']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_picture']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['field_picture']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['field_picture']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['field_picture']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['field_picture']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['field_picture']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['field_picture']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_picture']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_picture']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_picture']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['field_picture']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_picture']['hide_alter_empty'] = 0;
-  $handler->display->display_options['fields']['field_picture']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_picture']['settings'] = array(
-    'image_style' => 'thumbnail_tall',
-    'image_link' => 'content',
-  );
-  $handler->display->display_options['fields']['field_picture']['group_column'] = 'fid';
-  $handler->display->display_options['fields']['field_picture']['field_api_classes'] = 0;
-  /* Felt: Indhold: Titel */
-  $handler->display->display_options['fields']['title']['id'] = 'title';
-  $handler->display->display_options['fields']['title']['table'] = 'node';
-  $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['label'] = 'Navn';
-  $handler->display->display_options['fields']['title']['alter']['alter_text'] = 1;
-  $handler->display->display_options['fields']['title']['alter']['text'] = '<h3>[title]</h3>';
-  $handler->display->display_options['fields']['title']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['title']['element_label_colon'] = 0;
-  $handler->display->display_options['fields']['title']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['title']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['title']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['title']['hide_alter_empty'] = 0;
-  $handler->display->display_options['fields']['title']['link_to_node'] = 1;
-  /* Felt: Indhold: Body */
-  $handler->display->display_options['fields']['body']['id'] = 'body';
-  $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
-  $handler->display->display_options['fields']['body']['field'] = 'body';
-  $handler->display->display_options['fields']['body']['label'] = '';
-  $handler->display->display_options['fields']['body']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['body']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['body']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['body']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['body']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['body']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['body']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['body']['alter']['max_length'] = '100';
-  $handler->display->display_options['fields']['body']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['body']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['body']['alter']['strip_tags'] = 1;
-  $handler->display->display_options['fields']['body']['alter']['trim'] = 1;
-  $handler->display->display_options['fields']['body']['alter']['html'] = 1;
-  $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['body']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['body']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['body']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['body']['hide_alter_empty'] = 0;
-  $handler->display->display_options['fields']['body']['type'] = 'text_summary_or_trimmed';
-  $handler->display->display_options['fields']['body']['settings'] = array(
-    'trim_length' => '600',
-  );
-  $handler->display->display_options['fields']['body']['field_api_classes'] = 0;
-  /* Felt: Indhold: Tidspunkt */
-  $handler->display->display_options['fields']['field_course_time']['id'] = 'field_course_time';
-  $handler->display->display_options['fields']['field_course_time']['table'] = 'field_data_field_course_time';
-  $handler->display->display_options['fields']['field_course_time']['field'] = 'field_course_time';
-  $handler->display->display_options['fields']['field_course_time']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_course_time']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['field_course_time']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['field_course_time']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['field_course_time']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_course_time']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['field_course_time']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['field_course_time']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['field_course_time']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['field_course_time']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['field_course_time']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['field_course_time']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_course_time']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['field_course_time']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_course_time']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['field_course_time']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_course_time']['hide_alter_empty'] = 0;
-  $handler->display->display_options['fields']['field_course_time']['settings'] = array(
-    'format_type' => 'long_date_without_time',
-    'fromto' => 'both',
-    'multiple_number' => '',
-    'multiple_from' => '',
-    'multiple_to' => '',
-    'show_repeat_rule' => 'show',
-  );
-  $handler->display->display_options['fields']['field_course_time']['field_api_classes'] = 0;
-  $handler->display->display_options['path'] = 'kortekurser';
-  $handler->display->display_options['menu']['type'] = 'normal';
-  $handler->display->display_options['menu']['title'] = 'Korte kurser';
-  $handler->display->display_options['menu']['weight'] = '0';
-
-  /* Display: Blok */
-  $handler = $view->new_display('block', 'Blok', 'block_1');
+  /* Display: Blok - course type */
+  $handler = $view->new_display('block', 'Blok - course type', 'block_short_course_depends_type');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['display_description'] = 'Used with taxonomy display on the taxonomy page.';
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'mini';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '50';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['expose']['items_per_page_label'] = 'Elementer pr. side';
+  $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all'] = 0;
+  $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all_label'] = '- Alle -';
+  $handler->display->display_options['pager']['options']['expose']['offset_label'] = 'Forskydning';
   $handler->display->display_options['defaults']['empty'] = FALSE;
   /* Opførsel ved ingen resultater: Global: Tekstområde */
   $handler->display->display_options['empty']['area']['id'] = 'area';
@@ -694,17 +551,29 @@ function vih_short_course_views_default_views() {
   $handler->display->display_options['arguments']['field_course_type_tid']['summary_options']['items_per_page'] = '25';
   $handler->display->display_options['arguments']['field_course_type_tid']['break_phrase'] = 0;
   $handler->display->display_options['arguments']['field_course_type_tid']['not'] = 0;
-  $handler->display->display_options['block_caching'] = '8';
+  $handler->display->display_options['block_caching'] = '4';
 
   /* Display: Feed */
   $handler = $view->new_display('feed', 'Feed', 'feed_1');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Korte kurser';
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['style_plugin'] = 'rss';
   $handler->display->display_options['row_plugin'] = 'node_rss';
   $handler->display->display_options['path'] = 'kortekurser.xml';
+  $handler->display->display_options['displays'] = array(
+    'block_short_course_depends_type' => 'block_short_course_depends_type',
+    'block_short_courses_quotes' => 'block_short_courses_quotes',
+    'block_all_short_courses' => 'block_all_short_courses',
+    'default' => 0,
+    'block_short_courses_sidebar' => 0,
+  );
+  $handler->display->display_options['sitename_title'] = 0;
 
   /* Display: Ical */
-  $handler = $view->new_display('feed', 'Ical', 'feed_2');
+  $handler = $view->new_display('feed', 'Ical', 'feed_ical');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Korte kurser';
   $handler->display->display_options['display_description'] = 'Feed i iCal format';
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '50';
@@ -715,13 +584,16 @@ function vih_short_course_views_default_views() {
   $handler->display->display_options['row_options']['date_field'] = 'field_data_field_course_time.field_course_time_value';
   $handler->display->display_options['path'] = 'kortekurser.ics';
   $handler->display->display_options['displays'] = array(
-    'page' => 'page',
+    'block_short_course_depends_type' => 'block_short_course_depends_type',
+    'block_short_courses_quotes' => 'block_short_courses_quotes',
+    'block_all_short_courses' => 'block_all_short_courses',
     'default' => 0,
-    'block_1' => 0,
+    'block_short_courses_sidebar' => 0,
   );
+  $handler->display->display_options['sitename_title'] = 0;
 
   /* Display: Sidebar blok */
-  $handler = $view->new_display('block', 'Sidebar blok', 'block_2');
+  $handler = $view->new_display('block', 'Sidebar blok', 'block_short_courses_sidebar');
   $handler->display->display_options['defaults']['css_class'] = FALSE;
   $handler->display->display_options['css_class'] = 'short-courses-sidebar';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
@@ -843,10 +715,11 @@ function vih_short_course_views_default_views() {
   $handler->display->display_options['arguments']['field_course_type_tid']['not'] = 0;
   $handler->display->display_options['block_caching'] = '4';
 
-  /* Display: Blok - kursistcitater */
-  $handler = $view->new_display('block', 'Blok - kursistcitater', 'block_3');
+  /* Display: Blok - quotes */
+  $handler = $view->new_display('block', 'Blok - quotes', 'block_short_courses_quotes');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Relaterede kurser';
+  $handler->display->display_options['display_description'] = 'Used to show related courses on the quotes pages.';
   $handler->display->display_options['defaults']['cache'] = FALSE;
   $handler->display->display_options['cache']['type'] = 'time';
   $handler->display->display_options['cache']['results_lifespan'] = '21600';
@@ -995,9 +868,124 @@ function vih_short_course_views_default_views() {
   $handler->display->display_options['arguments']['tid']['reduce_duplicates'] = 0;
   $handler->display->display_options['arguments']['tid']['set_breadcrumb'] = 0;
   $handler->display->display_options['block_caching'] = '4';
+
+  /* Display: Blok - all courses */
+  $handler = $view->new_display('block', 'Blok - all courses', 'block_all_short_courses');
+  $handler->display->display_options['display_description'] = 'Used to show all courses';
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Felt: Felt: Billede */
+  $handler->display->display_options['fields']['field_picture']['id'] = 'field_picture';
+  $handler->display->display_options['fields']['field_picture']['table'] = 'field_data_field_picture';
+  $handler->display->display_options['fields']['field_picture']['field'] = 'field_picture';
+  $handler->display->display_options['fields']['field_picture']['label'] = '';
+  $handler->display->display_options['fields']['field_picture']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_picture']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_picture']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_picture']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_picture']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_picture']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_picture']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_picture']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['field_picture']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_picture']['settings'] = array(
+    'image_style' => 'thumbnail_tall',
+    'image_link' => 'content',
+  );
+  $handler->display->display_options['fields']['field_picture']['group_column'] = 'fid';
+  $handler->display->display_options['fields']['field_picture']['field_api_classes'] = 0;
+  /* Felt: Indhold: Titel */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = 'Navn';
+  $handler->display->display_options['fields']['title']['alter']['alter_text'] = 1;
+  $handler->display->display_options['fields']['title']['alter']['text'] = '<h3>[title]</h3>';
+  $handler->display->display_options['fields']['title']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = 0;
+  $handler->display->display_options['fields']['title']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['title']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['title']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['title']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['title']['link_to_node'] = 1;
+  /* Felt: Indhold: Body */
+  $handler->display->display_options['fields']['body']['id'] = 'body';
+  $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
+  $handler->display->display_options['fields']['body']['field'] = 'body';
+  $handler->display->display_options['fields']['body']['label'] = '';
+  $handler->display->display_options['fields']['body']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['body']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['body']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['body']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['body']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['body']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['body']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['body']['alter']['max_length'] = '100';
+  $handler->display->display_options['fields']['body']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['body']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['body']['alter']['strip_tags'] = 1;
+  $handler->display->display_options['fields']['body']['alter']['trim'] = 1;
+  $handler->display->display_options['fields']['body']['alter']['html'] = 1;
+  $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['body']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['body']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['body']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['body']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['body']['type'] = 'text_summary_or_trimmed';
+  $handler->display->display_options['fields']['body']['settings'] = array(
+    'trim_length' => '600',
+  );
+  $handler->display->display_options['fields']['body']['field_api_classes'] = 0;
+  /* Felt: Indhold: Tidspunkt */
+  $handler->display->display_options['fields']['field_course_time']['id'] = 'field_course_time';
+  $handler->display->display_options['fields']['field_course_time']['table'] = 'field_data_field_course_time';
+  $handler->display->display_options['fields']['field_course_time']['field'] = 'field_course_time';
+  $handler->display->display_options['fields']['field_course_time']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_course_time']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_course_time']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_course_time']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_course_time']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_course_time']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_course_time']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_course_time']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_course_time']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_course_time']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_course_time']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_course_time']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_course_time']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['field_course_time']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_course_time']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_course_time']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_course_time']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['field_course_time']['settings'] = array(
+    'format_type' => 'medium_date_without_time',
+    'fromto' => 'both',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+  );
+  $handler->display->display_options['fields']['field_course_time']['field_api_classes'] = 0;
+  $handler->display->display_options['block_caching'] = '8';
   $translatables['short_courses'] = array(
     t('Master'),
-    t('Korte kurser'),
     t('mere'),
     t('Udfør'),
     t('Gendan'),
@@ -1011,19 +999,19 @@ function vih_short_course_views_default_views() {
     t('<h3>[title]</h3>'),
     t('Tidspunkt'),
     t('Alle'),
-    t('Page'),
-    t('<p>Vi har en lang række forskellige korte højskolekurser. Du sparker til livet gennem legen og fordybelsen, diskussionerne og festlighederne. Hvis du har spørgsmål om kurserne, er du meget velkommen til at ringe til skolen eller kursuslederne for de enkelte kurser.</p>'),
-    t('
-
-'),
-    t('Blok'),
+    t('Blok - course type'),
+    t('Used with taxonomy display on the taxonomy page.'),
     t('<p><strong>Vi har i øjeblikket ikke nogen aktuelle kurser af den pågældende type. <a href="/nyhedsbrev">Tilmeld dig nyhedsbrevet</a> for at blive opdateret, når vi igen har aktuelle kurser.</strong></p>'),
     t('Feed'),
+    t('Korte kurser'),
     t('Ical'),
     t('Feed i iCal format'),
     t('Sidebar blok'),
-    t('Blok - kursistcitater'),
+    t('Blok - quotes'),
     t('Relaterede kurser'),
+    t('Used to show related courses on the quotes pages.'),
+    t('Blok - all courses'),
+    t('Used to show all courses'),
   );
   $export['short_courses'] = $view;
 
