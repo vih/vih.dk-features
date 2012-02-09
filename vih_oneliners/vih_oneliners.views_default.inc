@@ -12,8 +12,8 @@ function vih_oneliners_views_default_views() {
 
   $view = new view;
   $view->name = 'oneliners';
-  $view->description = '';
-  $view->tag = 'default';
+  $view->description = 'Creates a slideshow with oneliner slogans.';
+  $view->tag = 'VIH';
   $view->base_table = 'node';
   $view->human_name = 'Oneliners';
   $view->core = 7;
