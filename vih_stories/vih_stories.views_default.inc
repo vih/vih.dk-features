@@ -658,7 +658,7 @@ function vih_stories_views_default_views() {
   );
   $handler->display->display_options['fields']['field_image']['field_api_classes'] = 0;
   $handler->display->display_options['block_description'] = 'Views: Stories: Archive page';
-  $handler->display->display_options['block_caching'] = '8';
+  $handler->display->display_options['block_caching'] = '-1';
 
   /* Display: Feed */
   $handler = $view->new_display('feed', 'Feed', 'feed_1');
