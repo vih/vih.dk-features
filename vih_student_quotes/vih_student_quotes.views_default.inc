@@ -12,8 +12,8 @@ function vih_student_quotes_views_default_views() {
 
   $view = new view;
   $view->name = 'student_quotes';
-  $view->description = '';
-  $view->tag = 'default';
+  $view->description = 'Shows quotes for former students at the long courses';
+  $view->tag = 'VIH';
   $view->base_table = 'node';
   $view->human_name = 'Student quotes';
   $view->core = 7;
@@ -22,11 +22,12 @@ function vih_student_quotes_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Hvad siger de tidligere elever?';
   $handler->display->display_options['css_class'] = 'teachers';
   $handler->display->display_options['use_more_text'] = 'mere';
   $handler->display->display_options['access']['type'] = 'perm';
-  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['cache']['type'] = 'time';
+  $handler->display->display_options['cache']['results_lifespan'] = '21600';
+  $handler->display->display_options['cache']['output_lifespan'] = '21600';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['query']['options']['query_comment'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
@@ -127,9 +128,9 @@ function vih_student_quotes_views_default_views() {
 
   /* Display: Blok */
   $handler = $view->new_display('block', 'Blok', 'block_1');
+  $handler->display->display_options['block_caching'] = '-1';
   $translatables['student_quotes'] = array(
     t('Master'),
-    t('Hvad siger de tidligere elever?'),
     t('mere'),
     t('Udfør'),
     t('Gendan'),
