@@ -12,7 +12,7 @@ function vih_facilities_views_default_views() {
 
   $view = new view;
   $view->name = 'faciliteter';
-  $view->description = 'Views with facilities.';
+  $view->description = 'Show lists with facilities';
   $view->tag = 'VIH';
   $view->base_table = 'node';
   $view->human_name = 'Facilities';
@@ -26,7 +26,9 @@ function vih_facilities_views_default_views() {
   $handler->display->display_options['css_class'] = 'faciliteter';
   $handler->display->display_options['use_more_text'] = 'mere';
   $handler->display->display_options['access']['type'] = 'perm';
-  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['cache']['type'] = 'time';
+  $handler->display->display_options['cache']['results_lifespan'] = '21600';
+  $handler->display->display_options['cache']['output_lifespan'] = '21600';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['query']['options']['query_comment'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
@@ -34,8 +36,8 @@ function vih_facilities_views_default_views() {
   $handler->display->display_options['exposed_form']['options']['exposed_sorts_label'] = 'Sortér efter';
   $handler->display->display_options['exposed_form']['options']['sort_asc_label'] = 'Stigende';
   $handler->display->display_options['exposed_form']['options']['sort_desc_label'] = 'Faldende';
-  $handler->display->display_options['pager']['type'] = 'full';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '20';
+  $handler->display->display_options['pager']['type'] = 'mini';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '50';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['pager']['options']['expose']['items_per_page_label'] = 'Elementer pr. side';
@@ -165,9 +167,8 @@ function vih_facilities_views_default_views() {
   );
 
   /* Display: Blok */
-  $handler = $view->new_display('block', 'Blok', 'block_1');
+  $handler = $view->new_display('block', 'Blok', 'facilities_block');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Kig rundt på vores faciliteter';
   $handler->display->display_options['display_description'] = 'Thumbnails of facilities with titles.';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'grid';
@@ -252,6 +253,7 @@ function vih_facilities_views_default_views() {
     'trim_length' => '600',
   );
   $handler->display->display_options['fields']['body']['field_api_classes'] = 0;
+  $handler->display->display_options['block_caching'] = '8';
   $translatables['faciliteter'] = array(
     t('Master'),
     t('Faciliteter'),
@@ -267,7 +269,6 @@ function vih_facilities_views_default_views() {
     t('Billede'),
     t('Brødtekst'),
     t('Blok'),
-    t('Kig rundt på vores faciliteter'),
     t('Thumbnails of facilities with titles.'),
   );
   $export['faciliteter'] = $view;
