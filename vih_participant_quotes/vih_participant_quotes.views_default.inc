@@ -12,10 +12,10 @@ function vih_participant_quotes_views_default_views() {
 
   $view = new view;
   $view->name = 'participant_quotes';
-  $view->description = '';
-  $view->tag = 'default';
+  $view->description = 'Shows lists with quotes for the short courses.';
+  $view->tag = 'VIH';
   $view->base_table = 'node';
-  $view->human_name = 'Kursist citater';
+  $view->human_name = 'Short Course Quotes';
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
@@ -97,11 +97,6 @@ function vih_participant_quotes_views_default_views() {
   $handler->display->display_options['sorts']['random_seed']['id'] = 'random_seed';
   $handler->display->display_options['sorts']['random_seed']['table'] = 'views';
   $handler->display->display_options['sorts']['random_seed']['field'] = 'random_seed';
-  /* Sorteringskriterie: Indhold: Oprettelsesdato */
-  $handler->display->display_options['sorts']['created']['id'] = 'created';
-  $handler->display->display_options['sorts']['created']['table'] = 'node';
-  $handler->display->display_options['sorts']['created']['field'] = 'created';
-  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
   /* Kontekstuelt filter: Indhold: Har taksonomiterm ID */
   $handler->display->display_options['arguments']['tid']['id'] = 'tid';
   $handler->display->display_options['arguments']['tid']['table'] = 'taxonomy_index';
@@ -147,11 +142,11 @@ function vih_participant_quotes_views_default_views() {
   $handler->display->display_options['filters']['type']['group'] = 1;
 
   /* Display: Blok */
-  $handler = $view->new_display('block', 'Blok', 'block_1');
+  $handler = $view->new_display('block', 'Blok', 'block');
   $handler->display->display_options['block_caching'] = '-1';
 
   /* Display: Blok - context */
-  $handler = $view->new_display('block', 'Blok - context', 'block_2');
+  $handler = $view->new_display('block', 'Blok - context', 'block_context');
   $handler->display->display_options['display_description'] = 'Used for the quotes on the individual courses.';
   $handler->display->display_options['defaults']['cache'] = FALSE;
   $handler->display->display_options['cache']['type'] = 'none';
@@ -215,10 +210,10 @@ function vih_participant_quotes_views_default_views() {
     'citater' => 'citater',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  $handler->display->display_options['block_caching'] = '-1';
+  $handler->display->display_options['block_caching'] = '4';
 
   /* Display: Blok - slideshow */
-  $handler = $view->new_display('block', 'Blok - slideshow', 'block_3');
+  $handler = $view->new_display('block', 'Blok - slideshow', 'block_slideshow');
   $handler->display->display_options['defaults']['css_class'] = FALSE;
   $handler->display->display_options['css_class'] = 'sidebar-slide';
   $handler->display->display_options['display_description'] = 'Used for a slideshow with quotes on the individual courses.';
@@ -375,12 +370,105 @@ function vih_participant_quotes_views_default_views() {
   $handler->display->display_options['block_caching'] = '-1';
 
   /* Display: Blok quicksand */
-  $handler = $view->new_display('block', 'Blok quicksand', 'block_4');
+  $handler = $view->new_display('block', 'Blok quicksand', 'block_quicksand');
+  $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['display_description'] = 'Used on the overview page';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '48';
   $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'grid';
+  $handler->display->display_options['style_options']['grouping'] = array(
+    0 => array(
+      'field' => 'term_node_tid',
+      'rendered' => 1,
+    ),
+  );
+  $handler->display->display_options['style_options']['fill_single_line'] = 1;
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Felt: Indhold: Billede */
+  $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
+  $handler->display->display_options['fields']['field_image']['table'] = 'field_data_field_image';
+  $handler->display->display_options['fields']['field_image']['field'] = 'field_image';
+  $handler->display->display_options['fields']['field_image']['label'] = '';
+  $handler->display->display_options['fields']['field_image']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_image']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_image']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_image']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_image']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_image']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_image']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_image']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_image']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_image']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_image']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_image']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_image']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_image']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_image']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_image']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_image']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_image']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_image']['settings'] = array(
+    'image_style' => 'thumbnail_tall_employee',
+    'image_link' => 'content',
+  );
+  $handler->display->display_options['fields']['field_image']['group_column'] = 'fid';
+  $handler->display->display_options['fields']['field_image']['field_api_classes'] = 0;
+  /* Felt: Indhold: Titel */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['title']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['title']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['title']['link_to_node'] = 1;
+  /* Felt: Indhold: Alle taksonomitermer */
+  $handler->display->display_options['fields']['term_node_tid']['id'] = 'term_node_tid';
+  $handler->display->display_options['fields']['term_node_tid']['table'] = 'node';
+  $handler->display->display_options['fields']['term_node_tid']['field'] = 'term_node_tid';
+  $handler->display->display_options['fields']['term_node_tid']['label'] = '';
+  $handler->display->display_options['fields']['term_node_tid']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['term_node_tid']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['term_node_tid']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['term_node_tid']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['term_node_tid']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['term_node_tid']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['term_node_tid']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['term_node_tid']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['term_node_tid']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['term_node_tid']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['term_node_tid']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['term_node_tid']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['term_node_tid']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['term_node_tid']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['term_node_tid']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['term_node_tid']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['term_node_tid']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['term_node_tid']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['term_node_tid']['link_to_taxonomy'] = 0;
+  $handler->display->display_options['fields']['term_node_tid']['limit'] = 0;
+  $handler->display->display_options['fields']['term_node_tid']['vocabularies'] = array(
+    'tags' => 0,
+    'employee_type' => 0,
+    'short_course_type' => 0,
+    'subject_category' => 0,
+    'subject_packages' => 0,
+  );
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
   $translatables['participant_quotes'] = array(
     t('Master'),
     t('Hvad siger de tidligere kursister?'),
