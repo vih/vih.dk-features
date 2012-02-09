@@ -12,8 +12,8 @@ function vih_calendar_views_default_views() {
 
   $view = new view;
   $view->name = 'vih_calendar';
-  $view->description = '';
-  $view->tag = 'default';
+  $view->description = 'Shows lists with calendar items.';
+  $view->tag = 'VIH';
   $view->base_table = 'node';
   $view->human_name = 'Calendar';
   $view->core = 7;
@@ -25,7 +25,9 @@ function vih_calendar_views_default_views() {
   $handler->display->display_options['title'] = 'Kalender';
   $handler->display->display_options['use_more_text'] = 'mere';
   $handler->display->display_options['access']['type'] = 'perm';
-  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['cache']['type'] = 'time';
+  $handler->display->display_options['cache']['results_lifespan'] = '21600';
+  $handler->display->display_options['cache']['output_lifespan'] = '21600';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['query']['options']['query_comment'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
@@ -74,14 +76,6 @@ function vih_calendar_views_default_views() {
   $handler->display->display_options['style_options']['override'] = 1;
   $handler->display->display_options['style_options']['sticky'] = 0;
   $handler->display->display_options['style_options']['empty_table'] = 0;
-  /* Overskrift: Global: Tekstområde */
-  $handler->display->display_options['header']['area']['id'] = 'area';
-  $handler->display->display_options['header']['area']['table'] = 'views';
-  $handler->display->display_options['header']['area']['field'] = 'area';
-  $handler->display->display_options['header']['area']['empty'] = FALSE;
-  $handler->display->display_options['header']['area']['content'] = '<p>Her kan du danne dig et overblik over, hvad der sker på højskolen i løbet af det næste stykke tid.</p>';
-  $handler->display->display_options['header']['area']['format'] = 'filtered_html';
-  $handler->display->display_options['header']['area']['tokenize'] = 0;
   /* Felt: Indhold: Dato */
   $handler->display->display_options['fields']['field_date']['id'] = 'field_date';
   $handler->display->display_options['fields']['field_date']['table'] = 'field_data_field_date';
@@ -135,10 +129,10 @@ function vih_calendar_views_default_views() {
   $handler->display->display_options['fields']['title']['empty_zero'] = 0;
   $handler->display->display_options['fields']['title']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['title']['link_to_node'] = 1;
-  /* Sorteringskriterie: Indhold: Oprettelsesdato */
-  $handler->display->display_options['sorts']['created']['id'] = 'created';
-  $handler->display->display_options['sorts']['created']['table'] = 'node';
-  $handler->display->display_options['sorts']['created']['field'] = 'created';
+  /* Sorteringskriterie: Indhold: Dato -  startdato (field_date) */
+  $handler->display->display_options['sorts']['field_date_value']['id'] = 'field_date_value';
+  $handler->display->display_options['sorts']['field_date_value']['table'] = 'field_data_field_date';
+  $handler->display->display_options['sorts']['field_date_value']['field'] = 'field_date_value';
   /* Filterkriterie: Indhold: Udgivet */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -163,14 +157,10 @@ function vih_calendar_views_default_views() {
   $handler->display->display_options['filters']['field_date_value2']['default_date'] = '-1 day';
   $handler->display->display_options['filters']['field_date_value2']['year_range'] = '-0:+3';
 
-  /* Display: Page */
-  $handler = $view->new_display('page', 'Page', 'page');
-  $handler->display->display_options['path'] = 'kalender';
-  $handler->display->display_options['menu']['type'] = 'normal';
-  $handler->display->display_options['menu']['title'] = 'Kalender';
-  $handler->display->display_options['menu']['weight'] = '0';
-  $handler->display->display_options['menu']['name'] = 'main-menu';
-  $handler->display->display_options['menu']['context'] = 0;
+  /* Display: Blok */
+  $handler = $view->new_display('block', 'Blok', 'calendar_block');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['block_caching'] = '8';
   $translatables['vih_calendar'] = array(
     t('Master'),
     t('Kalender'),
@@ -183,8 +173,7 @@ function vih_calendar_views_default_views() {
     t('Elementer pr. side'),
     t('- Alle -'),
     t('Forskydning'),
-    t('<p>Her kan du danne dig et overblik over, hvad der sker på højskolen i løbet af det næste stykke tid.</p>'),
-    t('Page'),
+    t('Blok'),
   );
   $export['vih_calendar'] = $view;
 
