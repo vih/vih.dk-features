@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the VIH Golf Courses feature.
+ */
+
+include_once('vih_golf_courses.features.inc');
