@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the VIH Dashboard feature.
+ */
+
+include_once('vih_dashboard.features.inc');

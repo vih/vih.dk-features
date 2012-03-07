@@ -88,6 +88,98 @@ function vih_long_course_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-vih_long_course-field_course_leader'
+  $fields['node-vih_long_course-field_course_leader'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_course_leader',
+      'foreign keys' => array(),
+      'indexes' => array(
+        'target_id' => array(
+          0 => 'target_id',
+        ),
+      ),
+      'module' => 'entityreference',
+      'settings' => array(
+        'handler' => 'base',
+        'handler_settings' => array(
+          'behaviors' => array(
+            'views-select-list' => array(
+              'status' => 0,
+            ),
+          ),
+          'sort' => array(
+            'direction' => 'ASC',
+            'field' => 'body:value',
+            'property' => 'nid',
+            'type' => 'none',
+          ),
+          'target_bundles' => array(
+            'employee_context' => 'employee_context',
+          ),
+        ),
+        'handler_submit' => 'Change handler',
+        'target_type' => 'node',
+      ),
+      'translatable' => '0',
+      'type' => 'entityreference',
+    ),
+    'field_instance' => array(
+      'bundle' => 'vih_long_course',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'entityreference',
+          'settings' => array(
+            'link' => FALSE,
+          ),
+          'type' => 'entityreference_label',
+          'weight' => '4',
+        ),
+        'rss' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_course_leader',
+      'label' => 'Spørgsmål',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'entityreference',
+        'settings' => array(
+          'match_operator' => 'CONTAINS',
+          'path' => '',
+          'references_dialog_add' => 1,
+          'references_dialog_edit' => 1,
+          'references_dialog_search' => 1,
+          'references_dialog_search_view' => '',
+          'size' => '60',
+        ),
+        'type' => 'entityreference_autocomplete',
+        'weight' => '5',
+      ),
+    ),
+  );
+
   // Exported field: 'node-vih_long_course-field_course_time'
   $fields['node-vih_long_course-field_course_time'] = array(
     'field_config' => array(
@@ -327,7 +419,7 @@ function vih_long_course_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'image_image',
-        'weight' => '8',
+        'weight' => '4',
       ),
     ),
   );
@@ -484,9 +576,8 @@ function vih_long_course_field_default_fields() {
       'field_name' => 'field_webform',
       'foreign keys' => array(),
       'indexes' => array(
-        'target_entity' => array(
-          0 => 'target_type',
-          1 => 'target_id',
+        'target_id' => array(
+          0 => 'target_id',
         ),
       ),
       'module' => 'entityreference',
@@ -516,7 +607,7 @@ function vih_long_course_field_default_fields() {
             'view_mode' => 'full',
           ),
           'type' => 'entityreference_entity_view',
-          'weight' => '8',
+          'weight' => '5',
         ),
         'rss' => array(
           'label' => 'hidden',
@@ -545,7 +636,7 @@ function vih_long_course_field_default_fields() {
           'apply_chosen' => 0,
         ),
         'type' => 'options_select',
-        'weight' => '9',
+        'weight' => '6',
       ),
     ),
   );
@@ -628,6 +719,7 @@ function vih_long_course_field_default_fields() {
   t('Materialegebyr');
   t('Periode');
   t('Rejsebetaling');
+  t('Spørgsmål');
   t('Tilmelding');
   t('Tilmeldingsgebyr');
   t('Ugebetaling');

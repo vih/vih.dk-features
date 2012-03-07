@@ -45,7 +45,7 @@ function vih_subjects_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'hidden',
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
@@ -87,7 +87,7 @@ function vih_subjects_field_default_fields() {
       ),
       'entity_type' => 'node',
       'field_name' => 'body',
-      'label' => 'Værd at vide',
+      'label' => 'Beskrivelse',
       'required' => 1,
       'settings' => array(
         'display_summary' => 1,
@@ -108,25 +108,29 @@ function vih_subjects_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-subject-field_employee_reference'
-  $fields['node-subject-field_employee_reference'] = array(
+  // Exported field: 'node-subject-field_course_leader'
+  $fields['node-subject-field_course_leader'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '-1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_employee_reference',
+      'field_name' => 'field_course_leader',
       'foreign keys' => array(),
       'indexes' => array(
-        'target_entity' => array(
-          0 => 'target_type',
-          1 => 'target_id',
+        'target_id' => array(
+          0 => 'target_id',
         ),
       ),
       'module' => 'entityreference',
       'settings' => array(
         'handler' => 'base',
         'handler_settings' => array(
+          'behaviors' => array(
+            'views-select-list' => array(
+              'status' => 0,
+            ),
+          ),
           'sort' => array(
             'direction' => 'ASC',
             'field' => 'body:value',
@@ -134,7 +138,7 @@ function vih_subjects_field_default_fields() {
             'type' => 'none',
           ),
           'target_bundles' => array(
-            'employee' => 'employee',
+            'employee_context' => 'employee_context',
           ),
         ),
         'handler_submit' => 'Change handler',
@@ -156,7 +160,7 @@ function vih_subjects_field_default_fields() {
             'view_mode' => 'teaser',
           ),
           'type' => 'entityreference_entity_view',
-          'weight' => '6',
+          'weight' => '7',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -166,7 +170,7 @@ function vih_subjects_field_default_fields() {
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_employee_reference',
+      'field_name' => 'field_course_leader',
       'label' => 'Underviser',
       'required' => 0,
       'settings' => array(
@@ -178,10 +182,14 @@ function vih_subjects_field_default_fields() {
         'settings' => array(
           'match_operator' => 'CONTAINS',
           'path' => '',
+          'references_dialog_add' => 1,
+          'references_dialog_edit' => 1,
+          'references_dialog_search' => 1,
+          'references_dialog_search_view' => '',
           'size' => '60',
         ),
         'type' => 'entityreference_autocomplete',
-        'weight' => '7',
+        'weight' => '8',
       ),
     ),
   );
@@ -833,6 +841,7 @@ function vih_subjects_field_default_fields() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Beskrivelse');
   t('Billede');
   t('Dette felt vises på alle fagpakkerne.');
   t('Fast besked');
@@ -843,7 +852,6 @@ function vih_subjects_field_default_fields() {
   t('Underviser');
   t('Video');
   t('Video fra youtube-kanalen');
-  t('Værd at vide');
 
   return $fields;
 }

@@ -240,6 +240,338 @@ function vih_long_course_views_default_views() {
   $handler->display->display_options['defaults']['header'] = FALSE;
   $handler->display->display_options['block_description'] = 'Tabel';
   $handler->display->display_options['block_caching'] = '8';
+
+  /* Display: Content pane */
+  $handler = $view->new_display('panel_pane', 'Content pane', 'panel_pane_1');
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['columns'] = array(
+    'field_picture' => 'field_picture',
+    'title' => 'title',
+    'field_course_time' => 'field_course_time',
+  );
+  $handler->display->display_options['style_options']['default'] = '-1';
+  $handler->display->display_options['style_options']['info'] = array(
+    'field_picture' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'title' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_course_time' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+  );
+  $handler->display->display_options['style_options']['override'] = 1;
+  $handler->display->display_options['style_options']['sticky'] = 0;
+  $handler->display->display_options['style_options']['empty_table'] = 0;
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Felt: Felt: Billede */
+  $handler->display->display_options['fields']['field_picture']['id'] = 'field_picture';
+  $handler->display->display_options['fields']['field_picture']['table'] = 'field_data_field_picture';
+  $handler->display->display_options['fields']['field_picture']['field'] = 'field_picture';
+  $handler->display->display_options['fields']['field_picture']['label'] = '';
+  $handler->display->display_options['fields']['field_picture']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_picture']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_picture']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_picture']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_picture']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_picture']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_picture']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_picture']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_picture']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['field_picture']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_picture']['settings'] = array(
+    'image_style' => 'profile_small',
+    'image_link' => 'content',
+  );
+  $handler->display->display_options['fields']['field_picture']['group_column'] = 'fid';
+  $handler->display->display_options['fields']['field_picture']['field_api_classes'] = 0;
+  /* Felt: Indhold: Titel */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['text'] = '<h3>[title]</h3>';
+  $handler->display->display_options['fields']['title']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['title']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['title']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['title']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['title']['link_to_node'] = 1;
+  /* Felt: Indhold: Tidspunkt */
+  $handler->display->display_options['fields']['field_course_time']['id'] = 'field_course_time';
+  $handler->display->display_options['fields']['field_course_time']['table'] = 'field_data_field_course_time';
+  $handler->display->display_options['fields']['field_course_time']['field'] = 'field_course_time';
+  $handler->display->display_options['fields']['field_course_time']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_course_time']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_course_time']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_course_time']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_course_time']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_course_time']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_course_time']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_course_time']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_course_time']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_course_time']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['field_course_time']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_course_time']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_course_time']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_course_time']['element_label_colon'] = 0;
+  $handler->display->display_options['fields']['field_course_time']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_course_time']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_course_time']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_course_time']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['field_course_time']['settings'] = array(
+    'format_type' => 'medium_date_without_time',
+    'fromto' => 'both',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+  );
+  $handler->display->display_options['fields']['field_course_time']['field_api_classes'] = 0;
+  /* Felt: Indhold: Redigér-link */
+  $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['label'] = '';
+  $handler->display->display_options['fields']['edit_node']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['edit_node']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['edit_node']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['edit_node']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['edit_node']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['edit_node']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['edit_node']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['edit_node']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['edit_node']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['edit_node']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['edit_node']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['edit_node']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['edit_node']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['edit_node']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['edit_node']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['edit_node']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['edit_node']['hide_alter_empty'] = 1;
+
+  /* Display: Økonomi */
+  $handler = $view->new_display('block', 'Økonomi', 'block_2');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Prisoversigt';
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Felt: Indhold: Titel */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['alter_text'] = 1;
+  $handler->display->display_options['fields']['title']['alter']['text'] = '<h3>[title]</h3>';
+  $handler->display->display_options['fields']['title']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['title']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['title']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['title']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['title']['link_to_node'] = 1;
+  /* Felt: Indhold: Tidspunkt */
+  $handler->display->display_options['fields']['field_course_time']['id'] = 'field_course_time';
+  $handler->display->display_options['fields']['field_course_time']['table'] = 'field_data_field_course_time';
+  $handler->display->display_options['fields']['field_course_time']['field'] = 'field_course_time';
+  $handler->display->display_options['fields']['field_course_time']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_course_time']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_course_time']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_course_time']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_course_time']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_course_time']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_course_time']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_course_time']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_course_time']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_course_time']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_course_time']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_course_time']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_course_time']['element_label_colon'] = 0;
+  $handler->display->display_options['fields']['field_course_time']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_course_time']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_course_time']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_course_time']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['field_course_time']['settings'] = array(
+    'format_type' => 'medium_date_without_time',
+    'fromto' => 'both',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+    'show_repeat_rule' => 'show',
+  );
+  $handler->display->display_options['fields']['field_course_time']['field_api_classes'] = 0;
+  /* Felt: Indhold: Tilmeldingsgebyr */
+  $handler->display->display_options['fields']['field_registration_payment']['id'] = 'field_registration_payment';
+  $handler->display->display_options['fields']['field_registration_payment']['table'] = 'field_data_field_registration_payment';
+  $handler->display->display_options['fields']['field_registration_payment']['field'] = 'field_registration_payment';
+  $handler->display->display_options['fields']['field_registration_payment']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_registration_payment']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_registration_payment']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_registration_payment']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_registration_payment']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_registration_payment']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_registration_payment']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_registration_payment']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_registration_payment']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_registration_payment']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['field_registration_payment']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_registration_payment']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_registration_payment']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_registration_payment']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['field_registration_payment']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_registration_payment']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_registration_payment']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_registration_payment']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_registration_payment']['settings'] = array(
+    'thousand_separator' => ' ',
+    'prefix_suffix' => 1,
+  );
+  $handler->display->display_options['fields']['field_registration_payment']['field_api_classes'] = 0;
+  /* Felt: Indhold: Ugebetaling */
+  $handler->display->display_options['fields']['field_weekly_payment']['id'] = 'field_weekly_payment';
+  $handler->display->display_options['fields']['field_weekly_payment']['table'] = 'field_data_field_weekly_payment';
+  $handler->display->display_options['fields']['field_weekly_payment']['field'] = 'field_weekly_payment';
+  $handler->display->display_options['fields']['field_weekly_payment']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_weekly_payment']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_weekly_payment']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_weekly_payment']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_weekly_payment']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_weekly_payment']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_weekly_payment']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_weekly_payment']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_weekly_payment']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_weekly_payment']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['field_weekly_payment']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_weekly_payment']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_weekly_payment']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_weekly_payment']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['field_weekly_payment']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_weekly_payment']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_weekly_payment']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_weekly_payment']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_weekly_payment']['settings'] = array(
+    'thousand_separator' => ' ',
+    'prefix_suffix' => 1,
+  );
+  $handler->display->display_options['fields']['field_weekly_payment']['field_api_classes'] = 0;
+  /* Felt: Indhold: Materialegebyr */
+  $handler->display->display_options['fields']['field_material_payment']['id'] = 'field_material_payment';
+  $handler->display->display_options['fields']['field_material_payment']['table'] = 'field_data_field_material_payment';
+  $handler->display->display_options['fields']['field_material_payment']['field'] = 'field_material_payment';
+  $handler->display->display_options['fields']['field_material_payment']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_material_payment']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_material_payment']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_material_payment']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_material_payment']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_material_payment']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_material_payment']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_material_payment']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_material_payment']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_material_payment']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['field_material_payment']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_material_payment']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_material_payment']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_material_payment']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['field_material_payment']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_material_payment']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_material_payment']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_material_payment']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_material_payment']['settings'] = array(
+    'thousand_separator' => ' ',
+    'prefix_suffix' => 1,
+  );
+  $handler->display->display_options['fields']['field_material_payment']['field_api_classes'] = 0;
+  /* Felt: Indhold: Rejsebetaling */
+  $handler->display->display_options['fields']['field_travel_payment']['id'] = 'field_travel_payment';
+  $handler->display->display_options['fields']['field_travel_payment']['table'] = 'field_data_field_travel_payment';
+  $handler->display->display_options['fields']['field_travel_payment']['field'] = 'field_travel_payment';
+  $handler->display->display_options['fields']['field_travel_payment']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_travel_payment']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_travel_payment']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_travel_payment']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_travel_payment']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_travel_payment']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_travel_payment']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_travel_payment']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_travel_payment']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_travel_payment']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['field_travel_payment']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_travel_payment']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_travel_payment']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_travel_payment']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['field_travel_payment']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_travel_payment']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_travel_payment']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_travel_payment']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_travel_payment']['settings'] = array(
+    'thousand_separator' => ' ',
+    'prefix_suffix' => 1,
+  );
+  $handler->display->display_options['fields']['field_travel_payment']['field_api_classes'] = 0;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filterkriterie: Indhold: Udgivet */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filterkriterie: Indhold: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'vih_long_course' => 'vih_long_course',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
   $translatables['lange_kurser'] = array(
     t('Master'),
     t('Lange kurser'),
@@ -258,6 +590,14 @@ function vih_long_course_views_default_views() {
     t('Feed'),
     t('Blok'),
     t('Tabel'),
+    t('Content pane'),
+    t('View panes'),
+    t('Økonomi'),
+    t('Prisoversigt'),
+    t('Tilmeldingsgebyr'),
+    t('Ugebetaling'),
+    t('Materialegebyr'),
+    t('Rejsebetaling'),
   );
   $export['lange_kurser'] = $view;
 

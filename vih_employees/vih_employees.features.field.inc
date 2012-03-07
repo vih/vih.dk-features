@@ -77,9 +77,12 @@ function vih_employees_field_default_fields() {
         ),
         'teaser' => array(
           'label' => 'hidden',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '2',
+          'module' => 'text',
+          'settings' => array(
+            'trim_length' => 600,
+          ),
+          'type' => 'text_summary_or_trimmed',
+          'weight' => '1',
         ),
       ),
       'entity_type' => 'node',
@@ -101,99 +104,6 @@ function vih_employees_field_default_fields() {
         'weight' => '1',
       ),
       'widget_type' => 'text_textarea_with_summary',
-    ),
-  );
-
-  // Exported field: 'node-employee-field_email'
-  $fields['node-employee-field_email'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_email',
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'module' => 'text',
-      'settings' => array(
-        'max_length' => '255',
-      ),
-      'translatable' => '1',
-      'type' => 'text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'employee',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '3',
-        ),
-        'full' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-        'rss' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-        'search_index' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-        'search_result' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-        'teaser' => array(
-          'label' => 'inline',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '1',
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_email',
-      'label' => 'E-mail',
-      'required' => 0,
-      'settings' => array(
-        'text_processing' => '0',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'size' => '60',
-        ),
-        'type' => 'text_textfield',
-        'weight' => '3',
-      ),
     ),
   );
 
@@ -246,7 +156,7 @@ function vih_employees_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '3',
         ),
       ),
       'entity_type' => 'node',
@@ -261,7 +171,7 @@ function vih_employees_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '32',
+        'weight' => '5',
       ),
     ),
   );
@@ -333,7 +243,7 @@ function vih_employees_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '3',
+          'weight' => '5',
         ),
       ),
       'entity_type' => 'node',
@@ -434,12 +344,15 @@ function vih_employees_field_default_fields() {
       ),
       'entity_type' => 'node',
       'field_name' => 'field_picture',
-      'label' => 'Picture',
+      'label' => 'Picture (DO NOT USE ANYMORE)',
       'required' => 0,
       'settings' => array(
         'alt_field' => 1,
         'file_directory' => 'employees',
         'file_extensions' => 'png jpg jpeg',
+        'imagecrop' => array(
+          'content_width' => 0,
+        ),
         'max_filesize' => '',
         'max_resolution' => '305x445',
         'min_resolution' => '305x445',
@@ -454,57 +367,54 @@ function vih_employees_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'image_image',
-        'weight' => '4',
+        'weight' => '9',
       ),
     ),
   );
 
-  // Exported field: 'node-employee-field_subjects'
-  $fields['node-employee-field_subjects'] = array(
+  // Exported field: 'node-employee-field_profile_picture'
+  $fields['node-employee-field_profile_picture'] = array(
     'field_config' => array(
       'active' => '1',
-      'cardinality' => '-1',
+      'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_subjects',
-      'foreign keys' => array(),
-      'indexes' => array(
-        'target_entity' => array(
-          0 => 'target_type',
-          1 => 'target_id',
+      'field_name' => 'field_profile_picture',
+      'foreign keys' => array(
+        'fid' => array(
+          'columns' => array(
+            'fid' => 'fid',
+          ),
+          'table' => 'file_managed',
         ),
       ),
-      'module' => 'entityreference',
-      'settings' => array(
-        'handler' => 'base',
-        'handler_settings' => array(
-          'sort' => array(
-            'direction' => 'ASC',
-            'field' => 'body:value',
-            'property' => 'nid',
-            'type' => 'none',
-          ),
-          'target_bundles' => array(
-            'subject' => 'subject',
-          ),
+      'indexes' => array(
+        'fid' => array(
+          0 => 'fid',
         ),
-        'handler_submit' => 'Change handler',
-        'target_type' => 'node',
+      ),
+      'module' => 'image',
+      'settings' => array(
+        'default_image' => '633',
+        'uri_scheme' => 'public',
       ),
       'translatable' => '0',
-      'type' => 'entityreference',
+      'type' => 'image',
     ),
     'field_instance' => array(
       'bundle' => 'employee',
-      'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '4',
+          'module' => 'image',
+          'settings' => array(
+            'image_link' => '',
+            'image_style' => '',
+          ),
+          'type' => 'image',
+          'weight' => 7,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -514,22 +424,102 @@ function vih_employees_field_default_fields() {
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_subjects',
-      'label' => 'Fag',
+      'field_name' => 'field_profile_picture',
+      'label' => 'Billede',
+      'required' => 0,
+      'settings' => array(
+        'alt_field' => 0,
+        'file_directory' => '',
+        'file_extensions' => 'png jpg jpeg',
+        'imagecrop' => array(
+          'content_width' => 0,
+        ),
+        'max_filesize' => '',
+        'max_resolution' => '',
+        'min_resolution' => '600x600',
+        'title_field' => 0,
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'media',
+        'settings' => array(
+          'allowed_schemes' => array(
+            'oembed' => 0,
+            'private' => 0,
+            'public' => 'public',
+            'youtube' => 0,
+          ),
+          'allowed_types' => array(
+            'audio' => 0,
+            'default' => 0,
+            'image' => 'image',
+            'video' => 0,
+          ),
+          'browser_plugins' => array(
+            'library' => 'library',
+            'media_default--media_browser_1' => 'media_default--media_browser_1',
+            'media_internet' => 'media_internet',
+            'upload' => 'upload',
+          ),
+          'progress_indicator' => 'throbber',
+        ),
+        'type' => 'media_generic',
+        'weight' => '4',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-employee-field_vih_email'
+  $fields['node-employee-field_vih_email'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_vih_email',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'email',
+      'settings' => array(),
+      'translatable' => '0',
+      'type' => 'email',
+    ),
+    'field_instance' => array(
+      'bundle' => 'employee',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'email',
+          'settings' => array(),
+          'type' => 'email_default',
+          'weight' => '6',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_vih_email',
+      'label' => 'E-mail',
       'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
       'widget' => array(
         'active' => 1,
-        'module' => 'entityreference',
+        'module' => 'email',
         'settings' => array(
-          'match_operator' => 'CONTAINS',
-          'path' => '',
           'size' => '60',
         ),
-        'type' => 'entityreference_autocomplete',
-        'weight' => '31',
+        'type' => 'email_textfield',
+        'weight' => '3',
       ),
     ),
   );
@@ -573,7 +563,7 @@ function vih_employees_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '2',
+          'weight' => '1',
         ),
         'teaser' => array(
           'label' => 'hidden',
@@ -611,15 +601,14 @@ function vih_employees_field_default_fields() {
   $fields['node-employee_context-field_employee_reference'] = array(
     'field_config' => array(
       'active' => '1',
-      'cardinality' => '-1',
+      'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_employee_reference',
       'foreign keys' => array(),
       'indexes' => array(
-        'target_entity' => array(
-          0 => 'target_type',
-          1 => 'target_id',
+        'target_id' => array(
+          0 => 'target_id',
         ),
       ),
       'module' => 'entityreference',
@@ -646,16 +635,16 @@ function vih_employees_field_default_fields() {
       'bundle' => 'employee_context',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => '',
+      'description' => 'Her skal du angive hvilken lærer denne beskrivelse omhandler.',
       'display' => array(
         'default' => array(
           'label' => 'hidden',
           'module' => 'entityreference',
           'settings' => array(
-            'link' => 1,
+            'view_mode' => 'teaser',
           ),
-          'type' => 'entityreference_label',
-          'weight' => '1',
+          'type' => 'entityreference_entity_view',
+          'weight' => '2',
         ),
         'teaser' => array(
           'label' => 'hidden',
@@ -669,7 +658,7 @@ function vih_employees_field_default_fields() {
       ),
       'entity_type' => 'node',
       'field_name' => 'field_employee_reference',
-      'label' => 'Nodereference',
+      'label' => 'Hvilken lærer?',
       'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
@@ -680,6 +669,10 @@ function vih_employees_field_default_fields() {
         'settings' => array(
           'match_operator' => 'CONTAINS',
           'path' => '',
+          'references_dialog_add' => 1,
+          'references_dialog_edit' => 1,
+          'references_dialog_search' => 1,
+          'references_dialog_search_view' => '',
           'size' => '60',
         ),
         'type' => 'entityreference_autocomplete',
@@ -688,15 +681,22 @@ function vih_employees_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-employee_context-field_image'
-  $fields['node-employee_context-field_image'] = array(
+  // Exported field: 'node-employee_context-field_profile_picture'
+  $fields['node-employee_context-field_profile_picture'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_image',
-      'foreign keys' => array(),
+      'field_name' => 'field_profile_picture',
+      'foreign keys' => array(
+        'fid' => array(
+          'columns' => array(
+            'fid' => 'fid',
+          ),
+          'table' => 'file_managed',
+        ),
+      ),
       'indexes' => array(
         'fid' => array(
           0 => 'fid',
@@ -704,10 +704,10 @@ function vih_employees_field_default_fields() {
       ),
       'module' => 'image',
       'settings' => array(
-        'default_image' => 0,
+        'default_image' => '633',
         'uri_scheme' => 'public',
       ),
-      'translatable' => '1',
+      'translatable' => '0',
       'type' => 'image',
     ),
     'field_instance' => array(
@@ -716,37 +716,36 @@ function vih_employees_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'hidden',
+          'label' => 'above',
           'module' => 'image',
           'settings' => array(
             'image_link' => '',
-            'image_style' => 'content_width',
+            'image_style' => '',
           ),
           'type' => 'image',
-          'weight' => '0',
+          'weight' => 3,
         ),
         'teaser' => array(
-          'label' => 'hidden',
-          'module' => 'image',
-          'settings' => array(
-            'image_link' => '',
-            'image_style' => 'thumbnail_tall_employee',
-          ),
-          'type' => 'image',
-          'weight' => '0',
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_image',
+      'field_name' => 'field_profile_picture',
       'label' => 'Billede',
       'required' => 0,
       'settings' => array(
         'alt_field' => 0,
-        'file_directory' => '',
-        'file_extensions' => 'png gif jpg jpeg',
+        'file_directory' => 'profile_pictures',
+        'file_extensions' => 'png jpg jpeg',
+        'imagecrop' => array(
+          'content_width' => 0,
+        ),
         'max_filesize' => '',
         'max_resolution' => '',
-        'min_resolution' => '',
+        'min_resolution' => '600x600',
         'title_field' => 0,
         'user_register_form' => FALSE,
       ),
@@ -755,7 +754,8 @@ function vih_employees_field_default_fields() {
         'module' => 'media',
         'settings' => array(
           'allowed_schemes' => array(
-            'private' => 'private',
+            'oembed' => 0,
+            'private' => 0,
             'public' => 'public',
             'youtube' => 0,
           ),
@@ -765,7 +765,12 @@ function vih_employees_field_default_fields() {
             'image' => 'image',
             'video' => 0,
           ),
-          'browser_plugins' => array(),
+          'browser_plugins' => array(
+            'library' => 'library',
+            'media_default--media_browser_1' => 'media_default--media_browser_1',
+            'media_internet' => 'media_internet',
+            'upload' => 'upload',
+          ),
           'progress_indicator' => 'throbber',
         ),
         'type' => 'media_generic',
@@ -780,9 +785,9 @@ function vih_employees_field_default_fields() {
   t('Body');
   t('E-mail');
   t('En listeopstilling af den ansattes præstationer');
-  t('Fag');
-  t('Nodereference');
-  t('Picture');
+  t('Her skal du angive hvilken lærer denne beskrivelse omhandler.');
+  t('Hvilken lærer?');
+  t('Picture (DO NOT USE ANYMORE)');
   t('The picture has to be 305 x 445 px');
   t('Type');
   t('Værd at vide');

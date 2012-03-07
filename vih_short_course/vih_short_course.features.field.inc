@@ -101,15 +101,19 @@ function vih_short_course_field_default_fields() {
       'field_name' => 'field_course_leader',
       'foreign keys' => array(),
       'indexes' => array(
-        'target_entity' => array(
-          0 => 'target_type',
-          1 => 'target_id',
+        'target_id' => array(
+          0 => 'target_id',
         ),
       ),
       'module' => 'entityreference',
       'settings' => array(
         'handler' => 'base',
         'handler_settings' => array(
+          'behaviors' => array(
+            'views-select-list' => array(
+              'status' => 0,
+            ),
+          ),
           'sort' => array(
             'direction' => 'ASC',
             'field' => 'body:value',
@@ -117,7 +121,6 @@ function vih_short_course_field_default_fields() {
             'type' => 'none',
           ),
           'target_bundles' => array(
-            'employee' => 'employee',
             'employee_context' => 'employee_context',
           ),
         ),
@@ -131,7 +134,7 @@ function vih_short_course_field_default_fields() {
       'bundle' => 'short_course',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => '',
+      'description' => 'Vælg en eller flere kursusledere, så kurset får et personligt præg.',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -164,9 +167,17 @@ function vih_short_course_field_default_fields() {
       ),
       'widget' => array(
         'active' => 1,
-        'module' => 'options',
-        'settings' => array(),
-        'type' => 'options_select',
+        'module' => 'entityreference',
+        'settings' => array(
+          'match_operator' => 'CONTAINS',
+          'path' => '',
+          'references_dialog_add' => 1,
+          'references_dialog_edit' => 1,
+          'references_dialog_search' => 1,
+          'references_dialog_search_view' => '',
+          'size' => '60',
+        ),
+        'type' => 'entityreference_autocomplete',
         'weight' => '9',
       ),
     ),
@@ -898,6 +909,7 @@ function vih_short_course_field_default_fields() {
   t('Pris (børn)');
   t('Tidspunkt');
   t('Tilmelding');
+  t('Vælg en eller flere kursusledere, så kurset får et personligt præg.');
 
   return $fields;
 }
