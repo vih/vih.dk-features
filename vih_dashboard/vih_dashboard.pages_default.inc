@@ -8,7 +8,7 @@
  * Implements hook_default_page_manager_pages().
  */
 function vih_dashboard_default_page_manager_pages() {
-  $page = new stdClass;
+  $page = new stdClass();
   $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
   $page->api_version = 1;
   $page->name = 'add_story_redirect';
@@ -46,7 +46,7 @@ function vih_dashboard_default_page_manager_pages() {
     'admin_paths' => FALSE,
   );
   $page->default_handlers = array();
-  $handler = new stdClass;
+  $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
   $handler->name = 'page_add_story_redirect_http_response';
@@ -64,7 +64,7 @@ function vih_dashboard_default_page_manager_pages() {
   $page->default_handlers[$handler->name] = $handler;
   $pages['add_story_redirect'] = $page;
 
-  $page = new stdClass;
+  $page = new stdClass();
   $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
   $page->api_version = 1;
   $page->name = 'dashboard';
@@ -107,7 +107,7 @@ function vih_dashboard_default_page_manager_pages() {
     'admin_paths' => FALSE,
   );
   $page->default_handlers = array();
-  $handler = new stdClass;
+  $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
   $handler->name = 'page_dashboard_panel_context';
@@ -121,18 +121,35 @@ function vih_dashboard_default_page_manager_pages() {
     'pipeline' => 'ipe',
     'css_id' => '',
     'css' => '',
-    'contexts' => array(),
+    'contexts' => array(
+      0 => array(
+        'identifier' => 'Bruger',
+        'keyword' => 'user',
+        'name' => 'user',
+        'type' => 'current',
+        'uid' => NULL,
+        'id' => 1,
+      ),
+    ),
     'relationships' => array(),
   );
-  $display = new panels_display;
+  $display = new panels_display();
   $display->layout = 'twocol_stacked';
   $display->layout_settings = array();
-  $display->panel_settings = array();
+  $display->panel_settings = array(
+    'style_settings' => array(
+      'default' => NULL,
+      'top' => NULL,
+      'left' => NULL,
+      'right' => NULL,
+      'bottom' => NULL,
+    ),
+  );
   $display->cache = array();
   $display->title = 'Dit dashboard';
   $display->content = array();
   $display->panels = array();
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-1';
     $pane->panel = 'bottom';
     $pane->type = 'views';
@@ -156,14 +173,16 @@ function vih_dashboard_default_page_manager_pages() {
       'override_title_text' => '',
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
     $display->content['new-1'] = $pane;
     $display->panels['bottom'][0] = 'new-1';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-2';
     $pane->panel = 'left';
     $pane->type = 'views_panes';
@@ -172,14 +191,16 @@ function vih_dashboard_default_page_manager_pages() {
     $pane->access = array();
     $pane->configuration = array();
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
     $display->content['new-2'] = $pane;
     $display->panels['left'][0] = 'new-2';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-3';
     $pane->panel = 'right';
     $pane->type = 'views_panes';
@@ -188,31 +209,61 @@ function vih_dashboard_default_page_manager_pages() {
     $pane->access = array();
     $pane->configuration = array();
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
     $display->content['new-3'] = $pane;
     $display->panels['right'][0] = 'new-3';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-4';
     $pane->panel = 'top';
     $pane->type = 'views_panes';
-    $pane->subtype = 'vih_workbench-panel_pane_1';
+    $pane->subtype = 'vih_workbench-vih_moderation_pane';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = array();
+    $pane->configuration = array(
+      'context' => array(
+        0 => 'context_user_1',
+      ),
+    );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
     $display->content['new-4'] = $pane;
     $display->panels['top'][0] = 'new-4';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-5';
+    $pane->panel = 'top';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'vih_workbench-vih_moderation_pane_all';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'context' => array(
+        0 => 'context_user_1',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $display->content['new-5'] = $pane;
+    $display->panels['top'][1] = 'new-5';
+    $pane = new stdClass();
+    $pane->pid = 'new-6';
     $pane->panel = 'top';
     $pane->type = 'views_panes';
     $pane->subtype = 'd_de_sider-panel_pane_1';
@@ -220,20 +271,22 @@ function vih_dashboard_default_page_manager_pages() {
     $pane->access = array();
     $pane->configuration = array();
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 2;
     $pane->locks = array();
-    $display->content['new-5'] = $pane;
-    $display->panels['top'][1] = 'new-5';
+    $display->content['new-6'] = $pane;
+    $display->panels['top'][2] = 'new-6';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-1';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['dashboard'] = $page;
 
-  $page = new stdClass;
+  $page = new stdClass();
   $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
   $page->api_version = 1;
   $page->name = 'diverse';
@@ -276,7 +329,7 @@ function vih_dashboard_default_page_manager_pages() {
     'admin_paths' => FALSE,
   );
   $page->default_handlers = array();
-  $handler = new stdClass;
+  $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
   $handler->name = 'page_diverse_panel_context';
@@ -293,7 +346,7 @@ function vih_dashboard_default_page_manager_pages() {
     'contexts' => array(),
     'relationships' => array(),
   );
-  $display = new panels_display;
+  $display = new panels_display();
   $display->layout = 'twocol_stacked';
   $display->layout_settings = array();
   $display->panel_settings = array();
@@ -301,8 +354,8 @@ function vih_dashboard_default_page_manager_pages() {
   $display->title = 'Sider';
   $display->content = array();
   $display->panels = array();
-    $pane = new stdClass;
-    $pane->pid = 'new-6';
+    $pane = new stdClass();
+    $pane->pid = 'new-7';
     $pane->panel = 'bottom';
     $pane->type = 'views_panes';
     $pane->subtype = 'oneliners-panel_pane_1';
@@ -315,10 +368,10 @@ function vih_dashboard_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-6'] = $pane;
-    $display->panels['bottom'][0] = 'new-6';
-    $pane = new stdClass;
-    $pane->pid = 'new-7';
+    $display->content['new-7'] = $pane;
+    $display->panels['bottom'][0] = 'new-7';
+    $pane = new stdClass();
+    $pane->pid = 'new-8';
     $pane->panel = 'left';
     $pane->type = 'views_panes';
     $pane->subtype = 'middleman_redirect-panel_pane_1';
@@ -331,10 +384,10 @@ function vih_dashboard_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-7'] = $pane;
-    $display->panels['left'][0] = 'new-7';
-    $pane = new stdClass;
-    $pane->pid = 'new-8';
+    $display->content['new-8'] = $pane;
+    $display->panels['left'][0] = 'new-8';
+    $pane = new stdClass();
+    $pane->pid = 'new-9';
     $pane->panel = 'top';
     $pane->type = 'views_panes';
     $pane->subtype = 'pages-panel_pane_1';
@@ -347,15 +400,15 @@ function vih_dashboard_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-8'] = $pane;
-    $display->panels['top'][0] = 'new-8';
+    $display->content['new-9'] = $pane;
+    $display->panels['top'][0] = 'new-9';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['diverse'] = $page;
 
-  $page = new stdClass;
+  $page = new stdClass();
   $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
   $page->api_version = 1;
   $page->name = 'lectures';
@@ -398,7 +451,7 @@ function vih_dashboard_default_page_manager_pages() {
     'admin_paths' => FALSE,
   );
   $page->default_handlers = array();
-  $handler = new stdClass;
+  $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
   $handler->name = 'page_lectures_panel_context';
@@ -415,7 +468,7 @@ function vih_dashboard_default_page_manager_pages() {
     'contexts' => array(),
     'relationships' => array(),
   );
-  $display = new panels_display;
+  $display = new panels_display();
   $display->layout = 'twocol_stacked';
   $display->layout_settings = array();
   $display->panel_settings = array();
@@ -423,8 +476,8 @@ function vih_dashboard_default_page_manager_pages() {
   $display->title = 'Det sker';
   $display->content = array();
   $display->panels = array();
-    $pane = new stdClass;
-    $pane->pid = 'new-9';
+    $pane = new stdClass();
+    $pane->pid = 'new-10';
     $pane->panel = 'left';
     $pane->type = 'views_panes';
     $pane->subtype = 'kalender-panel_pane_1';
@@ -437,10 +490,10 @@ function vih_dashboard_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-9'] = $pane;
-    $display->panels['left'][0] = 'new-9';
-    $pane = new stdClass;
-    $pane->pid = 'new-10';
+    $display->content['new-10'] = $pane;
+    $display->panels['left'][0] = 'new-10';
+    $pane = new stdClass();
+    $pane->pid = 'new-11';
     $pane->panel = 'right';
     $pane->type = 'views_panes';
     $pane->subtype = 'vih_lectures-panel_pane_1';
@@ -453,10 +506,10 @@ function vih_dashboard_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-10'] = $pane;
-    $display->panels['right'][0] = 'new-10';
-    $pane = new stdClass;
-    $pane->pid = 'new-11';
+    $display->content['new-11'] = $pane;
+    $display->panels['right'][0] = 'new-11';
+    $pane = new stdClass();
+    $pane->pid = 'new-12';
     $pane->panel = 'top';
     $pane->type = 'views_panes';
     $pane->subtype = 'article_teasers-panel_pane_1';
@@ -469,15 +522,15 @@ function vih_dashboard_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-11'] = $pane;
-    $display->panels['top'][0] = 'new-11';
+    $display->content['new-12'] = $pane;
+    $display->panels['top'][0] = 'new-12';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['lectures'] = $page;
 
-  $page = new stdClass;
+  $page = new stdClass();
   $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
   $page->api_version = 1;
   $page->name = 'long_courses';
@@ -520,7 +573,7 @@ function vih_dashboard_default_page_manager_pages() {
     'admin_paths' => FALSE,
   );
   $page->default_handlers = array();
-  $handler = new stdClass;
+  $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
   $handler->name = 'page_long_courses_panel_context';
@@ -537,7 +590,7 @@ function vih_dashboard_default_page_manager_pages() {
     'contexts' => array(),
     'relationships' => array(),
   );
-  $display = new panels_display;
+  $display = new panels_display();
   $display->layout = 'twocol_stacked';
   $display->layout_settings = array();
   $display->panel_settings = array();
@@ -545,8 +598,8 @@ function vih_dashboard_default_page_manager_pages() {
   $display->title = 'Lange kurser';
   $display->content = array();
   $display->panels = array();
-    $pane = new stdClass;
-    $pane->pid = 'new-12';
+    $pane = new stdClass();
+    $pane->pid = 'new-13';
     $pane->panel = 'left';
     $pane->type = 'views_panes';
     $pane->subtype = 'subjects-panel_pane_1';
@@ -559,10 +612,10 @@ function vih_dashboard_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-12'] = $pane;
-    $display->panels['left'][0] = 'new-12';
-    $pane = new stdClass;
-    $pane->pid = 'new-13';
+    $display->content['new-13'] = $pane;
+    $display->panels['left'][0] = 'new-13';
+    $pane = new stdClass();
+    $pane->pid = 'new-14';
     $pane->panel = 'right';
     $pane->type = 'views_panes';
     $pane->subtype = 'long_courses_registrations-panel_pane_1';
@@ -575,10 +628,10 @@ function vih_dashboard_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-13'] = $pane;
-    $display->panels['right'][0] = 'new-13';
-    $pane = new stdClass;
-    $pane->pid = 'new-14';
+    $display->content['new-14'] = $pane;
+    $display->panels['right'][0] = 'new-14';
+    $pane = new stdClass();
+    $pane->pid = 'new-15';
     $pane->panel = 'right';
     $pane->type = 'views_panes';
     $pane->subtype = 'subject_packages-panel_pane_1';
@@ -591,10 +644,10 @@ function vih_dashboard_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
-    $display->content['new-14'] = $pane;
-    $display->panels['right'][1] = 'new-14';
-    $pane = new stdClass;
-    $pane->pid = 'new-15';
+    $display->content['new-15'] = $pane;
+    $display->panels['right'][1] = 'new-15';
+    $pane = new stdClass();
+    $pane->pid = 'new-16';
     $pane->panel = 'right';
     $pane->type = 'views_panes';
     $pane->subtype = 'subject_categories-panel_pane_1';
@@ -607,10 +660,10 @@ function vih_dashboard_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 2;
     $pane->locks = array();
-    $display->content['new-15'] = $pane;
-    $display->panels['right'][2] = 'new-15';
-    $pane = new stdClass;
-    $pane->pid = 'new-16';
+    $display->content['new-16'] = $pane;
+    $display->panels['right'][2] = 'new-16';
+    $pane = new stdClass();
+    $pane->pid = 'new-17';
     $pane->panel = 'right';
     $pane->type = 'views_panes';
     $pane->subtype = 'student_quotes-panel_pane_1';
@@ -623,10 +676,10 @@ function vih_dashboard_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 3;
     $pane->locks = array();
-    $display->content['new-16'] = $pane;
-    $display->panels['right'][3] = 'new-16';
-    $pane = new stdClass;
-    $pane->pid = 'new-17';
+    $display->content['new-17'] = $pane;
+    $display->panels['right'][3] = 'new-17';
+    $pane = new stdClass();
+    $pane->pid = 'new-18';
     $pane->panel = 'top';
     $pane->type = 'views_panes';
     $pane->subtype = 'lange_kurser-panel_pane_1';
@@ -639,15 +692,15 @@ function vih_dashboard_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-17'] = $pane;
-    $display->panels['top'][0] = 'new-17';
+    $display->content['new-18'] = $pane;
+    $display->panels['top'][0] = 'new-18';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['long_courses'] = $page;
 
-  $page = new stdClass;
+  $page = new stdClass();
   $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
   $page->api_version = 1;
   $page->name = 'people';
@@ -690,7 +743,7 @@ function vih_dashboard_default_page_manager_pages() {
     'admin_paths' => FALSE,
   );
   $page->default_handlers = array();
-  $handler = new stdClass;
+  $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
   $handler->name = 'page_people_panel_context';
@@ -707,7 +760,7 @@ function vih_dashboard_default_page_manager_pages() {
     'contexts' => array(),
     'relationships' => array(),
   );
-  $display = new panels_display;
+  $display = new panels_display();
   $display->layout = 'twocol_stacked';
   $display->layout_settings = array();
   $display->panel_settings = array();
@@ -715,8 +768,8 @@ function vih_dashboard_default_page_manager_pages() {
   $display->title = 'Ansatte';
   $display->content = array();
   $display->panels = array();
-    $pane = new stdClass;
-    $pane->pid = 'new-18';
+    $pane = new stdClass();
+    $pane->pid = 'new-19';
     $pane->panel = 'left';
     $pane->type = 'views_panes';
     $pane->subtype = 'employees_list-panel_pane_1';
@@ -729,10 +782,26 @@ function vih_dashboard_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-18'] = $pane;
-    $display->panels['left'][0] = 'new-18';
-    $pane = new stdClass;
-    $pane->pid = 'new-19';
+    $display->content['new-19'] = $pane;
+    $display->panels['left'][0] = 'new-19';
+    $pane = new stdClass();
+    $pane->pid = 'new-20';
+    $pane->panel = 'left';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'employees_list-panel_pane_3';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $display->content['new-20'] = $pane;
+    $display->panels['left'][1] = 'new-20';
+    $pane = new stdClass();
+    $pane->pid = 'new-21';
     $pane->panel = 'right';
     $pane->type = 'views_panes';
     $pane->subtype = 'employees_context-panel_pane_1';
@@ -745,15 +814,15 @@ function vih_dashboard_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-19'] = $pane;
-    $display->panels['right'][0] = 'new-19';
+    $display->content['new-21'] = $pane;
+    $display->panels['right'][0] = 'new-21';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['people'] = $page;
 
-  $page = new stdClass;
+  $page = new stdClass();
   $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
   $page->api_version = 1;
   $page->name = 'short_courses';
@@ -796,7 +865,7 @@ function vih_dashboard_default_page_manager_pages() {
     'admin_paths' => FALSE,
   );
   $page->default_handlers = array();
-  $handler = new stdClass;
+  $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
   $handler->name = 'page_short_courses_panel_context';
@@ -813,7 +882,7 @@ function vih_dashboard_default_page_manager_pages() {
     'contexts' => array(),
     'relationships' => array(),
   );
-  $display = new panels_display;
+  $display = new panels_display();
   $display->layout = 'twocol_stacked';
   $display->layout_settings = array();
   $display->panel_settings = array();
@@ -821,8 +890,8 @@ function vih_dashboard_default_page_manager_pages() {
   $display->title = 'Korte kurser';
   $display->content = array();
   $display->panels = array();
-    $pane = new stdClass;
-    $pane->pid = 'new-20';
+    $pane = new stdClass();
+    $pane->pid = 'new-22';
     $pane->panel = 'left';
     $pane->type = 'views_panes';
     $pane->subtype = 'short_course_types-panel_pane_1';
@@ -835,10 +904,10 @@ function vih_dashboard_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-20'] = $pane;
-    $display->panels['left'][0] = 'new-20';
-    $pane = new stdClass;
-    $pane->pid = 'new-21';
+    $display->content['new-22'] = $pane;
+    $display->panels['left'][0] = 'new-22';
+    $pane = new stdClass();
+    $pane->pid = 'new-23';
     $pane->panel = 'right';
     $pane->type = 'views_panes';
     $pane->subtype = 'vih_golf_courses-panel_pane_1';
@@ -851,10 +920,10 @@ function vih_dashboard_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-21'] = $pane;
-    $display->panels['right'][0] = 'new-21';
-    $pane = new stdClass;
-    $pane->pid = 'new-22';
+    $display->content['new-23'] = $pane;
+    $display->panels['right'][0] = 'new-23';
+    $pane = new stdClass();
+    $pane->pid = 'new-24';
     $pane->panel = 'right';
     $pane->type = 'views_panes';
     $pane->subtype = 'participant_quotes-panel_pane_1';
@@ -867,10 +936,10 @@ function vih_dashboard_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
-    $display->content['new-22'] = $pane;
-    $display->panels['right'][1] = 'new-22';
-    $pane = new stdClass;
-    $pane->pid = 'new-23';
+    $display->content['new-24'] = $pane;
+    $display->panels['right'][1] = 'new-24';
+    $pane = new stdClass();
+    $pane->pid = 'new-25';
     $pane->panel = 'top';
     $pane->type = 'views_panes';
     $pane->subtype = 'short_courses-panel_pane_1';
@@ -883,8 +952,8 @@ function vih_dashboard_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-23'] = $pane;
-    $display->panels['top'][0] = 'new-23';
+    $display->content['new-25'] = $pane;
+    $display->panels['top'][0] = 'new-25';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
