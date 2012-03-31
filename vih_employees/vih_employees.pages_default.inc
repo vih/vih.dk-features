@@ -10,7 +10,7 @@
 function vih_employees_default_page_manager_handlers() {
   $export = array();
 
-  $handler = new stdClass;
+  $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
   $handler->name = 'node_view_panel_context';
@@ -21,7 +21,7 @@ function vih_employees_default_page_manager_handlers() {
   $handler->conf = array(
     'title' => 'Employee',
     'no_blocks' => 0,
-    'pipeline' => 'standard',
+    'pipeline' => 'ipe',
     'css_id' => '',
     'css' => '',
     'contexts' => array(),
@@ -41,8 +41,10 @@ function vih_employees_default_page_manager_handlers() {
       ),
       'logic' => 'and',
     ),
+    'body_classes_to_remove' => '',
+    'body_classes_to_add' => '',
   );
-  $display = new panels_display;
+  $display = new panels_display();
   $display->layout = 'twocol_stacked';
   $display->layout_settings = array(
     'items' => array(
@@ -110,17 +112,34 @@ function vih_employees_default_page_manager_handlers() {
   );
   $display->panel_settings = array(
     'style_settings' => array(
-      'default' => NULL,
+      'default' => array(),
       'center' => NULL,
       'picture' => NULL,
       'information' => NULL,
+      'top' => array(),
+      'left' => array(),
+      'right' => array(),
+      'bottom' => array(),
+    ),
+    'style' => 'stylizer',
+    'top' => array(
+      'style' => 'stylizer',
+    ),
+    'left' => array(
+      'style' => 'stylizer',
+    ),
+    'right' => array(
+      'style' => 'stylizer',
+    ),
+    'bottom' => array(
+      'style' => 'stylizer',
     ),
   );
   $display->cache = array();
   $display->title = '%node:title';
   $display->content = array();
   $display->panels = array();
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-1';
     $pane->panel = 'bottom';
     $pane->type = 'views';
@@ -147,14 +166,17 @@ function vih_employees_default_page_manager_handlers() {
       'override_title_text' => 'Underviser i',
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => array(),
+      'style' => 'stylizer',
+    );
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
     $display->content['new-1'] = $pane;
     $display->panels['bottom'][0] = 'new-1';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-2';
     $pane->panel = 'bottom';
     $pane->type = 'views';
@@ -181,7 +203,10 @@ function vih_employees_default_page_manager_handlers() {
       'override_title_text' => 'Om fagene',
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'style' => 'stylizer',
+      'settings' => array(),
+    );
     $pane->css = array(
       'css_id' => '',
       'css_class' => 'teacher-context-table',
@@ -191,7 +216,7 @@ function vih_employees_default_page_manager_handlers() {
     $pane->locks = array();
     $display->content['new-2'] = $pane;
     $display->panels['bottom'][1] = 'new-2';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-3';
     $pane->panel = 'bottom';
     $pane->type = 'entity_field';
@@ -208,7 +233,8 @@ function vih_employees_default_page_manager_handlers() {
     );
     $pane->cache = array();
     $pane->style = array(
-      'settings' => NULL,
+      'settings' => array(),
+      'style' => 'stylizer',
     );
     $pane->css = array();
     $pane->extras = array();
@@ -216,7 +242,7 @@ function vih_employees_default_page_manager_handlers() {
     $pane->locks = '';
     $display->content['new-3'] = $pane;
     $display->panels['bottom'][2] = 'new-3';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-4';
     $pane->panel = 'left';
     $pane->type = 'entity_field';
@@ -233,7 +259,8 @@ function vih_employees_default_page_manager_handlers() {
     );
     $pane->cache = array();
     $pane->style = array(
-      'settings' => NULL,
+      'settings' => array(),
+      'style' => 'stylizer',
     );
     $pane->css = array();
     $pane->extras = array();
@@ -241,7 +268,7 @@ function vih_employees_default_page_manager_handlers() {
     $pane->locks = '';
     $display->content['new-4'] = $pane;
     $display->panels['left'][0] = 'new-4';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-5';
     $pane->panel = 'left';
     $pane->type = 'entity_field';
@@ -257,23 +284,50 @@ function vih_employees_default_page_manager_handlers() {
       'override_title_text' => '',
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => array(),
+      'style' => 'stylizer',
+    );
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
     $display->content['new-5'] = $pane;
     $display->panels['left'][1] = 'new-5';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-6';
+    $pane->panel = 'left';
+    $pane->type = 'block';
+    $pane->subtype = 'widgets-s_vih-addthis';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $display->content['new-6'] = $pane;
+    $display->panels['left'][2] = 'new-6';
+    $pane = new stdClass();
+    $pane->pid = 'new-7';
     $pane->panel = 'right';
     $pane->type = 'entity_field';
-    $pane->subtype = 'node:field_picture';
+    $pane->subtype = 'node:field_profile_picture';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
       'label' => 'hidden',
       'formatter' => 'image',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
       'formatter_settings' => array(
         'image_style' => 'sidepicture',
         'image_link' => '',
@@ -289,11 +343,11 @@ function vih_employees_default_page_manager_handlers() {
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
-    $pane->locks = '';
-    $display->content['new-6'] = $pane;
-    $display->panels['right'][0] = 'new-6';
-    $pane = new stdClass;
-    $pane->pid = 'new-7';
+    $pane->locks = array();
+    $display->content['new-7'] = $pane;
+    $display->panels['right'][0] = 'new-7';
+    $pane = new stdClass();
+    $pane->pid = 'new-8';
     $pane->panel = 'top';
     $pane->type = 'block';
     $pane->subtype = 'workbench-block';
@@ -304,13 +358,16 @@ function vih_employees_default_page_manager_handlers() {
       'override_title_text' => '',
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => array(),
+      'style' => 'stylizer',
+    );
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-7'] = $pane;
-    $display->panels['top'][0] = 'new-7';
+    $display->content['new-8'] = $pane;
+    $display->panels['top'][0] = 'new-8';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

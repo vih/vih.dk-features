@@ -296,13 +296,9 @@ function vih_employees_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'hidden',
-          'module' => 'image',
-          'settings' => array(
-            'image_link' => '',
-            'image_style' => 'sidepicture',
-          ),
-          'type' => 'image',
-          'weight' => '0',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '4',
         ),
         'full' => array(
           'label' => 'above',
@@ -407,14 +403,14 @@ function vih_employees_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'hidden',
           'module' => 'image',
           'settings' => array(
             'image_link' => '',
-            'image_style' => '',
+            'image_style' => 'sidepicture',
           ),
           'type' => 'image',
-          'weight' => 7,
+          'weight' => '0',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -496,7 +492,7 @@ function vih_employees_field_default_fields() {
           'module' => 'email',
           'settings' => array(),
           'type' => 'email_default',
-          'weight' => '6',
+          'weight' => '3',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -615,6 +611,11 @@ function vih_employees_field_default_fields() {
       'settings' => array(
         'handler' => 'base',
         'handler_settings' => array(
+          'behaviors' => array(
+            'views-select-list' => array(
+              'status' => 0,
+            ),
+          ),
           'sort' => array(
             'direction' => 'ASC',
             'field' => 'body:value',
@@ -625,7 +626,7 @@ function vih_employees_field_default_fields() {
             'employee' => 'employee',
           ),
         ),
-        'handler_submit' => 'Change handler',
+        'handler_submit' => 'Skift handler',
         'target_type' => 'node',
       ),
       'translatable' => '0',
@@ -635,15 +636,15 @@ function vih_employees_field_default_fields() {
       'bundle' => 'employee_context',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => 'Her skal du angive hvilken lærer denne beskrivelse omhandler.',
+      'description' => 'Angiv hvilken lærer beskrivelsen omhandler.',
       'display' => array(
         'default' => array(
           'label' => 'hidden',
           'module' => 'entityreference',
           'settings' => array(
-            'view_mode' => 'teaser',
+            'link' => 1,
           ),
-          'type' => 'entityreference_entity_view',
+          'type' => 'entityreference_label',
           'weight' => '2',
         ),
         'teaser' => array(
@@ -713,17 +714,17 @@ function vih_employees_field_default_fields() {
     'field_instance' => array(
       'bundle' => 'employee_context',
       'deleted' => '0',
-      'description' => '',
+      'description' => 'Upload et profilbillede som passer til læreren i denne sammenhæng.',
       'display' => array(
         'default' => array(
           'label' => 'above',
           'module' => 'image',
           'settings' => array(
             'image_link' => '',
-            'image_style' => '',
+            'image_style' => 'medium',
           ),
           'type' => 'image',
-          'weight' => 3,
+          'weight' => '0',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -781,15 +782,16 @@ function vih_employees_field_default_fields() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Angiv hvilken lærer beskrivelsen omhandler.');
   t('Billede');
   t('Body');
   t('E-mail');
   t('En listeopstilling af den ansattes præstationer');
-  t('Her skal du angive hvilken lærer denne beskrivelse omhandler.');
   t('Hvilken lærer?');
   t('Picture (DO NOT USE ANYMORE)');
   t('The picture has to be 305 x 445 px');
   t('Type');
+  t('Upload et profilbillede som passer til læreren i denne sammenhæng.');
   t('Værd at vide');
 
   return $fields;

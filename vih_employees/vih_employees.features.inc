@@ -8,24 +8,14 @@
  * Implements hook_ctools_plugin_api().
  */
 function vih_employees_ctools_plugin_api() {
-  list($module, $api) = func_get_args();
-  if ($module == "page_manager" && $api == "pages_default") {
-    return array("version" => "1");
-  }
-  list($module, $api) = func_get_args();
-  if ($module == "strongarm" && $api == "strongarm") {
-    return array("version" => "1");
-  }
+  return array("version" => "1");
 }
 
 /**
  * Implements hook_views_api().
  */
 function vih_employees_views_api() {
-  list($module, $api) = func_get_args();
-  if ($module == "views" && $api == "views_default") {
-    return array("version" => "3.0");
-  }
+  return array("version" => "3.0");
 }
 
 /**
@@ -42,7 +32,7 @@ function vih_employees_node_info() {
       'help' => '',
     ),
     'employee_context' => array(
-      'name' => t('Employee Context'),
+      'name' => t('Underviserprofil'),
       'base' => 'node_content',
       'description' => t('Bruges til ansatte som skal vises i en bestemt sammenhæng på hjemmesiden, fx lærere der underviser i specielle fag eller er kursusledere.'),
       'has_title' => '1',
