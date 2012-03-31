@@ -37,7 +37,8 @@ function vih_long_course_user_default_permissions() {
     'roles' => array(
       0 => 'administrator',
       1 => 'kontor',
-      2 => 'redaktør',
+      2 => 'lærer',
+      3 => 'redaktør',
     ),
     'module' => 'node',
   );

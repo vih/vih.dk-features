@@ -10,7 +10,7 @@
 function vih_long_course_default_page_manager_handlers() {
   $export = array();
 
-  $handler = new stdClass;
+  $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
   $handler->name = 'node_view_panel_context_4';
@@ -42,7 +42,7 @@ function vih_long_course_default_page_manager_handlers() {
       'logic' => 'and',
     ),
   );
-  $display = new panels_display;
+  $display = new panels_display();
   $display->layout = 'onecol';
   $display->layout_settings = array(
     'items' => array(
@@ -164,12 +164,17 @@ function vih_long_course_default_page_manager_handlers() {
       ),
     ),
   );
-  $display->panel_settings = array();
+  $display->panel_settings = array(
+    'style_settings' => array(
+      'default' => NULL,
+      'middle' => NULL,
+    ),
+  );
   $display->cache = array();
   $display->title = '';
   $display->content = array();
   $display->panels = array();
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-1';
     $pane->panel = 'middle';
     $pane->type = 'block';
@@ -192,14 +197,16 @@ function vih_long_course_default_page_manager_handlers() {
       'override_title_text' => '',
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
     $display->content['new-1'] = $pane;
     $display->panels['middle'][0] = 'new-1';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-2';
     $pane->panel = 'middle';
     $pane->type = 'entity_field';
@@ -221,14 +228,16 @@ function vih_long_course_default_page_manager_handlers() {
       'override_title_text' => '',
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
     $display->content['new-2'] = $pane;
     $display->panels['middle'][1] = 'new-2';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-3';
     $pane->panel = 'middle';
     $pane->type = 'entity_field';
@@ -244,14 +253,16 @@ function vih_long_course_default_page_manager_handlers() {
       'override_title_text' => '%title %node:title',
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 2;
     $pane->locks = '';
     $display->content['new-3'] = $pane;
     $display->panels['middle'][2] = 'new-3';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-4';
     $pane->panel = 'middle';
     $pane->type = 'entity_field';
@@ -262,7 +273,7 @@ function vih_long_course_default_page_manager_handlers() {
       'label' => 'hidden',
       'formatter' => 'image',
       'formatter_settings' => array(
-        'image_style' => 'sidepicture',
+        'image_style' => 'content_width_wide',
         'image_link' => '',
       ),
       'context' => 'argument_entity_id:node_1',
@@ -270,40 +281,129 @@ function vih_long_course_default_page_manager_handlers() {
       'override_title_text' => '',
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 3;
     $pane->locks = '';
     $display->content['new-4'] = $pane;
     $display->panels['middle'][3] = 'new-4';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-5';
     $pane->panel = 'middle';
     $pane->type = 'entity_field';
-    $pane->subtype = 'node:field_webform';
+    $pane->subtype = 'node:field_registration_payment';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'label' => 'hidden',
-      'formatter' => 'entityreference_entity_view',
+      'label' => 'inline',
+      'formatter' => 'number_integer',
       'formatter_settings' => array(
-        'view_mode' => 'full',
+        'thousand_separator' => '.',
+        'prefix_suffix' => 1,
       ),
       'context' => 'argument_entity_id:node_1',
-      'override_title' => 0,
-      'override_title_text' => '',
+      'override_title' => 1,
+      'override_title_text' => 'Priser',
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 4;
     $pane->locks = array();
     $display->content['new-5'] = $pane;
     $display->panels['middle'][4] = 'new-5';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-6';
+    $pane->panel = 'middle';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_weekly_payment';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'inline',
+      'formatter' => 'number_integer',
+      'formatter_settings' => array(
+        'thousand_separator' => '.',
+        'prefix_suffix' => 1,
+      ),
+      'context' => 'argument_entity_id:node_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 5;
+    $pane->locks = array();
+    $display->content['new-6'] = $pane;
+    $display->panels['middle'][5] = 'new-6';
+    $pane = new stdClass();
+    $pane->pid = 'new-7';
+    $pane->panel = 'middle';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_material_payment';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'inline',
+      'formatter' => 'number_integer',
+      'formatter_settings' => array(
+        'thousand_separator' => '.',
+        'prefix_suffix' => 1,
+      ),
+      'context' => 'argument_entity_id:node_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 6;
+    $pane->locks = array();
+    $display->content['new-7'] = $pane;
+    $display->panels['middle'][6] = 'new-7';
+    $pane = new stdClass();
+    $pane->pid = 'new-8';
+    $pane->panel = 'middle';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_travel_payment';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'inline',
+      'formatter' => 'number_integer',
+      'formatter_settings' => array(
+        'thousand_separator' => '.',
+        'prefix_suffix' => 1,
+      ),
+      'context' => 'argument_entity_id:node_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 7;
+    $pane->locks = array();
+    $display->content['new-8'] = $pane;
+    $display->panels['middle'][7] = 'new-8';
+    $pane = new stdClass();
+    $pane->pid = 'new-9';
     $pane->panel = 'middle';
     $pane->type = 'views';
     $pane->subtype = 'employees_context';
@@ -321,7 +421,7 @@ function vih_long_course_default_page_manager_handlers() {
       'link_to_view' => 0,
       'args' => '',
       'url' => '',
-      'display' => 'block_2',
+      'display' => 'block_5',
       'context' => array(
         0 => 'argument_entity_id:node_1.nid',
       ),
@@ -329,13 +429,42 @@ function vih_long_course_default_page_manager_handlers() {
       'override_title_text' => '',
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 5;
+    $pane->position = 8;
     $pane->locks = array();
-    $display->content['new-6'] = $pane;
-    $display->panels['middle'][5] = 'new-6';
+    $display->content['new-9'] = $pane;
+    $display->panels['middle'][8] = 'new-9';
+    $pane = new stdClass();
+    $pane->pid = 'new-10';
+    $pane->panel = 'middle';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_webform';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'entityreference_entity_view',
+      'formatter_settings' => array(
+        'view_mode' => 'full',
+      ),
+      'context' => 'argument_entity_id:node_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 9;
+    $pane->locks = array();
+    $display->content['new-10'] = $pane;
+    $display->panels['middle'][9] = 'new-10';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
