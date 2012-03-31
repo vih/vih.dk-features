@@ -77,7 +77,7 @@ function vih_facilities_field_default_fields() {
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => '31',
+        'weight' => '1',
       ),
     ),
   );
@@ -148,7 +148,7 @@ function vih_facilities_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'image_image',
-        'weight' => '33',
+        'weight' => '2',
       ),
     ),
   );
