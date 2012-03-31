@@ -124,7 +124,7 @@ function vih_short_course_field_default_fields() {
             'employee_context' => 'employee_context',
           ),
         ),
-        'handler_submit' => 'Change handler',
+        'handler_submit' => 'Skift handler',
         'target_type' => 'node',
       ),
       'translatable' => '0',
