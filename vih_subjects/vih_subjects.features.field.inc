@@ -141,7 +141,7 @@ function vih_subjects_field_default_fields() {
             'employee_context' => 'employee_context',
           ),
         ),
-        'handler_submit' => 'Change handler',
+        'handler_submit' => 'Skift handler',
         'target_type' => 'node',
       ),
       'translatable' => '0',
@@ -151,7 +151,7 @@ function vih_subjects_field_default_fields() {
       'bundle' => 'subject',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => '',
+      'description' => 'Tilføj en underviserprofil til faget. Profilen skal omhandle faget.',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -849,6 +849,7 @@ function vih_subjects_field_default_fields() {
   t('Pakke');
   t('Picture');
   t('Teaser');
+  t('Tilføj en underviserprofil til faget. Profilen skal omhandle faget.');
   t('Underviser');
   t('Video');
   t('Video fra youtube-kanalen');

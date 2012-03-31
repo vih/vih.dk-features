@@ -10,7 +10,7 @@
 function vih_subjects_default_page_manager_handlers() {
   $export = array();
 
-  $handler = new stdClass;
+  $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
   $handler->name = 'node_view_panel_context_2';
@@ -42,7 +42,7 @@ function vih_subjects_default_page_manager_handlers() {
       'logic' => 'and',
     ),
   );
-  $display = new panels_display;
+  $display = new panels_display();
   $display->layout = 'twocol_stacked';
   $display->layout_settings = array(
     'items' => array(
@@ -169,7 +169,7 @@ function vih_subjects_default_page_manager_handlers() {
   $display->title = '';
   $display->content = array();
   $display->panels = array();
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-1';
     $pane->panel = 'bottom';
     $pane->type = 'entity_field';
@@ -197,7 +197,7 @@ function vih_subjects_default_page_manager_handlers() {
     $pane->locks = '';
     $display->content['new-1'] = $pane;
     $display->panels['bottom'][0] = 'new-1';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-2';
     $pane->panel = 'bottom';
     $pane->type = 'entity_field';
@@ -220,7 +220,7 @@ function vih_subjects_default_page_manager_handlers() {
     $pane->locks = '';
     $display->content['new-2'] = $pane;
     $display->panels['bottom'][1] = 'new-2';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-3';
     $pane->panel = 'bottom';
     $pane->type = 'views';
@@ -254,7 +254,7 @@ function vih_subjects_default_page_manager_handlers() {
     $pane->locks = array();
     $display->content['new-3'] = $pane;
     $display->panels['bottom'][2] = 'new-3';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-4';
     $pane->panel = 'left';
     $pane->type = 'entity_field';
@@ -280,7 +280,7 @@ function vih_subjects_default_page_manager_handlers() {
     $pane->locks = '';
     $display->content['new-4'] = $pane;
     $display->panels['left'][0] = 'new-4';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-5';
     $pane->panel = 'right';
     $pane->type = 'entity_field';
@@ -303,7 +303,7 @@ function vih_subjects_default_page_manager_handlers() {
     $pane->locks = '';
     $display->content['new-5'] = $pane;
     $display->panels['right'][0] = 'new-5';
-    $pane = new stdClass;
+    $pane = new stdClass();
     $pane->pid = 'new-6';
     $pane->panel = 'top';
     $pane->type = 'block';
