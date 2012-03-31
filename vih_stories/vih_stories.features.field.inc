@@ -49,7 +49,7 @@ function vih_stories_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '1',
+          'weight' => '0',
         ),
         'full' => array(
           'label' => 'above',
@@ -107,131 +107,6 @@ function vih_stories_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-story-field_image'
-  $fields['node-story-field_image'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_image',
-      'foreign keys' => array(),
-      'indexes' => array(
-        'fid' => array(
-          0 => 'fid',
-        ),
-      ),
-      'module' => 'image',
-      'settings' => array(
-        'default_image' => '629',
-        'uri_scheme' => 'public',
-      ),
-      'translatable' => '1',
-      'type' => 'image',
-    ),
-    'field_instance' => array(
-      'bundle' => 'story',
-      'deleted' => '0',
-      'description' => '<strong>Vigtigt:</strong> Vælg også billedet her. Klik på knappen og gå ind under bibliotek, hvor du kan vælge det.',
-      'display' => array(
-        'default' => array(
-          'label' => 'hidden',
-          'module' => 'colorbox',
-          'settings' => array(
-            'colorbox_caption' => 'auto',
-            'colorbox_gallery' => 'post',
-            'colorbox_gallery_custom' => '',
-            'colorbox_image_style' => 'large',
-            'colorbox_node_style' => 'medium',
-          ),
-          'type' => 'colorbox',
-          'weight' => '0',
-        ),
-        'full' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-        'rss' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-        'search_index' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-        'search_result' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-        'teaser' => array(
-          'label' => 'hidden',
-          'module' => 'colorbox',
-          'settings' => array(
-            'colorbox_caption' => 'auto',
-            'colorbox_gallery' => 'post',
-            'colorbox_gallery_custom' => '',
-            'colorbox_image_style' => 'large',
-            'colorbox_node_style' => 'square_thumbnail',
-          ),
-          'type' => 'colorbox',
-          'weight' => '-1',
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_image',
-      'label' => 'Billede (VÆLG OGSÅ BILLEDET HER)',
-      'required' => 0,
-      'settings' => array(
-        'alt_field' => TRUE,
-        'file_directory' => 'field/image',
-        'file_extensions' => 'png jpg jpeg',
-        'imagecrop' => array(
-          'content_width' => 0,
-        ),
-        'max_filesize' => '',
-        'max_resolution' => '',
-        'min_resolution' => '',
-        'title_field' => '',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'media',
-        'settings' => array(
-          'allowed_schemes' => array(
-            'oembed' => 0,
-            'private' => 'private',
-            'public' => 'public',
-            'youtube' => 0,
-          ),
-          'allowed_types' => array(
-            'audio' => 0,
-            'default' => 0,
-            'image' => 'image',
-            'video' => 0,
-          ),
-          'browser_plugins' => array(
-            'library' => 'library',
-            'media_default--media_browser_1' => 'media_default--media_browser_1',
-            'media_internet' => 'media_internet',
-            'upload' => 'upload',
-          ),
-          'progress_indicator' => 'throbber',
-        ),
-        'type' => 'media_generic',
-        'weight' => '5',
-      ),
-    ),
-  );
-
   // Exported field: 'node-story-field_pictures'
   $fields['node-story-field_pictures'] = array(
     'field_config' => array(
@@ -268,9 +143,16 @@ function vih_stories_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'hidden',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '3',
+          'module' => 'colorbox',
+          'settings' => array(
+            'colorbox_caption' => 'auto',
+            'colorbox_gallery' => 'post',
+            'colorbox_gallery_custom' => '',
+            'colorbox_image_style' => 'large',
+            'colorbox_node_style' => 'medium',
+          ),
+          'type' => 'colorbox',
+          'weight' => '2',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -363,7 +245,7 @@ function vih_stories_field_default_fields() {
           'module' => 'taxonomy',
           'settings' => array(),
           'type' => 'taxonomy_term_reference_link',
-          'weight' => '2',
+          'weight' => '1',
         ),
         'full' => array(
           'label' => 'above',
@@ -418,8 +300,6 @@ function vih_stories_field_default_fields() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('<strong>Vigtigt:</strong> Vælg også billedet her. Klik på knappen og gå ind under bibliotek, hvor du kan vælge det.');
-  t('Billede (VÆLG OGSÅ BILLEDET HER)');
   t('Body');
   t('Enter a comma-separated list of words to describe your content.');
   t('Pictures');
