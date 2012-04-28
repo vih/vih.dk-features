@@ -164,7 +164,15 @@ function vih_subjects_default_page_manager_handlers() {
       ),
     ),
   );
-  $display->panel_settings = array();
+  $display->panel_settings = array(
+    'style_settings' => array(
+      'default' => NULL,
+      'top' => NULL,
+      'left' => NULL,
+      'right' => NULL,
+      'bottom' => NULL,
+    ),
+  );
   $display->cache = array();
   $display->title = '';
   $display->content = array();
@@ -178,16 +186,18 @@ function vih_subjects_default_page_manager_handlers() {
     $pane->access = array();
     $pane->configuration = array(
       'label' => 'hidden',
-      'formatter' => 'styles_media_content_width',
+      'formatter' => 'media',
       'formatter_settings' => array(
-        'file_view_mode' => 'file_styles_medium',
+        'file_view_mode' => 'media_large',
       ),
       'context' => 'argument_entity_id:node_1',
       'override_title' => 0,
       'override_title_text' => '',
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array(
       'css_id' => '',
       'css_class' => 'video',
@@ -213,7 +223,9 @@ function vih_subjects_default_page_manager_handlers() {
       'override_title_text' => '%title %node:title',
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 1;
@@ -247,7 +259,9 @@ function vih_subjects_default_page_manager_handlers() {
       'override_title_text' => 'Undervisere',
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 2;
@@ -273,7 +287,9 @@ function vih_subjects_default_page_manager_handlers() {
       'override_title_text' => '',
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
@@ -296,7 +312,9 @@ function vih_subjects_default_page_manager_handlers() {
       'override_title_text' => '',
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
@@ -326,7 +344,9 @@ function vih_subjects_default_page_manager_handlers() {
       'override_title_text' => '',
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
