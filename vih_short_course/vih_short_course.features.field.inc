@@ -143,7 +143,7 @@ function vih_short_course_field_default_fields() {
             'view_mode' => 'teaser',
           ),
           'type' => 'entityreference_entity_view',
-          'weight' => '2',
+          'weight' => '3',
         ),
         'ical' => array(
           'label' => 'inline',
@@ -227,7 +227,7 @@ function vih_short_course_field_default_fields() {
             'multiple_to' => '',
           ),
           'type' => 'date_default',
-          'weight' => '3',
+          'weight' => '4',
         ),
         'ical' => array(
           'label' => 'inline',
@@ -323,7 +323,7 @@ function vih_short_course_field_default_fields() {
           'label' => 'hidden',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '7',
+          'weight' => '8',
         ),
         'ical' => array(
           'label' => 'inline',
@@ -387,7 +387,7 @@ function vih_short_course_field_default_fields() {
           'label' => 'hidden',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '8',
+          'weight' => '9',
         ),
         'ical' => array(
           'label' => 'hidden',
@@ -413,6 +413,7 @@ function vih_short_course_field_default_fields() {
         'active' => 1,
         'module' => 'field_extrawidgets',
         'settings' => array(
+          'display_empty' => 0,
           'formatter' => 'fixed_field_formatter',
           'formatter_settings' => array(),
         ),
@@ -553,7 +554,7 @@ function vih_short_course_field_default_fields() {
             'thousand_separator' => '.',
           ),
           'type' => 'number_integer',
-          'weight' => '4',
+          'weight' => '5',
         ),
         'ical' => array(
           'label' => 'inline',
@@ -620,7 +621,7 @@ function vih_short_course_field_default_fields() {
             'thousand_separator' => '.',
           ),
           'type' => 'number_integer',
-          'weight' => '5',
+          'weight' => '6',
         ),
         'ical' => array(
           'label' => 'inline',
@@ -696,7 +697,7 @@ function vih_short_course_field_default_fields() {
           'module' => 'link',
           'settings' => array(),
           'type' => 'link_default',
-          'weight' => '6',
+          'weight' => '7',
         ),
         'ical' => array(
           'label' => 'hidden',
@@ -740,6 +741,109 @@ function vih_short_course_field_default_fields() {
         'settings' => array(),
         'type' => 'link_field',
         'weight' => '8',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-short_course-field_vih_schedule'
+  $fields['node-short_course-field_vih_schedule'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_vih_schedule',
+      'foreign keys' => array(
+        'fid' => array(
+          'columns' => array(
+            'fid' => 'fid',
+          ),
+          'table' => 'file_managed',
+        ),
+      ),
+      'indexes' => array(
+        'fid' => array(
+          0 => 'fid',
+        ),
+      ),
+      'module' => 'file',
+      'settings' => array(
+        'display_default' => 0,
+        'display_field' => 0,
+        'uri_scheme' => 'public',
+      ),
+      'translatable' => '0',
+      'type' => 'file',
+    ),
+    'field_instance' => array(
+      'bundle' => 'short_course',
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'pdf_reader',
+          'settings' => array(
+            'colorbox' => 0,
+            'colorbox_link_text' => '',
+            'download' => 1,
+            'pdf_height' => '480',
+            'pdf_width' => '600',
+            'renderer' => '0',
+          ),
+          'type' => 'pdf_reader_file',
+          'weight' => '2',
+        ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_vih_schedule',
+      'label' => 'Skema',
+      'required' => 0,
+      'settings' => array(
+        'description_field' => 0,
+        'file_directory' => 'schedules',
+        'file_extensions' => 'pdf doc docx',
+        'max_filesize' => '',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'media',
+        'settings' => array(
+          'allowed_schemes' => array(
+            'oembed' => 0,
+            'private' => 'private',
+            'public' => 'public',
+            'youtube' => 0,
+          ),
+          'allowed_types' => array(
+            'audio' => 0,
+            'default' => 0,
+            'image' => 0,
+            'video' => 0,
+          ),
+          'browser_plugins' => array(
+            'library' => 'library',
+            'media_default--media_browser_1' => 'media_default--media_browser_1',
+            'media_internet' => 0,
+            'upload' => 'upload',
+          ),
+          'progress_indicator' => 'throbber',
+        ),
+        'type' => 'media_generic',
+        'weight' => '13',
       ),
     ),
   );
@@ -919,6 +1023,7 @@ function vih_short_course_field_default_fields() {
   t('Kursustype');
   t('Pris');
   t('Pris (børn)');
+  t('Skema');
   t('Tidspunkt');
   t('Tilmelding');
   t('Vælg en eller flere kursusledere, så kurset får et personligt præg.');

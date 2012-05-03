@@ -10,7 +10,7 @@
 function vih_short_course_user_default_permissions() {
   $permissions = array();
 
-  // Exported permission: create short_course content
+  // Exported permission: create short_course content.
   $permissions['create short_course content'] = array(
     'name' => 'create short_course content',
     'roles' => array(
@@ -22,7 +22,7 @@ function vih_short_course_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: delete any short_course content
+  // Exported permission: delete any short_course content.
   $permissions['delete any short_course content'] = array(
     'name' => 'delete any short_course content',
     'roles' => array(
@@ -32,7 +32,7 @@ function vih_short_course_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: delete own short_course content
+  // Exported permission: delete own short_course content.
   $permissions['delete own short_course content'] = array(
     'name' => 'delete own short_course content',
     'roles' => array(
@@ -44,7 +44,7 @@ function vih_short_course_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: edit any short_course content
+  // Exported permission: edit any short_course content.
   $permissions['edit any short_course content'] = array(
     'name' => 'edit any short_course content',
     'roles' => array(
@@ -56,7 +56,7 @@ function vih_short_course_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: edit own short_course content
+  // Exported permission: edit own short_course content.
   $permissions['edit own short_course content'] = array(
     'name' => 'edit own short_course content',
     'roles' => array(
