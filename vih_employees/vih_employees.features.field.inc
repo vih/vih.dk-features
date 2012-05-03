@@ -266,108 +266,6 @@ function vih_employees_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-employee-field_picture'
-  $fields['node-employee-field_picture'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_picture',
-      'foreign keys' => array(),
-      'indexes' => array(
-        'fid' => array(
-          0 => 'fid',
-        ),
-      ),
-      'module' => 'image',
-      'settings' => array(
-        'default_image' => '178',
-        'uri_scheme' => 'public',
-      ),
-      'translatable' => '1',
-      'type' => 'image',
-    ),
-    'field_instance' => array(
-      'bundle' => 'employee',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => 'The picture has to be 305 x 445 px',
-      'display' => array(
-        'default' => array(
-          'label' => 'hidden',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '4',
-        ),
-        'full' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-        'rss' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-        'search_index' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-        'search_result' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-        'teaser' => array(
-          'label' => 'hidden',
-          'module' => 'colorbox',
-          'settings' => array(
-            'colorbox_caption' => 'auto',
-            'colorbox_gallery' => 'post',
-            'colorbox_gallery_custom' => '',
-            'colorbox_image_style' => 'large',
-            'colorbox_node_style' => 'thumbnail',
-          ),
-          'type' => 'colorbox',
-          'weight' => '0',
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_picture',
-      'label' => 'Picture (DO NOT USE ANYMORE)',
-      'required' => 0,
-      'settings' => array(
-        'alt_field' => 1,
-        'file_directory' => 'employees',
-        'file_extensions' => 'png jpg jpeg',
-        'imagecrop' => array(
-          'content_width' => 0,
-        ),
-        'max_filesize' => '',
-        'max_resolution' => '305x445',
-        'min_resolution' => '305x445',
-        'title_field' => 0,
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'image',
-        'settings' => array(
-          'preview_image_style' => 'thumbnail',
-          'progress_indicator' => 'throbber',
-        ),
-        'type' => 'image_image',
-        'weight' => '9',
-      ),
-    ),
-  );
-
   // Exported field: 'node-employee-field_profile_picture'
   $fields['node-employee-field_profile_picture'] = array(
     'field_config' => array(
@@ -455,7 +353,7 @@ function vih_employees_field_default_fields() {
           'browser_plugins' => array(
             'library' => 'library',
             'media_default--media_browser_1' => 'media_default--media_browser_1',
-            'media_internet' => 'media_internet',
+            'media_internet' => 0,
             'upload' => 'upload',
           ),
           'progress_indicator' => 'throbber',
@@ -769,7 +667,7 @@ function vih_employees_field_default_fields() {
           'browser_plugins' => array(
             'library' => 'library',
             'media_default--media_browser_1' => 'media_default--media_browser_1',
-            'media_internet' => 'media_internet',
+            'media_internet' => 0,
             'upload' => 'upload',
           ),
           'progress_indicator' => 'throbber',
@@ -788,8 +686,6 @@ function vih_employees_field_default_fields() {
   t('E-mail');
   t('En listeopstilling af den ansattes præstationer');
   t('Hvilken lærer?');
-  t('Picture (DO NOT USE ANYMORE)');
-  t('The picture has to be 305 x 445 px');
   t('Type');
   t('Upload et profilbillede som passer til læreren i denne sammenhæng.');
   t('Værd at vide');
