@@ -495,6 +495,7 @@ function vih_subjects_views_default_views() {
   $handler->display->display_options['fields']['field_tags_picture']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['field_tags_picture']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['field_tags_picture']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_tags_picture']['alter']['more_link'] = 0;
   $handler->display->display_options['fields']['field_tags_picture']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['field_tags_picture']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['field_tags_picture']['alter']['html'] = 0;
