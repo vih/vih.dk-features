@@ -10,117 +10,6 @@
 function vih_middleman_redirect_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-middleman_redirect-field_image'
-  $fields['node-middleman_redirect-field_image'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_image',
-      'foreign keys' => array(),
-      'indexes' => array(
-        'fid' => array(
-          0 => 'fid',
-        ),
-      ),
-      'module' => 'image',
-      'settings' => array(
-        'default_image' => '629',
-        'uri_scheme' => 'public',
-      ),
-      'translatable' => '1',
-      'type' => 'image',
-    ),
-    'field_instance' => array(
-      'bundle' => 'middleman_redirect',
-      'deleted' => '0',
-      'description' => '<strong>Vigtigt:</strong> Foreløbig skal du også sætte billedet ind her. Du vælger bare bibliotek, og der kan du vælge billedet. Du skal altså <strong>ikke</strong> uploade igen!',
-      'display' => array(
-        'default' => array(
-          'label' => 'hidden',
-          'module' => 'image',
-          'settings' => array(
-            'image_link' => '',
-            'image_style' => 'content_width',
-          ),
-          'type' => 'image',
-          'weight' => '0',
-        ),
-        'full' => array(
-          'label' => 'hidden',
-          'module' => 'image',
-          'settings' => array(
-            'image_link' => 'content',
-            'image_style' => 'square_thumbnail',
-          ),
-          'type' => 'image',
-          'weight' => '0',
-        ),
-        'search_index' => array(
-          'label' => 'hidden',
-          'module' => 'image',
-          'settings' => array(
-            'image_link' => '',
-            'image_style' => '',
-          ),
-          'type' => 'image',
-          'weight' => '0',
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_image',
-      'label' => 'Billede (VÆLG OGSÅ BILLEDE HER)',
-      'required' => 1,
-      'settings' => array(
-        'alt_field' => 0,
-        'file_directory' => '',
-        'file_extensions' => 'png jpg jpeg',
-        'imagecrop' => array(
-          'content_width' => 0,
-        ),
-        'max_filesize' => '',
-        'max_resolution' => '180x200',
-        'min_resolution' => '',
-        'title_field' => 0,
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'media',
-        'settings' => array(
-          'allowed_schemes' => array(
-            'oembed' => 0,
-            'private' => 0,
-            'public' => 'public',
-            'youtube' => 0,
-          ),
-          'allowed_types' => array(
-            'audio' => 0,
-            'default' => 0,
-            'image' => 'image',
-            'video' => 0,
-          ),
-          'browser_plugins' => array(
-            'library' => 'library',
-            'media_default--media_browser_1' => 'media_default--media_browser_1',
-            'media_internet' => 'media_internet',
-            'upload' => 'upload',
-          ),
-          'progress_indicator' => 'throbber',
-        ),
-        'type' => 'media_generic',
-        'weight' => '2',
-      ),
-    ),
-  );
-
   // Exported field: 'node-middleman_redirect-field_picture'
   $fields['node-middleman_redirect-field_picture'] = array(
     'field_config' => array(
@@ -183,6 +72,7 @@ function vih_middleman_redirect_field_default_fields() {
       'required' => 1,
       'settings' => array(
         'alt_field' => 0,
+        'default_image' => 0,
         'file_directory' => '',
         'file_extensions' => 'png jpg jpeg',
         'imagecrop' => array(
@@ -323,9 +213,7 @@ function vih_middleman_redirect_field_default_fields() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('<strong>Vigtigt:</strong> Foreløbig skal du også sætte billedet ind her. Du vælger bare bibliotek, og der kan du vælge billedet. Du skal altså <strong>ikke</strong> uploade igen!');
   t('Billede');
-  t('Billede (VÆLG OGSÅ BILLEDE HER)');
   t('Skriv linket du vil videresende til. Hvis det er et internt link, så udelad den første skråstreg.');
   t('Videresend til');
 
