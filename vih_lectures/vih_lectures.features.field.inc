@@ -411,6 +411,7 @@ function vih_lectures_field_default_fields() {
       'required' => 0,
       'settings' => array(
         'alt_field' => 0,
+        'default_image' => 0,
         'file_directory' => '',
         'file_extensions' => 'png jpg jpeg',
         'max_filesize' => '',
@@ -879,6 +880,7 @@ function vih_lectures_field_default_fields() {
       'required' => 0,
       'settings' => array(
         'alt_field' => 0,
+        'default_image' => 0,
         'file_directory' => 'lectures',
         'file_extensions' => 'png jpg jpeg',
         'max_filesize' => '',
@@ -1098,6 +1100,7 @@ function vih_lectures_field_default_fields() {
       'required' => 0,
       'settings' => array(
         'alt_field' => 1,
+        'default_image' => 0,
         'file_directory' => 'partners',
         'file_extensions' => 'png jpg jpeg',
         'max_filesize' => '',
