@@ -21,7 +21,7 @@ function vih_employees_default_page_manager_handlers() {
   $handler->conf = array(
     'title' => 'Employee',
     'no_blocks' => 0,
-    'pipeline' => 'ipe',
+    'pipeline' => 'standard',
     'css_id' => '',
     'css' => '',
     'contexts' => array(),
@@ -167,8 +167,8 @@ function vih_employees_default_page_manager_handlers() {
     );
     $pane->cache = array();
     $pane->style = array(
-      'settings' => array(),
-      'style' => 'stylizer',
+      'style' => 'default',
+      'settings' => NULL,
     );
     $pane->css = array();
     $pane->extras = array();
@@ -204,8 +204,8 @@ function vih_employees_default_page_manager_handlers() {
     );
     $pane->cache = array();
     $pane->style = array(
-      'style' => 'stylizer',
-      'settings' => array(),
+      'style' => 'default',
+      'settings' => NULL,
     );
     $pane->css = array(
       'css_id' => '',
@@ -233,8 +233,8 @@ function vih_employees_default_page_manager_handlers() {
     );
     $pane->cache = array();
     $pane->style = array(
-      'settings' => array(),
-      'style' => 'stylizer',
+      'style' => 'default',
+      'settings' => NULL,
     );
     $pane->css = array();
     $pane->extras = array();
@@ -259,8 +259,8 @@ function vih_employees_default_page_manager_handlers() {
     );
     $pane->cache = array();
     $pane->style = array(
-      'settings' => array(),
-      'style' => 'stylizer',
+      'style' => 'default',
+      'settings' => NULL,
     );
     $pane->css = array();
     $pane->extras = array();
@@ -285,8 +285,8 @@ function vih_employees_default_page_manager_handlers() {
     );
     $pane->cache = array();
     $pane->style = array(
-      'settings' => array(),
-      'style' => 'stylizer',
+      'style' => 'default',
+      'settings' => NULL,
     );
     $pane->css = array();
     $pane->extras = array();
@@ -359,8 +359,8 @@ function vih_employees_default_page_manager_handlers() {
     );
     $pane->cache = array();
     $pane->style = array(
-      'settings' => array(),
-      'style' => 'stylizer',
+      'style' => 'default',
+      'settings' => NULL,
     );
     $pane->css = array();
     $pane->extras = array();

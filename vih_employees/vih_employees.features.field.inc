@@ -323,6 +323,7 @@ function vih_employees_field_default_fields() {
       'required' => 0,
       'settings' => array(
         'alt_field' => 0,
+        'default_image' => 0,
         'file_directory' => '',
         'file_extensions' => 'png jpg jpeg',
         'imagecrop' => array(
@@ -637,6 +638,7 @@ function vih_employees_field_default_fields() {
       'required' => 0,
       'settings' => array(
         'alt_field' => 0,
+        'default_image' => 0,
         'file_directory' => 'profile_pictures',
         'file_extensions' => 'png jpg jpeg',
         'imagecrop' => array(
