@@ -146,10 +146,11 @@ function vih_stories_field_default_fields() {
           'module' => 'colorbox',
           'settings' => array(
             'colorbox_caption' => 'auto',
+            'colorbox_caption_custom' => '',
             'colorbox_gallery' => 'post',
             'colorbox_gallery_custom' => '',
-            'colorbox_image_style' => 'large',
-            'colorbox_node_style' => 'medium',
+            'colorbox_image_style' => 'media_gallery_large',
+            'colorbox_node_style' => 'large',
           ),
           'type' => 'colorbox',
           'weight' => '2',
@@ -167,6 +168,7 @@ function vih_stories_field_default_fields() {
       'required' => 0,
       'settings' => array(
         'alt_field' => 0,
+        'default_image' => 0,
         'file_directory' => '',
         'file_extensions' => 'png jpg jpeg',
         'imagecrop' => array(
