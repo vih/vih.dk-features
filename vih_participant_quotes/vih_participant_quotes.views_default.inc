@@ -177,16 +177,20 @@ function vih_participant_quotes_views_default_views() {
   $handler->display->display_options['arguments']['tid']['default_argument_type'] = 'taxonomy_tid';
   $handler->display->display_options['arguments']['tid']['default_argument_options']['term_page'] = 0;
   $handler->display->display_options['arguments']['tid']['default_argument_options']['node'] = 1;
-  $handler->display->display_options['arguments']['tid']['default_argument_options']['anyall'] = '+';
   $handler->display->display_options['arguments']['tid']['default_argument_options']['limit'] = 0;
+  $handler->display->display_options['arguments']['tid']['default_argument_options']['vocabularies'] = array(
+    'short_course_type' => 'short_course_type',
+  );
   $handler->display->display_options['arguments']['tid']['default_argument_skip_url'] = 0;
   $handler->display->display_options['arguments']['tid']['summary']['number_of_records'] = '0';
   $handler->display->display_options['arguments']['tid']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['tid']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['tid']['specify_validation'] = 1;
   $handler->display->display_options['arguments']['tid']['validate']['type'] = 'taxonomy_term';
   $handler->display->display_options['arguments']['tid']['validate_options']['vocabularies'] = array(
     'short_course_type' => 'short_course_type',
   );
+  $handler->display->display_options['arguments']['tid']['validate_options']['type'] = 'tids';
   $handler->display->display_options['arguments']['tid']['validate_options']['transform'] = 0;
   $handler->display->display_options['arguments']['tid']['break_phrase'] = 1;
   $handler->display->display_options['arguments']['tid']['add_table'] = 0;
