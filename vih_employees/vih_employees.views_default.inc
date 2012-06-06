@@ -317,7 +317,7 @@ function vih_employees_views_default_views() {
   $handler->display->display_options['fields']['delete_node']['field'] = 'delete_node';
   $handler->display->display_options['fields']['delete_node']['label'] = '';
   $handler->display->display_options['fields']['delete_node']['alter']['alter_text'] = 1;
-  $handler->display->display_options['fields']['delete_node']['alter']['text'] = ' [delete_node]';
+  $handler->display->display_options['fields']['delete_node']['alter']['text'] = ' | [delete_node]';
   $handler->display->display_options['fields']['delete_node']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['delete_node']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['delete_node']['alter']['replace_spaces'] = 0;
@@ -1131,7 +1131,7 @@ function vih_employees_views_default_views() {
     t('Block teacher'),
     t('Used on the teacher to display the teachers different interests'),
     t('<h3>[title]</h3>'),
-    t(' [delete_node]'),
+    t(' | [delete_node]'),
     t('Content pane'),
     t('Lærerne og fagene'),
     t('Titel'),

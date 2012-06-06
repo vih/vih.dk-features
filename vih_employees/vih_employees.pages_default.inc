@@ -200,7 +200,7 @@ function vih_employees_default_page_manager_handlers() {
         0 => '',
       ),
       'override_title' => 1,
-      'override_title_text' => 'Om fagene',
+      'override_title_text' => 'Om undervisningen',
     );
     $pane->cache = array();
     $pane->style = array(
