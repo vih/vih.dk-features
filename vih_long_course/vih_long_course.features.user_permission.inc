@@ -10,7 +10,7 @@
 function vih_long_course_user_default_permissions() {
   $permissions = array();
 
-  // Exported permission: create vih_long_course content
+  // Exported permission: create vih_long_course content.
   $permissions['create vih_long_course content'] = array(
     'name' => 'create vih_long_course content',
     'roles' => array(
@@ -22,7 +22,7 @@ function vih_long_course_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: delete any vih_long_course content
+  // Exported permission: delete any vih_long_course content.
   $permissions['delete any vih_long_course content'] = array(
     'name' => 'delete any vih_long_course content',
     'roles' => array(
@@ -31,7 +31,7 @@ function vih_long_course_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: delete own vih_long_course content
+  // Exported permission: delete own vih_long_course content.
   $permissions['delete own vih_long_course content'] = array(
     'name' => 'delete own vih_long_course content',
     'roles' => array(
@@ -43,7 +43,7 @@ function vih_long_course_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: edit any vih_long_course content
+  // Exported permission: edit any vih_long_course content.
   $permissions['edit any vih_long_course content'] = array(
     'name' => 'edit any vih_long_course content',
     'roles' => array(
@@ -55,7 +55,7 @@ function vih_long_course_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: edit own vih_long_course content
+  // Exported permission: edit own vih_long_course content.
   $permissions['edit own vih_long_course content'] = array(
     'name' => 'edit own vih_long_course content',
     'roles' => array(
