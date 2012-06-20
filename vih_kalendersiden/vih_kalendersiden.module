@@ -138,6 +138,7 @@ function vih_kalendersiden_form_submit($form, &$form_state) {
  * Posts data from a view to kalendersiden.dk and gets the pdf created
  */
 function vih_kalendersiden_pdf_generate($month = 3, $year = 2012, $months = 4, $pages = 1, $format = 'landscape') {
+  // @todo FIX undefind $display_id
   $result = views_get_view_result('vih_calendar', $display_id);
 
   $events = array();
