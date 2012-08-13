@@ -1,7 +1,7 @@
 name = VIH Golf Courses
 description = Golf courses for short courses
 core = 7.x
-package = Features
+package = VIH
 php = 5.2.4
 version = 7.x-0.3
 project = vih_golf_courses
