@@ -10,6 +10,7 @@ dependencies[] = date
 dependencies[] = features
 dependencies[] = feeds
 dependencies[] = link
+dependencies[] = parser_ical
 dependencies[] = strongarm
 dependencies[] = vih_calendar
 datestamp = 1331278554
