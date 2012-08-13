@@ -10,7 +10,7 @@
 function vih_golf_courses_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-vih_golf_courses-body'
+  // Exported field: 'node-vih_golf_courses-body'.
   $fields['node-vih_golf_courses-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -33,6 +33,7 @@ function vih_golf_courses_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(),
       'translatable' => '1',
@@ -82,7 +83,7 @@ function vih_golf_courses_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-vih_golf_courses-field_logo'
+  // Exported field: 'node-vih_golf_courses-field_logo'.
   $fields['node-vih_golf_courses-field_logo'] = array(
     'field_config' => array(
       'active' => '1',
@@ -103,6 +104,7 @@ function vih_golf_courses_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
@@ -139,6 +141,7 @@ function vih_golf_courses_field_default_fields() {
       'required' => 0,
       'settings' => array(
         'alt_field' => 0,
+        'default_image' => 0,
         'file_directory' => '',
         'file_extensions' => 'png gif jpg jpeg',
         'max_filesize' => '',
@@ -176,7 +179,7 @@ function vih_golf_courses_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-vih_golf_courses-field_more_info'
+  // Exported field: 'node-vih_golf_courses-field_more_info'.
   $fields['node-vih_golf_courses-field_more_info'] = array(
     'field_config' => array(
       'active' => '1',
@@ -186,6 +189,7 @@ function vih_golf_courses_field_default_fields() {
       'field_name' => 'field_more_info',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'link',
       'settings' => array(
         'attributes' => array(
@@ -258,7 +262,7 @@ function vih_golf_courses_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-vih_golf_courses-field_picture'
+  // Exported field: 'node-vih_golf_courses-field_picture'.
   $fields['node-vih_golf_courses-field_picture'] = array(
     'field_config' => array(
       'active' => '1',
@@ -272,6 +276,7 @@ function vih_golf_courses_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => '178',
@@ -308,6 +313,7 @@ function vih_golf_courses_field_default_fields() {
       'required' => 0,
       'settings' => array(
         'alt_field' => 0,
+        'default_image' => 0,
         'file_directory' => '',
         'file_extensions' => 'png jpg jpeg',
         'max_filesize' => '',
@@ -345,7 +351,7 @@ function vih_golf_courses_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-vih_golf_courses-field_subject_video'
+  // Exported field: 'node-vih_golf_courses-field_subject_video'.
   $fields['node-vih_golf_courses-field_subject_video'] = array(
     'field_config' => array(
       'active' => '1',
@@ -359,6 +365,7 @@ function vih_golf_courses_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'mediafield',
       'settings' => array(),
       'translatable' => '1',
