@@ -1,7 +1,7 @@
 name = VIH Middleman Redirect
 description = Used to have a short teaser which redirects to the actual content.
 core = 7.x
-package = Features
+package = VIH
 php = 5.2.4
 version = 7.x-0.4
 project = vih_middleman_redirect
@@ -20,6 +20,7 @@ features[features_api][] = api:1
 features[field][] = node-middleman_redirect-field_picture
 features[field][] = node-middleman_redirect-field_redirect_page_to
 features[node][] = middleman_redirect
+features[variable][] = field_bundle_settings_node__middleman_redirect
 features[variable][] = language_content_type_middleman_redirect
 features[variable][] = menu_options_middleman_redirect
 features[variable][] = menu_parent_middleman_redirect

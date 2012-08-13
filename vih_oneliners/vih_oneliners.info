@@ -1,7 +1,7 @@
 name = VIH Oneliners
 description = Holds oneliners and slogans
 core = 7.x
-package = Features
+package = VIH
 php = 5.2.4
 version = 7.x-0.3
 project = vih_oneliners
@@ -17,6 +17,7 @@ features[features_api][] = api:1
 features[field][] = node-oneliners-body
 features[field][] = node-oneliners-field_picture
 features[node][] = oneliners
+features[variable][] = field_bundle_settings_node__oneliners
 features[variable][] = language_content_type_oneliners
 features[variable][] = menu_options_oneliners
 features[variable][] = menu_parent_oneliners

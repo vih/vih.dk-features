@@ -1,7 +1,7 @@
 name = VIH Employees
 description = Handles employees
 core = 7.x
-package = Features
+package = VIH
 php = 5.2.4
 version = 7.x-0.13
 project = vih_employees

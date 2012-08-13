@@ -10,7 +10,7 @@
 function vih_middleman_redirect_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-middleman_redirect-field_picture'
+  // Exported field: 'node-middleman_redirect-field_picture'.
   $fields['node-middleman_redirect-field_picture'] = array(
     'field_config' => array(
       'active' => '1',
@@ -24,6 +24,7 @@ function vih_middleman_redirect_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => '178',
@@ -114,7 +115,7 @@ function vih_middleman_redirect_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-middleman_redirect-field_redirect_page_to'
+  // Exported field: 'node-middleman_redirect-field_redirect_page_to'.
   $fields['node-middleman_redirect-field_redirect_page_to'] = array(
     'field_config' => array(
       'active' => '1',
@@ -124,6 +125,7 @@ function vih_middleman_redirect_field_default_fields() {
       'field_name' => 'field_redirect_page_to',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'link',
       'settings' => array(
         'attributes' => array(

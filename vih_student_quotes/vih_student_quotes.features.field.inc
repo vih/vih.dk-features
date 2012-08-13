@@ -10,7 +10,7 @@
 function vih_student_quotes_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-vih_long_course_quotes-body'
+  // Exported field: 'node-vih_long_course_quotes-body'.
   $fields['node-vih_long_course_quotes-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -33,6 +33,7 @@ function vih_student_quotes_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(),
       'translatable' => '1',
@@ -80,7 +81,7 @@ function vih_student_quotes_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-vih_long_course_quotes-field_profile_picture'
+  // Exported field: 'node-vih_long_course_quotes-field_profile_picture'.
   $fields['node-vih_long_course_quotes-field_profile_picture'] = array(
     'field_config' => array(
       'active' => '1',
@@ -101,6 +102,7 @@ function vih_student_quotes_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => '633',
@@ -137,6 +139,7 @@ function vih_student_quotes_field_default_fields() {
       'required' => 0,
       'settings' => array(
         'alt_field' => 0,
+        'default_image' => 0,
         'file_directory' => '',
         'file_extensions' => 'png jpg jpeg',
         'imagecrop' => array(

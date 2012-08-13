@@ -10,7 +10,7 @@
 function vih_subjects_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-subject-body'
+  // Exported field: 'node-subject-body'.
   $fields['node-subject-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -33,6 +33,7 @@ function vih_subjects_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(),
       'translatable' => '1',
@@ -108,7 +109,7 @@ function vih_subjects_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-subject-field_course_leader'
+  // Exported field: 'node-subject-field_course_leader'.
   $fields['node-subject-field_course_leader'] = array(
     'field_config' => array(
       'active' => '1',
@@ -122,6 +123,7 @@ function vih_subjects_field_default_fields() {
           0 => 'target_id',
         ),
       ),
+      'locked' => '0',
       'module' => 'entityreference',
       'settings' => array(
         'handler' => 'base',
@@ -194,7 +196,7 @@ function vih_subjects_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-subject-field_picture'
+  // Exported field: 'node-subject-field_picture'.
   $fields['node-subject-field_picture'] = array(
     'field_config' => array(
       'active' => '1',
@@ -208,6 +210,7 @@ function vih_subjects_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => '178',
@@ -311,7 +314,7 @@ function vih_subjects_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-subject-field_subject_package'
+  // Exported field: 'node-subject-field_subject_package'.
   $fields['node-subject-field_subject_package'] = array(
     'field_config' => array(
       'active' => '1',
@@ -332,6 +335,7 @@ function vih_subjects_field_default_fields() {
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
@@ -380,7 +384,7 @@ function vih_subjects_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-subject-field_subject_teaser'
+  // Exported field: 'node-subject-field_subject_teaser'.
   $fields['node-subject-field_subject_teaser'] = array(
     'field_config' => array(
       'active' => '1',
@@ -401,6 +405,7 @@ function vih_subjects_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(),
       'translatable' => '0',
@@ -446,7 +451,7 @@ function vih_subjects_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-subject-field_subject_video'
+  // Exported field: 'node-subject-field_subject_video'.
   $fields['node-subject-field_subject_video'] = array(
     'field_config' => array(
       'active' => '1',
@@ -460,6 +465,7 @@ function vih_subjects_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'mediafield',
       'settings' => array(),
       'translatable' => '1',
@@ -517,7 +523,7 @@ function vih_subjects_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-subject-field_terms'
+  // Exported field: 'node-subject-field_terms'.
   $fields['node-subject-field_terms'] = array(
     'field_config' => array(
       'active' => '1',
@@ -538,6 +544,7 @@ function vih_subjects_field_default_fields() {
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
@@ -630,7 +637,7 @@ function vih_subjects_field_default_fields() {
     ),
   );
 
-  // Exported field: 'taxonomy_term-subject_category-field_category_picture'
+  // Exported field: 'taxonomy_term-subject_category-field_category_picture'.
   $fields['taxonomy_term-subject_category-field_category_picture'] = array(
     'field_config' => array(
       'active' => '1',
@@ -651,6 +658,7 @@ function vih_subjects_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
@@ -715,7 +723,7 @@ function vih_subjects_field_default_fields() {
     ),
   );
 
-  // Exported field: 'taxonomy_term-subject_packages-field_packages_fixed'
+  // Exported field: 'taxonomy_term-subject_packages-field_packages_fixed'.
   $fields['taxonomy_term-subject_packages-field_packages_fixed'] = array(
     'field_config' => array(
       'active' => '1',
@@ -725,6 +733,7 @@ function vih_subjects_field_default_fields() {
       'field_name' => 'field_packages_fixed',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'fixed_field',
       'settings' => array(
         'content' => '<p><strong>Vores fagpakker er eksempler på, hvilke fag du kan vælge, hvis du har specifikke interesser. Det er vigtigt at understrege, at du kan vælge frit mellem fagene i de forskellige perioder.</strong></p>',
@@ -781,7 +790,7 @@ function vih_subjects_field_default_fields() {
     ),
   );
 
-  // Exported field: 'taxonomy_term-subject_packages-field_tags_picture'
+  // Exported field: 'taxonomy_term-subject_packages-field_tags_picture'.
   $fields['taxonomy_term-subject_packages-field_tags_picture'] = array(
     'field_config' => array(
       'active' => '1',
@@ -802,6 +811,7 @@ function vih_subjects_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,

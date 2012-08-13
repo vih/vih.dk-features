@@ -1,7 +1,7 @@
 name = VIH Subjects
 description = Describes the different subjects at Vejle Idrætshøjskole
 core = 7.x
-package = Features
+package = VIH
 php = 5.2.4
 version = 7.x-0.15
 project = vih_subjects
@@ -49,6 +49,7 @@ features[variable][] = comment_form_location_subject
 features[variable][] = comment_preview_subject
 features[variable][] = comment_subject
 features[variable][] = comment_subject_field_subject
+features[variable][] = field_bundle_settings_node__subject
 features[variable][] = language_content_type_subject
 features[variable][] = menu_options_subject
 features[variable][] = menu_parent_subject

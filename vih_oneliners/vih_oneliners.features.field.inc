@@ -10,7 +10,7 @@
 function vih_oneliners_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-oneliners-body'
+  // Exported field: 'node-oneliners-body'.
   $fields['node-oneliners-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -33,6 +33,7 @@ function vih_oneliners_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(),
       'translatable' => '1',
@@ -82,7 +83,7 @@ function vih_oneliners_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-oneliners-field_picture'
+  // Exported field: 'node-oneliners-field_picture'.
   $fields['node-oneliners-field_picture'] = array(
     'field_config' => array(
       'active' => '1',
@@ -96,6 +97,7 @@ function vih_oneliners_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => '178',
