@@ -555,6 +555,14 @@ function vih_short_course_views_default_views() {
   $handler->display->display_options['filters']['field_course_time_value']['field'] = 'field_course_time_value';
   $handler->display->display_options['filters']['field_course_time_value']['operator'] = '>=';
   $handler->display->display_options['filters']['field_course_time_value']['group'] = '0';
+  $handler->display->display_options['filters']['field_course_time_value']['expose']['operator_id'] = 'field_course_time_value_op';
+  $handler->display->display_options['filters']['field_course_time_value']['expose']['label'] = 'Tidspunkt -  startdato (field_course_time)';
+  $handler->display->display_options['filters']['field_course_time_value']['expose']['use_operator'] = FALSE;
+  $handler->display->display_options['filters']['field_course_time_value']['expose']['operator'] = 'field_course_time_value_op';
+  $handler->display->display_options['filters']['field_course_time_value']['expose']['identifier'] = 'field_course_time_value';
+  $handler->display->display_options['filters']['field_course_time_value']['expose']['required'] = FALSE;
+  $handler->display->display_options['filters']['field_course_time_value']['expose']['remember'] = FALSE;
+  $handler->display->display_options['filters']['field_course_time_value']['expose']['multiple'] = FALSE;
   $handler->display->display_options['filters']['field_course_time_value']['default_date'] = '+1 day';
   $handler->display->display_options['filters']['field_course_time_value']['year_range'] = '-0:+3';
 
@@ -728,6 +736,36 @@ function vih_short_course_views_default_views() {
   $handler->display->display_options['fields']['delete_node']['hide_empty'] = 0;
   $handler->display->display_options['fields']['delete_node']['empty_zero'] = 0;
   $handler->display->display_options['fields']['delete_node']['hide_alter_empty'] = 1;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filterkriterie: Indhold: Udgivet */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 0;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filterkriterie: Indhold: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'short_course' => 'short_course',
+  );
+  $handler->display->display_options['filters']['type']['group'] = '0';
+  /* Filterkriterie: Indhold: Tidspunkt -  startdato (field_course_time) */
+  $handler->display->display_options['filters']['field_course_time_value']['id'] = 'field_course_time_value';
+  $handler->display->display_options['filters']['field_course_time_value']['table'] = 'field_data_field_course_time';
+  $handler->display->display_options['filters']['field_course_time_value']['field'] = 'field_course_time_value';
+  $handler->display->display_options['filters']['field_course_time_value']['operator'] = '>=';
+  $handler->display->display_options['filters']['field_course_time_value']['group'] = '0';
+  $handler->display->display_options['filters']['field_course_time_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_course_time_value']['expose']['operator_id'] = 'field_course_time_value_op';
+  $handler->display->display_options['filters']['field_course_time_value']['expose']['label'] = 'Startdato';
+  $handler->display->display_options['filters']['field_course_time_value']['expose']['operator'] = 'field_course_time_value_op';
+  $handler->display->display_options['filters']['field_course_time_value']['expose']['identifier'] = 'field_course_time_value';
+  $handler->display->display_options['filters']['field_course_time_value']['expose']['multiple'] = FALSE;
+  $handler->display->display_options['filters']['field_course_time_value']['default_date'] = '-40 days';
+  $handler->display->display_options['filters']['field_course_time_value']['year_range'] = '-0:+3';
   $handler->display->display_options['path'] = 'admin/dashboard/short_courses/all';
   $handler->display->display_options['menu']['type'] = 'tab';
   $handler->display->display_options['menu']['title'] = 'Alle kurser';
@@ -1614,6 +1652,38 @@ function vih_short_course_views_default_views() {
   $handler->display->display_options['fields']['edit_node']['hide_empty'] = 0;
   $handler->display->display_options['fields']['edit_node']['empty_zero'] = 0;
   $handler->display->display_options['fields']['edit_node']['hide_alter_empty'] = 1;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filterkriterie: Indhold: Udgivet */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 0;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filterkriterie: Indhold: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'short_course' => 'short_course',
+  );
+  $handler->display->display_options['filters']['type']['group'] = '0';
+  /* Filterkriterie: Indhold: Tidspunkt -  startdato (field_course_time) */
+  $handler->display->display_options['filters']['field_course_time_value']['id'] = 'field_course_time_value';
+  $handler->display->display_options['filters']['field_course_time_value']['table'] = 'field_data_field_course_time';
+  $handler->display->display_options['filters']['field_course_time_value']['field'] = 'field_course_time_value';
+  $handler->display->display_options['filters']['field_course_time_value']['operator'] = '>=';
+  $handler->display->display_options['filters']['field_course_time_value']['group'] = '0';
+  $handler->display->display_options['filters']['field_course_time_value']['expose']['operator_id'] = 'field_course_time_value_op';
+  $handler->display->display_options['filters']['field_course_time_value']['expose']['label'] = 'Tidspunkt -  startdato (field_course_time)';
+  $handler->display->display_options['filters']['field_course_time_value']['expose']['use_operator'] = FALSE;
+  $handler->display->display_options['filters']['field_course_time_value']['expose']['operator'] = 'field_course_time_value_op';
+  $handler->display->display_options['filters']['field_course_time_value']['expose']['identifier'] = 'field_course_time_value';
+  $handler->display->display_options['filters']['field_course_time_value']['expose']['required'] = FALSE;
+  $handler->display->display_options['filters']['field_course_time_value']['expose']['remember'] = FALSE;
+  $handler->display->display_options['filters']['field_course_time_value']['expose']['multiple'] = FALSE;
+  $handler->display->display_options['filters']['field_course_time_value']['default_date'] = '+1 day';
+  $handler->display->display_options['filters']['field_course_time_value']['year_range'] = '-0:+3';
   $translatables['short_courses'] = array(
     t('Master'),
     t('mere'),
@@ -1629,9 +1699,11 @@ function vih_short_course_views_default_views() {
     t('<h3>[title]</h3>'),
     t('Tidspunkt'),
     t('Alle'),
+    t('Tidspunkt -  startdato (field_course_time)'),
     t('Side'),
     t('Korte kurser'),
     t('Kursustype'),
+    t('Startdato'),
     t('Blok - course type'),
     t('Used with taxonomy display on the taxonomy page.'),
     t('<p><strong>Vi har i øjeblikket ikke nogen aktuelle kurser af den pågældende type. <a href="/nyhedsbrev">Tilmeld dig nyhedsbrevet</a> for at blive opdateret, når vi igen har aktuelle kurser.</strong></p>'),

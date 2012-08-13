@@ -10,7 +10,7 @@
 function vih_participant_quotes_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-citater-body'
+  // Exported field: 'node-citater-body'.
   $fields['node-citater-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -33,6 +33,7 @@ function vih_participant_quotes_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(),
       'translatable' => '1',
@@ -82,7 +83,7 @@ function vih_participant_quotes_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-citater-field_course_type'
+  // Exported field: 'node-citater-field_course_type'.
   $fields['node-citater-field_course_type'] = array(
     'field_config' => array(
       'active' => '1',
@@ -103,6 +104,7 @@ function vih_participant_quotes_field_default_fields() {
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
@@ -150,7 +152,7 @@ function vih_participant_quotes_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-citater-field_profile_picture'
+  // Exported field: 'node-citater-field_profile_picture'.
   $fields['node-citater-field_profile_picture'] = array(
     'field_config' => array(
       'active' => '1',
@@ -171,6 +173,7 @@ function vih_participant_quotes_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => '633',

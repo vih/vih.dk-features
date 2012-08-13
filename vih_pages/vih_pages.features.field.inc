@@ -10,7 +10,7 @@
 function vih_pages_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-page-body'
+  // Exported field: 'node-page-body'.
   $fields['node-page-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -33,6 +33,7 @@ function vih_pages_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(),
       'translatable' => '1',
@@ -83,7 +84,7 @@ function vih_pages_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-page-field_picture'
+  // Exported field: 'node-page-field_picture'.
   $fields['node-page-field_picture'] = array(
     'field_config' => array(
       'active' => '1',
@@ -97,6 +98,7 @@ function vih_pages_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => '178',
@@ -129,6 +131,7 @@ function vih_pages_field_default_fields() {
       'required' => 0,
       'settings' => array(
         'alt_field' => 0,
+        'default_image' => 0,
         'file_directory' => '',
         'file_extensions' => 'png jpg jpeg',
         'imagecrop' => array(

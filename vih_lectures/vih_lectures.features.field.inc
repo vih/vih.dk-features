@@ -10,7 +10,7 @@
 function vih_lectures_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-vih_lecture-body'
+  // Exported field: 'node-vih_lecture-body'.
   $fields['node-vih_lecture-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -33,6 +33,7 @@ function vih_lectures_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(),
       'translatable' => '1',
@@ -85,12 +86,12 @@ function vih_lectures_field_default_fields() {
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => '2',
+        'weight' => '3',
       ),
     ),
   );
 
-  // Exported field: 'node-vih_lecture-field_date'
+  // Exported field: 'node-vih_lecture-field_date'.
   $fields['node-vih_lecture-field_date'] = array(
     'field_config' => array(
       'active' => '1',
@@ -100,6 +101,7 @@ function vih_lectures_field_default_fields() {
       'field_name' => 'field_date',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'date',
       'settings' => array(
         'cache_count' => '4',
@@ -134,10 +136,9 @@ function vih_lectures_field_default_fields() {
             'multiple_from' => '',
             'multiple_number' => '',
             'multiple_to' => '',
-            'show_repeat_rule' => 'show',
           ),
           'type' => 'date_default',
-          'weight' => '4',
+          'weight' => '3',
         ),
         'rss' => array(
           'label' => 'inline',
@@ -191,12 +192,12 @@ function vih_lectures_field_default_fields() {
           'year_range' => '-3:+3',
         ),
         'type' => 'date_popup',
-        'weight' => '3',
+        'weight' => '4',
       ),
     ),
   );
 
-  // Exported field: 'node-vih_lecture-field_location'
+  // Exported field: 'node-vih_lecture-field_location'.
   $fields['node-vih_lecture-field_location'] = array(
     'field_config' => array(
       'active' => '1',
@@ -217,6 +218,7 @@ function vih_lectures_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -266,12 +268,82 @@ function vih_lectures_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '4',
+        'weight' => '8',
       ),
     ),
   );
 
-  // Exported field: 'node-vih_lecture-field_partner'
+  // Exported field: 'node-vih_lecture-field_open_registration'.
+  $fields['node-vih_lecture-field_open_registration'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_open_registration',
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => '',
+          1 => '',
+        ),
+        'allowed_values_function' => '',
+      ),
+      'translatable' => '0',
+      'type' => 'list_boolean',
+    ),
+    'field_instance' => array(
+      'bundle' => 'vih_lecture',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'Skal foredraget være synligt på foredragssiden?',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '9',
+        ),
+        'rss' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_open_registration',
+      'label' => 'Åbent',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(
+          'display_label' => 1,
+        ),
+        'type' => 'options_onoff',
+        'weight' => '2',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-vih_lecture-field_partner'.
   $fields['node-vih_lecture-field_partner'] = array(
     'field_config' => array(
       'active' => '1',
@@ -285,6 +357,7 @@ function vih_lectures_field_default_fields() {
           0 => 'target_id',
         ),
       ),
+      'locked' => '0',
       'module' => 'entityreference',
       'settings' => array(
         'handler' => 'base',
@@ -309,10 +382,10 @@ function vih_lectures_field_default_fields() {
           'label' => 'inline',
           'module' => 'entityreference',
           'settings' => array(
-            'link' => 1,
+            'link' => FALSE,
           ),
           'type' => 'entityreference_label',
-          'weight' => '6',
+          'weight' => '8',
         ),
         'rss' => array(
           'label' => 'inline',
@@ -342,12 +415,12 @@ function vih_lectures_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_buttons',
-        'weight' => '8',
+        'weight' => '10',
       ),
     ),
   );
 
-  // Exported field: 'node-vih_lecture-field_picture'
+  // Exported field: 'node-vih_lecture-field_picture'.
   $fields['node-vih_lecture-field_picture'] = array(
     'field_config' => array(
       'active' => '1',
@@ -361,6 +434,7 @@ function vih_lectures_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => '178',
@@ -436,12 +510,12 @@ function vih_lectures_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'media_generic',
-        'weight' => '7',
+        'weight' => '9',
       ),
     ),
   );
 
-  // Exported field: 'node-vih_lecture-field_price'
+  // Exported field: 'node-vih_lecture-field_price'.
   $fields['node-vih_lecture-field_price'] = array(
     'field_config' => array(
       'active' => '1',
@@ -451,6 +525,7 @@ function vih_lectures_field_default_fields() {
       'field_name' => 'field_price',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'number',
       'settings' => array(),
       'translatable' => '0',
@@ -468,15 +543,9 @@ function vih_lectures_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'inline',
-          'module' => 'number',
-          'settings' => array(
-            'decimal_separator' => '.',
-            'prefix_suffix' => TRUE,
-            'scale' => 0,
-            'thousand_separator' => ' ',
-          ),
-          'type' => 'number_integer',
-          'weight' => '3',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '10',
         ),
         'rss' => array(
           'label' => 'inline',
@@ -513,101 +582,97 @@ function vih_lectures_field_default_fields() {
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => '5',
-      ),
-    ),
-  );
-
-  // Exported field: 'node-vih_lecture-field_register_at'
-  $fields['node-vih_lecture-field_register_at'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_register_at',
-      'foreign keys' => array(),
-      'indexes' => array(),
-      'module' => 'link',
-      'settings' => array(
-        'attributes' => array(
-          'class' => '',
-          'rel' => '',
-          'target' => 'default',
-        ),
-        'display' => array(
-          'url_cutoff' => 80,
-        ),
-        'enable_tokens' => 1,
-        'title' => 'optional',
-        'title_maxlength' => 128,
-        'title_value' => '',
-        'url' => 0,
-      ),
-      'translatable' => '0',
-      'type' => 'link_field',
-    ),
-    'field_instance' => array(
-      'bundle' => 'vih_lecture',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'inline',
-          'module' => 'link',
-          'settings' => array(),
-          'type' => 'link_default',
-          'weight' => '7',
-        ),
-        'rss' => array(
-          'label' => 'inline',
-          'module' => 'link',
-          'settings' => array(),
-          'type' => 'link_default',
-          'weight' => '4',
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '5',
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_register_at',
-      'label' => 'Tilmelding',
-      'required' => 0,
-      'settings' => array(
-        'attributes' => array(
-          'class' => '',
-          'configurable_title' => 0,
-          'rel' => '',
-          'target' => 'default',
-          'title' => '',
-        ),
-        'display' => array(
-          'url_cutoff' => '128',
-        ),
-        'enable_tokens' => 1,
-        'title' => 'optional',
-        'title_maxlength' => '128',
-        'title_value' => '',
-        'url' => 0,
-        'user_register_form' => FALSE,
-        'validate_url' => 0,
-      ),
-      'widget' => array(
-        'active' => 0,
-        'module' => 'link',
-        'settings' => array(),
-        'type' => 'link_field',
         'weight' => '6',
       ),
     ),
   );
 
-  // Exported field: 'node-vih_lecture-field_speaker'
+  // Exported field: 'node-vih_lecture-field_product'.
+  $fields['node-vih_lecture-field_product'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_product',
+      'foreign keys' => array(
+        'product_id' => array(
+          'columns' => array(
+            'product_id' => 'product_id',
+          ),
+          'table' => 'commerce_product',
+        ),
+      ),
+      'indexes' => array(
+        'product_id' => array(
+          0 => 'product_id',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'commerce_product_reference',
+      'settings' => array(),
+      'translatable' => '0',
+      'type' => 'commerce_product_reference',
+    ),
+    'field_instance' => array(
+      'bundle' => 'vih_lecture',
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'hidden',
+          'module' => 'commerce_cart',
+          'settings' => array(
+            'combine' => TRUE,
+            'default_quantity' => 1,
+            'line_item_type' => 'product',
+            'show_quantity' => FALSE,
+          ),
+          'type' => 'commerce_cart_add_to_cart_form',
+          'weight' => '7',
+        ),
+        'rss' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_product',
+      'label' => 'Produkt',
+      'required' => 0,
+      'settings' => array(
+        'field_injection' => 1,
+        'referenceable_types' => array(
+          'product' => 0,
+          'vih_lecture' => 'vih_lecture',
+        ),
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'inline_entity_form',
+        'settings' => array(
+          'fields' => array(),
+          'type_settings' => array(
+            'autogenerate_title' => 1,
+            'use_variation_language' => 0,
+          ),
+        ),
+        'type' => 'inline_entity_form',
+        'weight' => '5',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-vih_lecture-field_speaker'.
   $fields['node-vih_lecture-field_speaker'] = array(
     'field_config' => array(
       'active' => '1',
@@ -628,6 +693,7 @@ function vih_lectures_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -683,7 +749,7 @@ function vih_lectures_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-vih_lectures-body'
+  // Exported field: 'node-vih_lectures-body'.
   $fields['node-vih_lectures-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -706,6 +772,7 @@ function vih_lectures_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(),
       'translatable' => '1',
@@ -750,12 +817,12 @@ function vih_lectures_field_default_fields() {
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => '31',
+        'weight' => '2',
       ),
     ),
   );
 
-  // Exported field: 'node-vih_lectures-field_lectures'
+  // Exported field: 'node-vih_lectures-field_lectures'.
   $fields['node-vih_lectures-field_lectures'] = array(
     'field_config' => array(
       'active' => '1',
@@ -769,15 +836,27 @@ function vih_lectures_field_default_fields() {
           0 => 'target_id',
         ),
       ),
+      'locked' => '0',
       'module' => 'entityreference',
       'settings' => array(
         'handler' => 'base',
         'handler_settings' => array(
+          'behaviors' => array(
+            'views-select-list' => array(
+              'status' => 0,
+            ),
+          ),
+          'sort' => array(
+            'direction' => 'ASC',
+            'field' => 'body:value',
+            'property' => 'nid',
+            'type' => 'none',
+          ),
           'target_bundles' => array(
             'vih_lecture' => 'vih_lecture',
           ),
         ),
-        'handler_submit' => 'Change handler',
+        'handler_submit' => 'Skift handler',
         'target_type' => 'node',
       ),
       'translatable' => '0',
@@ -787,7 +866,7 @@ function vih_lectures_field_default_fields() {
       'bundle' => 'vih_lectures',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => '',
+      'description' => 'Vælg de foredrag der hører til denne foredragsrække.',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -825,12 +904,12 @@ function vih_lectures_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'entityreference_autocomplete',
-        'weight' => '35',
+        'weight' => '3',
       ),
     ),
   );
 
-  // Exported field: 'node-vih_lectures-field_picture'
+  // Exported field: 'node-vih_lectures-field_picture'.
   $fields['node-vih_lectures-field_picture'] = array(
     'field_config' => array(
       'active' => '1',
@@ -844,6 +923,7 @@ function vih_lectures_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => '178',
@@ -897,12 +977,12 @@ function vih_lectures_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'image_image',
-        'weight' => '33',
+        'weight' => '7',
       ),
     ),
   );
 
-  // Exported field: 'node-vih_lectures-field_subtitle'
+  // Exported field: 'node-vih_lectures-field_subtitle'.
   $fields['node-vih_lectures-field_subtitle'] = array(
     'field_config' => array(
       'active' => '1',
@@ -923,6 +1003,7 @@ function vih_lectures_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -965,12 +1046,12 @@ function vih_lectures_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '34',
+        'weight' => '1',
       ),
     ),
   );
 
-  // Exported field: 'node-vih_partner-body'
+  // Exported field: 'node-vih_partner-body'.
   $fields['node-vih_partner-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -993,6 +1074,7 @@ function vih_lectures_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(),
       'translatable' => '1',
@@ -1039,7 +1121,7 @@ function vih_lectures_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-vih_partner-field_logo'
+  // Exported field: 'node-vih_partner-field_logo'.
   $fields['node-vih_partner-field_logo'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1060,6 +1142,7 @@ function vih_lectures_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
@@ -1131,10 +1214,13 @@ function vih_lectures_field_default_fields() {
   t('Foredragsholder');
   t('Logo');
   t('Pris');
+  t('Produkt');
   t('Samarbejdspartner');
+  t('Skal foredraget være synligt på foredragssiden?');
   t('Sted');
-  t('Tilmelding');
   t('Undertitel');
+  t('Vælg de foredrag der hører til denne foredragsrække.');
+  t('Åbent');
 
   return $fields;
 }

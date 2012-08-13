@@ -1814,7 +1814,7 @@ function vih_dashboard_views_default_views() {
   $handler->display->display_options['fields']['title']['empty_zero'] = 0;
   $handler->display->display_options['fields']['title']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['title']['link_to_node'] = 1;
-  /* Felt: Indhold: Antal webform indsendelser */
+  /* Felt: Webformular: Antal webform indsendelser */
   $handler->display->display_options['fields']['webform_submission_count_node']['id'] = 'webform_submission_count_node';
   $handler->display->display_options['fields']['webform_submission_count_node']['table'] = 'node';
   $handler->display->display_options['fields']['webform_submission_count_node']['field'] = 'webform_submission_count_node';
@@ -1908,7 +1908,7 @@ function vih_dashboard_views_default_views() {
   $handler->display->display_options['fields']['nothing_1']['hide_empty'] = 0;
   $handler->display->display_options['fields']['nothing_1']['empty_zero'] = 0;
   $handler->display->display_options['fields']['nothing_1']['hide_alter_empty'] = 0;
-  /* Felt: Indhold: Link til redigering af webform */
+  /* Felt: Webformular: Link til redigering af webform */
   $handler->display->display_options['fields']['webform_edit']['id'] = 'webform_edit';
   $handler->display->display_options['fields']['webform_edit']['table'] = 'node';
   $handler->display->display_options['fields']['webform_edit']['field'] = 'webform_edit';

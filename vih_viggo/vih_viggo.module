@@ -1,6 +1,13 @@
 <?php
 /**
  * @file
+ * Code for the VIH Viggo feature.
+ */
+ 
+include_once 'vih_viggo.features.inc';
+
+/**
+ * @file
  * Adds formatter to display calendar items for Viggo properly
  */
 

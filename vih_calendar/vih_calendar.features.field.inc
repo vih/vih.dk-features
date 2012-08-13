@@ -10,7 +10,7 @@
 function vih_calendar_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-vih_calendar-body'
+  // Exported field: 'node-vih_calendar-body'.
   $fields['node-vih_calendar-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -33,6 +33,7 @@ function vih_calendar_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(),
       'translatable' => '1',
@@ -82,7 +83,7 @@ function vih_calendar_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-vih_calendar-field_date'
+  // Exported field: 'node-vih_calendar-field_date'.
   $fields['node-vih_calendar-field_date'] = array(
     'field_config' => array(
       'active' => '1',
@@ -92,6 +93,7 @@ function vih_calendar_field_default_fields() {
       'field_name' => 'field_date',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'date',
       'settings' => array(
         'cache_count' => '4',
@@ -165,7 +167,7 @@ function vih_calendar_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-vih_calendar-field_more_info'
+  // Exported field: 'node-vih_calendar-field_more_info'.
   $fields['node-vih_calendar-field_more_info'] = array(
     'field_config' => array(
       'active' => '1',
@@ -175,6 +177,7 @@ function vih_calendar_field_default_fields() {
       'field_name' => 'field_more_info',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'link',
       'settings' => array(
         'attributes' => array(
