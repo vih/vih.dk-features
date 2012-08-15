@@ -3,7 +3,7 @@
  * @file
  * Code for the VIH Viggo feature.
  */
- 
+
 include_once 'vih_viggo.features.inc';
 
 /**
@@ -18,9 +18,9 @@ include_once 'vih_viggo.features.inc';
  */
 function vih_viggo_field_formatter_info() {
   return array(
-    'vih_viggo_formatter' => array( //Machine name of the formatter
+    'vih_viggo_formatter' => array(
       'label' => t('Viggo Calendar Description'),
-      'field types' => array('text_with_summary', 'text_long'), //This will only be available to text fields
+      'field types' => array('text_with_summary', 'text_long'),
     ),
   );
 }
@@ -29,18 +29,17 @@ function vih_viggo_field_formatter_info() {
  * Implements hook_field_formatter_view().
  */
 function vih_viggo_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
-  $element = array(); // Initialize the var
+  $element = array();
   foreach ($items as $delta => $item) {
-    $text = $item['safe_value']; // Getting the actual value
+    $text = $item['safe_value'];
   }
 
   if (isset($text)) {
     $text = str_replace("Beskrivelse:", '', $text);
-    $text = strstr($text, 'Opdateret: ', true);
-    $element[0]['#markup'] = check_markup($text, 'filtered_html'); // Assign it to the #markup of the element
+    $text = strstr($text, 'Opdateret: ', TRUE);
+    // Assign it to the #markup of the element.
+    $element[0]['#markup'] = check_markup($text, 'filtered_html');
   }
   return $element;
 }
-
-
 
