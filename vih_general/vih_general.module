@@ -4,14 +4,14 @@
  */
 
 /**
- * Implements hook_preprocess_node()
- *
  * Rewrites author and date information
+ *
+ * Implements hook_preprocess_node().
  */
 function vih_general_preprocess_node(&$variables) {
-  $variables['submitted'] =  t('!datetime | <em>af !username</em>',
+  $variables['submitted'] = t('!datetime | <em>af !username</em>',
     array(
       '!username' => $variables['name'],
-      '!datetime' => strtolower(format_date($variables['created'], 'custom', 'l, j. F Y'))
+      '!datetime' => strtolower(format_date($variables['created'], 'custom', 'l, j. F Y')),
     ));
 }
