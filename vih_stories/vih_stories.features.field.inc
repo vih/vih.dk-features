@@ -10,7 +10,7 @@
 function vih_stories_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-story-body'
+  // Exported field: 'node-story-body'.
   $fields['node-story-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -33,6 +33,7 @@ function vih_stories_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(),
       'translatable' => '1',
@@ -107,7 +108,7 @@ function vih_stories_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-story-field_pictures'
+  // Exported field: 'node-story-field_pictures'.
   $fields['node-story-field_pictures'] = array(
     'field_config' => array(
       'active' => '1',
@@ -128,6 +129,7 @@ function vih_stories_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
@@ -210,7 +212,7 @@ function vih_stories_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-story-field_tags'
+  // Exported field: 'node-story-field_tags'.
   $fields['node-story-field_tags'] = array(
     'field_config' => array(
       'active' => '1',
@@ -224,6 +226,7 @@ function vih_stories_field_default_fields() {
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(

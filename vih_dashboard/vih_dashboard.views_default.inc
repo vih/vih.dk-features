@@ -10,7 +10,7 @@
 function vih_dashboard_views_default_views() {
   $export = array();
 
-  $view = new view;
+  $view = new view();
   $view->name = 'd_de_sider';
   $view->description = 'Oversigt over sider, som ikke er blevet redigeret det seneste år.';
   $view->tag = 'default';
@@ -23,6 +23,7 @@ function vih_dashboard_views_default_views() {
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['title'] = 'Stale pages';
+  $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['use_more_text'] = 'mere';
   $handler->display->display_options['access']['type'] = 'role';
   $handler->display->display_options['access']['role'] = array(
@@ -33,8 +34,8 @@ function vih_dashboard_views_default_views() {
   );
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
-  $handler->display->display_options['query']['options']['query_comment'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Udfør';
   $handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'Gendan';
   $handler->display->display_options['exposed_form']['options']['exposed_sorts_label'] = 'Sortér efter';
   $handler->display->display_options['exposed_form']['options']['sort_asc_label'] = 'Stigende';
@@ -44,49 +45,27 @@ function vih_dashboard_views_default_views() {
   $handler->display->display_options['pager']['options']['expose']['items_per_page_label'] = 'Antal elementer';
   $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all_label'] = '- Alle -';
   $handler->display->display_options['pager']['options']['expose']['offset_label'] = 'Forskydning';
+  $handler->display->display_options['pager']['options']['tags']['first'] = '« første';
+  $handler->display->display_options['pager']['options']['tags']['previous'] = '‹ forrige';
+  $handler->display->display_options['pager']['options']['tags']['next'] = 'næste ›';
+  $handler->display->display_options['pager']['options']['tags']['last'] = 'sidste »';
   $handler->display->display_options['style_plugin'] = 'table';
   /* Forbindelse: Indhold: Forfatter */
   $handler->display->display_options['relationships']['uid']['id'] = 'uid';
   $handler->display->display_options['relationships']['uid']['table'] = 'node';
   $handler->display->display_options['relationships']['uid']['field'] = 'uid';
-  $handler->display->display_options['relationships']['uid']['required'] = 0;
   /* Felt: Indhold: Titel */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['label'] = '';
-  $handler->display->display_options['fields']['title']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['title']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['title']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['title']['link_to_node'] = 1;
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   /* Felt: Indhold: Opdateringsdato */
   $handler->display->display_options['fields']['changed']['id'] = 'changed';
   $handler->display->display_options['fields']['changed']['table'] = 'node';
   $handler->display->display_options['fields']['changed']['field'] = 'changed';
-  $handler->display->display_options['fields']['changed']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['changed']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['changed']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['changed']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['changed']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['changed']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['changed']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['changed']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['changed']['hide_alter_empty'] = FALSE;
   $handler->display->display_options['fields']['changed']['date_format'] = 'time ago';
   /* Sorteringskriterie: Indhold: Opdateringsdato */
   $handler->display->display_options['sorts']['changed']['id'] = 'changed';
@@ -117,10 +96,10 @@ function vih_dashboard_views_default_views() {
   $handler->display->display_options['filters']['type']['expose']['label'] = 'Type';
   $handler->display->display_options['filters']['type']['expose']['operator'] = 'type_op';
   $handler->display->display_options['filters']['type']['expose']['identifier'] = 'type';
-  $handler->display->display_options['filters']['type']['expose']['reduce'] = 0;
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
+  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '100';
@@ -129,32 +108,18 @@ function vih_dashboard_views_default_views() {
   $handler->display->display_options['pager']['options']['expose']['items_per_page'] = TRUE;
   $handler->display->display_options['pager']['options']['expose']['items_per_page_label'] = 'Elementer pr. side';
   $handler->display->display_options['pager']['options']['expose']['items_per_page_options'] = '20, 40, 60, 100, 200';
-  $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all'] = 1;
+  $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all'] = TRUE;
   $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all_label'] = '- Alle -';
   $handler->display->display_options['pager']['options']['expose']['offset_label'] = 'Forskydning';
+  $handler->display->display_options['pager']['options']['tags']['first'] = '« første';
+  $handler->display->display_options['pager']['options']['tags']['previous'] = '‹ forrige';
+  $handler->display->display_options['pager']['options']['tags']['next'] = 'næste ›';
+  $handler->display->display_options['pager']['options']['tags']['last'] = 'sidste »';
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Felt: Masse-handlinger: Indhold */
   $handler->display->display_options['fields']['views_bulk_operations']['id'] = 'views_bulk_operations';
   $handler->display->display_options['fields']['views_bulk_operations']['table'] = 'node';
   $handler->display->display_options['fields']['views_bulk_operations']['field'] = 'views_bulk_operations';
-  $handler->display->display_options['fields']['views_bulk_operations']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['views_bulk_operations']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['views_bulk_operations']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['views_bulk_operations']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['views_bulk_operations']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['views_bulk_operations']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['views_bulk_operations']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['views_bulk_operations']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['views_bulk_operations']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['views_bulk_operations']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['views_bulk_operations']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['views_bulk_operations']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['views_bulk_operations']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['views_bulk_operations']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['views_bulk_operations']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['views_bulk_operations']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['views_bulk_operations']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['views_bulk_operations']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['views_bulk_operations']['vbo']['entity_load_capacity'] = '10';
   $handler->display->display_options['fields']['views_bulk_operations']['vbo']['operations'] = array(
     'action::node_unpublish_action' => array(
@@ -316,132 +281,36 @@ function vih_dashboard_views_default_views() {
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['label'] = '';
-  $handler->display->display_options['fields']['title']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['title']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['title']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['title']['link_to_node'] = 1;
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   /* Felt: Bruger: Navn */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'users';
   $handler->display->display_options['fields']['name']['field'] = 'name';
   $handler->display->display_options['fields']['name']['relationship'] = 'uid';
   $handler->display->display_options['fields']['name']['label'] = 'Forfatter';
-  $handler->display->display_options['fields']['name']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['name']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['name']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['name']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['name']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['name']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['name']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['name']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['name']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['name']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['name']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['name']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['name']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['name']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['name']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['name']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['name']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['name']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['name']['link_to_user'] = 1;
-  $handler->display->display_options['fields']['name']['overwrite_anonymous'] = 0;
-  $handler->display->display_options['fields']['name']['format_username'] = 1;
   /* Felt: Indhold: Opdateringsdato */
   $handler->display->display_options['fields']['changed']['id'] = 'changed';
   $handler->display->display_options['fields']['changed']['table'] = 'node';
   $handler->display->display_options['fields']['changed']['field'] = 'changed';
-  $handler->display->display_options['fields']['changed']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['changed']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['changed']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['changed']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['changed']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['changed']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['changed']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['changed']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['changed']['hide_alter_empty'] = FALSE;
   $handler->display->display_options['fields']['changed']['date_format'] = 'time ago';
   /* Felt: Indhold: Redigér-link */
   $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
   $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['label'] = '';
-  $handler->display->display_options['fields']['edit_node']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['edit_node']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['edit_node']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['edit_node']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['edit_node']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['edit_node']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['edit_node']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['edit_node']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['edit_node']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['edit_node']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['edit_node']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['edit_node']['alter']['html'] = 0;
   $handler->display->display_options['fields']['edit_node']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['edit_node']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['edit_node']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['edit_node']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['edit_node']['hide_alter_empty'] = 1;
   /* Felt: Indhold: Slet-link */
   $handler->display->display_options['fields']['delete_node']['id'] = 'delete_node';
   $handler->display->display_options['fields']['delete_node']['table'] = 'views_entity_node';
   $handler->display->display_options['fields']['delete_node']['field'] = 'delete_node';
   $handler->display->display_options['fields']['delete_node']['label'] = '';
-  $handler->display->display_options['fields']['delete_node']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['delete_node']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['delete_node']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['delete_node']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['delete_node']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['delete_node']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['delete_node']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['delete_node']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['delete_node']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['delete_node']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['delete_node']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['delete_node']['alter']['html'] = 0;
   $handler->display->display_options['fields']['delete_node']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['delete_node']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['delete_node']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['delete_node']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['delete_node']['hide_alter_empty'] = 1;
   /* Felt: Indhold: Oprettelsesdato */
   $handler->display->display_options['fields']['created']['id'] = 'created';
   $handler->display->display_options['fields']['created']['table'] = 'node';
   $handler->display->display_options['fields']['created']['field'] = 'created';
-  $handler->display->display_options['fields']['created']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['created']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['created']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['created']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['created']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['created']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['created']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['created']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['created']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['created']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['created']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['created']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['created']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['created']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['created']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['created']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['created']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['created']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['created']['date_format'] = 'long';
   $handler->display->display_options['path'] = 'admin/workbench/stale';
   $handler->display->display_options['menu']['type'] = 'tab';
@@ -454,8 +323,13 @@ function vih_dashboard_views_default_views() {
   $handler = $view->new_display('panel_pane', 'Content pane', 'panel_pane_1');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Nogle af dine sider kræver opdatering';
+  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['use_more'] = FALSE;
   $handler->display->display_options['use_more'] = TRUE;
+  $handler->display->display_options['defaults']['use_more_always'] = FALSE;
+  $handler->display->display_options['defaults']['use_more_always'] = FALSE;
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['defaults']['use_more_text'] = FALSE;
   $handler->display->display_options['use_more_text'] = 'mere';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'some';
@@ -467,121 +341,43 @@ function vih_dashboard_views_default_views() {
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['label'] = '';
-  $handler->display->display_options['fields']['title']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['title']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['title']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['title']['link_to_node'] = 1;
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   /* Felt: Indhold: Opdateringsdato */
   $handler->display->display_options['fields']['changed']['id'] = 'changed';
   $handler->display->display_options['fields']['changed']['table'] = 'node';
   $handler->display->display_options['fields']['changed']['field'] = 'changed';
-  $handler->display->display_options['fields']['changed']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['changed']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['changed']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['changed']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['changed']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['changed']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['changed']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['changed']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['changed']['hide_alter_empty'] = FALSE;
   $handler->display->display_options['fields']['changed']['date_format'] = 'time ago';
   /* Felt: Indhold: Type */
   $handler->display->display_options['fields']['type']['id'] = 'type';
   $handler->display->display_options['fields']['type']['table'] = 'node';
   $handler->display->display_options['fields']['type']['field'] = 'type';
-  $handler->display->display_options['fields']['type']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['type']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['type']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['type']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['type']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['type']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['type']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['type']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['type']['link_to_node'] = 0;
-  $handler->display->display_options['fields']['type']['machine_name'] = 0;
   /* Felt: Indhold: Redigér-link */
   $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
   $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['label'] = '';
-  $handler->display->display_options['fields']['edit_node']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['edit_node']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['edit_node']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['edit_node']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['edit_node']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['edit_node']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['edit_node']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['edit_node']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['edit_node']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['edit_node']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['edit_node']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['edit_node']['alter']['html'] = 0;
   $handler->display->display_options['fields']['edit_node']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['edit_node']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['edit_node']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['edit_node']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['edit_node']['hide_alter_empty'] = 1;
   /* Felt: Indhold: Slet-link */
   $handler->display->display_options['fields']['delete_node']['id'] = 'delete_node';
   $handler->display->display_options['fields']['delete_node']['table'] = 'views_entity_node';
   $handler->display->display_options['fields']['delete_node']['field'] = 'delete_node';
   $handler->display->display_options['fields']['delete_node']['label'] = '';
-  $handler->display->display_options['fields']['delete_node']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['delete_node']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['delete_node']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['delete_node']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['delete_node']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['delete_node']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['delete_node']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['delete_node']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['delete_node']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['delete_node']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['delete_node']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['delete_node']['alter']['html'] = 0;
   $handler->display->display_options['fields']['delete_node']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['delete_node']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['delete_node']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['delete_node']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['delete_node']['hide_alter_empty'] = 1;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   /* Kontekstuelt filter: Indhold: Forfatter uid */
   $handler->display->display_options['arguments']['uid']['id'] = 'uid';
   $handler->display->display_options['arguments']['uid']['table'] = 'node';
   $handler->display->display_options['arguments']['uid']['field'] = 'uid';
   $handler->display->display_options['arguments']['uid']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['uid']['exception']['title'] = 'Alle';
   $handler->display->display_options['arguments']['uid']['default_argument_type'] = 'current_user';
-  $handler->display->display_options['arguments']['uid']['default_argument_skip_url'] = 0;
   $handler->display->display_options['arguments']['uid']['summary']['number_of_records'] = '0';
   $handler->display->display_options['arguments']['uid']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['uid']['summary_options']['items_per_page'] = '25';
-  $handler->display->display_options['arguments']['uid']['specify_validation'] = 1;
-  $handler->display->display_options['arguments']['uid']['break_phrase'] = 0;
-  $handler->display->display_options['arguments']['uid']['not'] = 0;
+  $handler->display->display_options['arguments']['uid']['specify_validation'] = TRUE;
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filterkriterie: Indhold: Udgivet */
   $handler->display->display_options['filters']['status']['id'] = 'status';
@@ -610,6 +406,10 @@ function vih_dashboard_views_default_views() {
     t('Antal elementer'),
     t('- Alle -'),
     t('Forskydning'),
+    t('« første'),
+    t('‹ forrige'),
+    t('næste ›'),
+    t('sidste »'),
     t('forfatter'),
     t('Opdateringsdato'),
     t('Type'),
@@ -625,7 +425,7 @@ function vih_dashboard_views_default_views() {
   );
   $export['d_de_sider'] = $view;
 
-  $view = new view;
+  $view = new view();
   $view->name = 'vih_workbench';
   $view->description = 'Tweaked views for Workbench Moderation for VIH';
   $view->tag = 'VIH, Workbench Moderation';
@@ -647,6 +447,7 @@ function vih_dashboard_views_default_views() {
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['query']['options']['query_comment'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Udfør';
   $handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'Gendan';
   $handler->display->display_options['exposed_form']['options']['exposed_sorts_label'] = 'Sortér efter';
   $handler->display->display_options['exposed_form']['options']['sort_asc_label'] = 'Stigende';
@@ -660,6 +461,10 @@ function vih_dashboard_views_default_views() {
   $handler->display->display_options['pager']['options']['expose']['items_per_page_options'] = '10, 25, 50, 100, 200';
   $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all_label'] = '- Alle -';
   $handler->display->display_options['pager']['options']['expose']['offset_label'] = 'Forskydning';
+  $handler->display->display_options['pager']['options']['tags']['first'] = '« første';
+  $handler->display->display_options['pager']['options']['tags']['previous'] = '‹ forrige';
+  $handler->display->display_options['pager']['options']['tags']['next'] = 'næste ›';
+  $handler->display->display_options['pager']['options']['tags']['last'] = 'sidste »';
   $handler->display->display_options['style_plugin'] = 'table';
   $handler->display->display_options['style_options']['columns'] = array(
     'nid' => 'nid',
@@ -730,14 +535,11 @@ function vih_dashboard_views_default_views() {
       'separator' => '',
     ),
   );
-  $handler->display->display_options['style_options']['override'] = 1;
-  $handler->display->display_options['style_options']['sticky'] = 0;
   $handler->display->display_options['style_options']['order'] = 'desc';
   /* Opførsel ved ingen resultater: Global: Tekstområde */
   $handler->display->display_options['empty']['area']['id'] = 'area';
   $handler->display->display_options['empty']['area']['table'] = 'views';
   $handler->display->display_options['empty']['area']['field'] = 'area';
-  $handler->display->display_options['empty']['area']['empty'] = FALSE;
   $handler->display->display_options['empty']['area']['content'] = 'Du har ikke redigeret noget indhold.';
   $handler->display->display_options['empty']['area']['format'] = '1';
   /* Forbindelse: Indholdsversion: Bruger */
@@ -748,175 +550,63 @@ function vih_dashboard_views_default_views() {
   $handler->display->display_options['relationships']['vid']['id'] = 'vid';
   $handler->display->display_options['relationships']['vid']['table'] = 'node_revision';
   $handler->display->display_options['relationships']['vid']['field'] = 'vid';
-  $handler->display->display_options['relationships']['vid']['required'] = 0;
   /* Felt: Indhold: Nid */
   $handler->display->display_options['fields']['nid_1']['id'] = 'nid_1';
   $handler->display->display_options['fields']['nid_1']['table'] = 'node';
   $handler->display->display_options['fields']['nid_1']['field'] = 'nid';
   $handler->display->display_options['fields']['nid_1']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['nid_1']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['nid_1']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['nid_1']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['nid_1']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['nid_1']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['nid_1']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['nid_1']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['nid_1']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['nid_1']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['nid_1']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['nid_1']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['nid_1']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['nid_1']['link_to_node'] = 1;
+  $handler->display->display_options['fields']['nid_1']['link_to_node'] = TRUE;
   /* Felt: Indholdsversion: Logbesked */
   $handler->display->display_options['fields']['log']['id'] = 'log';
   $handler->display->display_options['fields']['log']['table'] = 'node_revision';
   $handler->display->display_options['fields']['log']['field'] = 'log';
   $handler->display->display_options['fields']['log']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['log']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['log']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['log']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['log']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['log']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['log']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['log']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['log']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['log']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['log']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['log']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['log']['empty_zero'] = 0;
   /* Felt: Workbench Moderation: Moderation History Link */
   $handler->display->display_options['fields']['workbench_moderation_history_link']['id'] = 'workbench_moderation_history_link';
   $handler->display->display_options['fields']['workbench_moderation_history_link']['table'] = 'node';
   $handler->display->display_options['fields']['workbench_moderation_history_link']['field'] = 'workbench_moderation_history_link';
   $handler->display->display_options['fields']['workbench_moderation_history_link']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['workbench_moderation_history_link']['hide_alter_empty'] = FALSE;
   /* Felt: Moderation State */
   $handler->display->display_options['fields']['state']['id'] = 'state';
   $handler->display->display_options['fields']['state']['table'] = 'workbench_moderation_node_history';
   $handler->display->display_options['fields']['state']['field'] = 'state';
   $handler->display->display_options['fields']['state']['ui_name'] = 'Moderation State';
   $handler->display->display_options['fields']['state']['label'] = 'Moderation State';
-  $handler->display->display_options['fields']['state']['alter']['alter_text'] = 1;
+  $handler->display->display_options['fields']['state']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['state']['alter']['text'] = '<div>[state]</div><div>[workbench_moderation_history_link]</div>';
-  $handler->display->display_options['fields']['state']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['state']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['state']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['state']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['state']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['state']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['state']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['state']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['state']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['state']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['state']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['state']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['state']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['state']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['state']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['state']['hide_alter_empty'] = 0;
-  $handler->display->display_options['fields']['state']['link_to_node'] = 0;
+  $handler->display->display_options['fields']['state']['hide_alter_empty'] = FALSE;
   $handler->display->display_options['fields']['state']['machine_name'] = 0;
   /* Felt: Workbench Moderation: Moderation Links */
   $handler->display->display_options['fields']['moderation_actions']['id'] = 'moderation_actions';
   $handler->display->display_options['fields']['moderation_actions']['table'] = 'workbench_moderation_node_history';
   $handler->display->display_options['fields']['moderation_actions']['field'] = 'moderation_actions';
   $handler->display->display_options['fields']['moderation_actions']['label'] = 'Moderér';
-  $handler->display->display_options['fields']['moderation_actions']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['moderation_actions']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['moderation_actions']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['moderation_actions']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['moderation_actions']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['moderation_actions']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['moderation_actions']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['moderation_actions']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['moderation_actions']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['moderation_actions']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['moderation_actions']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['moderation_actions']['empty_zero'] = 0;
   /* Felt: Indhold: Titel */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['title']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['title']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['title']['link_to_node'] = 1;
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   /* Felt: Indhold: Type */
   $handler->display->display_options['fields']['type']['id'] = 'type';
   $handler->display->display_options['fields']['type']['table'] = 'node';
   $handler->display->display_options['fields']['type']['field'] = 'type';
-  $handler->display->display_options['fields']['type']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['word_boundary'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['ellipsis'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['type']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['type']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['type']['link_to_node'] = 0;
-  $handler->display->display_options['fields']['type']['machine_name'] = 0;
+  $handler->display->display_options['fields']['type']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['type']['alter']['ellipsis'] = FALSE;
   /* Felt: Bruger: Navn */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'users';
   $handler->display->display_options['fields']['name']['field'] = 'name';
   $handler->display->display_options['fields']['name']['relationship'] = 'uid';
   $handler->display->display_options['fields']['name']['label'] = 'Redigeret af';
-  $handler->display->display_options['fields']['name']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['name']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['name']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['name']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['name']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['name']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['name']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['name']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['name']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['name']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['name']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['name']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['name']['link_to_user'] = 1;
-  $handler->display->display_options['fields']['name']['overwrite_anonymous'] = 0;
   /* Felt: Indhold: Opdateringsdato */
   $handler->display->display_options['fields']['changed']['id'] = 'changed';
   $handler->display->display_options['fields']['changed']['table'] = 'node';
   $handler->display->display_options['fields']['changed']['field'] = 'changed';
   $handler->display->display_options['fields']['changed']['label'] = 'Senest opdateret';
-  $handler->display->display_options['fields']['changed']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['word_boundary'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['ellipsis'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['changed']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['changed']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['changed']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['changed']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['changed']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['changed']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['changed']['date_format'] = 'time ago';
   /* Felt: Bruger: Redigér-link */
   $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
@@ -924,24 +614,7 @@ function vih_dashboard_views_default_views() {
   $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['relationship'] = 'uid';
   $handler->display->display_options['fields']['edit_node']['label'] = '';
-  $handler->display->display_options['fields']['edit_node']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['edit_node']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['edit_node']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['edit_node']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['edit_node']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['edit_node']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['edit_node']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['edit_node']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['edit_node']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['edit_node']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['edit_node']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['edit_node']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['edit_node']['alter']['html'] = 0;
   $handler->display->display_options['fields']['edit_node']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['edit_node']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['edit_node']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['edit_node']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['edit_node']['hide_alter_empty'] = 1;
   /* Sorteringskriterie: Indhold: Opdateringsdato */
   $handler->display->display_options['sorts']['changed']['id'] = 'changed';
   $handler->display->display_options['sorts']['changed']['table'] = 'node';
@@ -953,13 +626,11 @@ function vih_dashboard_views_default_views() {
   $handler->display->display_options['arguments']['uid']['field'] = 'uid';
   $handler->display->display_options['arguments']['uid']['relationship'] = 'uid';
   $handler->display->display_options['arguments']['uid']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['uid']['exception']['title'] = 'Alle';
   $handler->display->display_options['arguments']['uid']['default_argument_type'] = 'current_user';
-  $handler->display->display_options['arguments']['uid']['default_argument_skip_url'] = 0;
   $handler->display->display_options['arguments']['uid']['summary']['number_of_records'] = '0';
   $handler->display->display_options['arguments']['uid']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['uid']['summary_options']['items_per_page'] = '25';
-  $handler->display->display_options['arguments']['uid']['break_phrase'] = 0;
-  $handler->display->display_options['arguments']['uid']['not'] = 0;
   /* Filterkriterie: Bruger: Aktuelle */
   $handler->display->display_options['filters']['uid_current']['id'] = 'uid_current';
   $handler->display->display_options['filters']['uid_current']['table'] = 'users';
@@ -974,10 +645,9 @@ function vih_dashboard_views_default_views() {
   $handler->display->display_options['filters']['title']['exposed'] = TRUE;
   $handler->display->display_options['filters']['title']['expose']['operator_id'] = 'title_op';
   $handler->display->display_options['filters']['title']['expose']['label'] = 'Titel';
-  $handler->display->display_options['filters']['title']['expose']['use_operator'] = FALSE;
   $handler->display->display_options['filters']['title']['expose']['operator'] = 'title_op';
   $handler->display->display_options['filters']['title']['expose']['identifier'] = 'title';
-  $handler->display->display_options['filters']['title']['expose']['remember'] = 1;
+  $handler->display->display_options['filters']['title']['expose']['remember'] = TRUE;
   /* Filterkriterie: Indhold: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
@@ -985,11 +655,9 @@ function vih_dashboard_views_default_views() {
   $handler->display->display_options['filters']['type']['exposed'] = TRUE;
   $handler->display->display_options['filters']['type']['expose']['operator_id'] = 'type_op';
   $handler->display->display_options['filters']['type']['expose']['label'] = 'Type';
-  $handler->display->display_options['filters']['type']['expose']['use_operator'] = FALSE;
   $handler->display->display_options['filters']['type']['expose']['operator'] = 'type_op';
   $handler->display->display_options['filters']['type']['expose']['identifier'] = 'type';
-  $handler->display->display_options['filters']['type']['expose']['remember'] = 1;
-  $handler->display->display_options['filters']['type']['expose']['reduce'] = 0;
+  $handler->display->display_options['filters']['type']['expose']['remember'] = TRUE;
   /* Filterkriterie: Workbench Moderation: Status */
   $handler->display->display_options['filters']['state']['id'] = 'state';
   $handler->display->display_options['filters']['state']['table'] = 'workbench_moderation_node_history';
@@ -1004,8 +672,8 @@ function vih_dashboard_views_default_views() {
   $handler->display->display_options['filters']['state']['expose']['label'] = 'Status';
   $handler->display->display_options['filters']['state']['expose']['operator'] = 'state_op';
   $handler->display->display_options['filters']['state']['expose']['identifier'] = 'state';
-  $handler->display->display_options['filters']['state']['expose']['remember'] = 1;
-  $handler->display->display_options['filters']['state']['expose']['reduce'] = 1;
+  $handler->display->display_options['filters']['state']['expose']['remember'] = TRUE;
+  $handler->display->display_options['filters']['state']['expose']['reduce'] = TRUE;
   /* Filterkriterie: Workbench Moderation: Aktuelle */
   $handler->display->display_options['filters']['current']['id'] = 'current';
   $handler->display->display_options['filters']['current']['table'] = 'workbench_moderation_node_history';
@@ -1016,12 +684,12 @@ function vih_dashboard_views_default_views() {
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Dit indhold som ikke er udgivet';
   $handler->display->display_options['display_description'] = 'Shows unpublished content';
+  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['empty'] = FALSE;
   /* Opførsel ved ingen resultater: Global: Tekstområde */
   $handler->display->display_options['empty']['area']['id'] = 'area';
   $handler->display->display_options['empty']['area']['table'] = 'views';
   $handler->display->display_options['empty']['area']['field'] = 'area';
-  $handler->display->display_options['empty']['area']['empty'] = FALSE;
   $handler->display->display_options['empty']['area']['content'] = 'This list displays content you have created that is not published. Currently there is no such content.';
   $handler->display->display_options['empty']['area']['format'] = 'plain_text';
   $handler->display->display_options['defaults']['fields'] = FALSE;
@@ -1030,170 +698,60 @@ function vih_dashboard_views_default_views() {
   $handler->display->display_options['fields']['nid_1']['table'] = 'node';
   $handler->display->display_options['fields']['nid_1']['field'] = 'nid';
   $handler->display->display_options['fields']['nid_1']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['nid_1']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['nid_1']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['nid_1']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['nid_1']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['nid_1']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['nid_1']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['nid_1']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['nid_1']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['nid_1']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['nid_1']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['nid_1']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['nid_1']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['nid_1']['link_to_node'] = 1;
+  $handler->display->display_options['fields']['nid_1']['link_to_node'] = TRUE;
   /* Felt: Indholdsversion: Logbesked */
   $handler->display->display_options['fields']['log']['id'] = 'log';
   $handler->display->display_options['fields']['log']['table'] = 'node_revision';
   $handler->display->display_options['fields']['log']['field'] = 'log';
   $handler->display->display_options['fields']['log']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['log']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['log']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['log']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['log']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['log']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['log']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['log']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['log']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['log']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['log']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['log']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['log']['empty_zero'] = 0;
   /* Felt: Workbench Moderation: Moderation History Link */
   $handler->display->display_options['fields']['workbench_moderation_history_link']['id'] = 'workbench_moderation_history_link';
   $handler->display->display_options['fields']['workbench_moderation_history_link']['table'] = 'node';
   $handler->display->display_options['fields']['workbench_moderation_history_link']['field'] = 'workbench_moderation_history_link';
   $handler->display->display_options['fields']['workbench_moderation_history_link']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['workbench_moderation_history_link']['hide_alter_empty'] = FALSE;
   /* Felt: Moderation State */
   $handler->display->display_options['fields']['state']['id'] = 'state';
   $handler->display->display_options['fields']['state']['table'] = 'workbench_moderation_node_history';
   $handler->display->display_options['fields']['state']['field'] = 'state';
   $handler->display->display_options['fields']['state']['ui_name'] = 'Moderation State';
   $handler->display->display_options['fields']['state']['label'] = 'Moderation State';
-  $handler->display->display_options['fields']['state']['alter']['alter_text'] = 1;
+  $handler->display->display_options['fields']['state']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['state']['alter']['text'] = '<div>[state]</div><div>[workbench_moderation_history_link]</div>';
-  $handler->display->display_options['fields']['state']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['state']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['state']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['state']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['state']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['state']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['state']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['state']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['state']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['state']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['state']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['state']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['state']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['state']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['state']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['state']['hide_alter_empty'] = 0;
-  $handler->display->display_options['fields']['state']['link_to_node'] = 0;
+  $handler->display->display_options['fields']['state']['hide_alter_empty'] = FALSE;
   $handler->display->display_options['fields']['state']['machine_name'] = 0;
   /* Felt: Workbench Moderation: Moderation Links */
   $handler->display->display_options['fields']['moderation_actions']['id'] = 'moderation_actions';
   $handler->display->display_options['fields']['moderation_actions']['table'] = 'workbench_moderation_node_history';
   $handler->display->display_options['fields']['moderation_actions']['field'] = 'moderation_actions';
   $handler->display->display_options['fields']['moderation_actions']['label'] = 'Moderér';
-  $handler->display->display_options['fields']['moderation_actions']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['moderation_actions']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['moderation_actions']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['moderation_actions']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['moderation_actions']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['moderation_actions']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['moderation_actions']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['moderation_actions']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['moderation_actions']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['moderation_actions']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['moderation_actions']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['moderation_actions']['empty_zero'] = 0;
   /* Felt: Indhold: Titel */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['title']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['title']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['title']['link_to_node'] = 1;
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   /* Felt: Indhold: Type */
   $handler->display->display_options['fields']['type']['id'] = 'type';
   $handler->display->display_options['fields']['type']['table'] = 'node';
   $handler->display->display_options['fields']['type']['field'] = 'type';
-  $handler->display->display_options['fields']['type']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['word_boundary'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['ellipsis'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['type']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['type']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['type']['link_to_node'] = 0;
-  $handler->display->display_options['fields']['type']['machine_name'] = 0;
+  $handler->display->display_options['fields']['type']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['type']['alter']['ellipsis'] = FALSE;
   /* Felt: Bruger: Navn */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'users';
   $handler->display->display_options['fields']['name']['field'] = 'name';
   $handler->display->display_options['fields']['name']['relationship'] = 'uid';
   $handler->display->display_options['fields']['name']['label'] = 'Redigeret af';
-  $handler->display->display_options['fields']['name']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['name']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['name']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['name']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['name']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['name']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['name']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['name']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['name']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['name']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['name']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['name']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['name']['link_to_user'] = 1;
-  $handler->display->display_options['fields']['name']['overwrite_anonymous'] = 0;
   /* Felt: Indhold: Opdateringsdato */
   $handler->display->display_options['fields']['changed']['id'] = 'changed';
   $handler->display->display_options['fields']['changed']['table'] = 'node';
   $handler->display->display_options['fields']['changed']['field'] = 'changed';
   $handler->display->display_options['fields']['changed']['label'] = 'Senest opdateret';
-  $handler->display->display_options['fields']['changed']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['word_boundary'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['ellipsis'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['changed']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['changed']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['changed']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['changed']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['changed']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['changed']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['changed']['date_format'] = 'time ago';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filterkriterie: Bruger: Aktuelle */
   $handler->display->display_options['filters']['uid_current']['id'] = 'uid_current';
@@ -1214,10 +772,9 @@ function vih_dashboard_views_default_views() {
   $handler->display->display_options['filters']['title']['exposed'] = TRUE;
   $handler->display->display_options['filters']['title']['expose']['operator_id'] = 'title_op';
   $handler->display->display_options['filters']['title']['expose']['label'] = 'Titel';
-  $handler->display->display_options['filters']['title']['expose']['use_operator'] = FALSE;
   $handler->display->display_options['filters']['title']['expose']['operator'] = 'title_op';
   $handler->display->display_options['filters']['title']['expose']['identifier'] = 'title';
-  $handler->display->display_options['filters']['title']['expose']['remember'] = 1;
+  $handler->display->display_options['filters']['title']['expose']['remember'] = TRUE;
   /* Filterkriterie: Indhold: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
@@ -1225,11 +782,9 @@ function vih_dashboard_views_default_views() {
   $handler->display->display_options['filters']['type']['exposed'] = TRUE;
   $handler->display->display_options['filters']['type']['expose']['operator_id'] = 'type_op';
   $handler->display->display_options['filters']['type']['expose']['label'] = 'Type';
-  $handler->display->display_options['filters']['type']['expose']['use_operator'] = FALSE;
   $handler->display->display_options['filters']['type']['expose']['operator'] = 'type_op';
   $handler->display->display_options['filters']['type']['expose']['identifier'] = 'type';
-  $handler->display->display_options['filters']['type']['expose']['remember'] = 1;
-  $handler->display->display_options['filters']['type']['expose']['reduce'] = 0;
+  $handler->display->display_options['filters']['type']['expose']['remember'] = TRUE;
   /* Filterkriterie: Workbench Moderation: Status */
   $handler->display->display_options['filters']['state']['id'] = 'state';
   $handler->display->display_options['filters']['state']['table'] = 'workbench_moderation_node_history';
@@ -1242,8 +797,8 @@ function vih_dashboard_views_default_views() {
   $handler->display->display_options['filters']['state']['expose']['label'] = 'Status';
   $handler->display->display_options['filters']['state']['expose']['operator'] = 'state_op';
   $handler->display->display_options['filters']['state']['expose']['identifier'] = 'state';
-  $handler->display->display_options['filters']['state']['expose']['remember'] = 1;
-  $handler->display->display_options['filters']['state']['expose']['reduce'] = 1;
+  $handler->display->display_options['filters']['state']['expose']['remember'] = TRUE;
+  $handler->display->display_options['filters']['state']['expose']['reduce'] = TRUE;
   $handler->display->display_options['path'] = 'admin/dashboard/default/drafts';
   $handler->display->display_options['menu']['type'] = 'tab';
   $handler->display->display_options['menu']['title'] = 'Ikke udgivet';
@@ -1255,8 +810,13 @@ function vih_dashboard_views_default_views() {
   $handler = $view->new_display('panel_pane', 'Content pane', 'vih_moderation_pane');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Du har indhold, som ikke er udgivet';
+  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['use_more'] = FALSE;
   $handler->display->display_options['use_more'] = TRUE;
+  $handler->display->display_options['defaults']['use_more_always'] = FALSE;
+  $handler->display->display_options['defaults']['use_more_always'] = FALSE;
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['defaults']['use_more_text'] = FALSE;
   $handler->display->display_options['use_more_text'] = 'vis alle';
   $handler->display->display_options['defaults']['access'] = FALSE;
   $handler->display->display_options['access']['type'] = 'role';
@@ -1277,123 +837,42 @@ function vih_dashboard_views_default_views() {
   $handler->display->display_options['fields']['nid_1']['table'] = 'node';
   $handler->display->display_options['fields']['nid_1']['field'] = 'nid';
   $handler->display->display_options['fields']['nid_1']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['nid_1']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['nid_1']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['nid_1']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['nid_1']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['nid_1']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['nid_1']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['nid_1']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['nid_1']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['nid_1']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['nid_1']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['nid_1']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['nid_1']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['nid_1']['link_to_node'] = 1;
+  $handler->display->display_options['fields']['nid_1']['link_to_node'] = TRUE;
   /* Felt: Indholdsversion: Logbesked */
   $handler->display->display_options['fields']['log']['id'] = 'log';
   $handler->display->display_options['fields']['log']['table'] = 'node_revision';
   $handler->display->display_options['fields']['log']['field'] = 'log';
   $handler->display->display_options['fields']['log']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['log']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['log']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['log']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['log']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['log']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['log']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['log']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['log']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['log']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['log']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['log']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['log']['empty_zero'] = 0;
   /* Felt: Workbench Moderation: Moderation History Link */
   $handler->display->display_options['fields']['workbench_moderation_history_link']['id'] = 'workbench_moderation_history_link';
   $handler->display->display_options['fields']['workbench_moderation_history_link']['table'] = 'node';
   $handler->display->display_options['fields']['workbench_moderation_history_link']['field'] = 'workbench_moderation_history_link';
   $handler->display->display_options['fields']['workbench_moderation_history_link']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['workbench_moderation_history_link']['hide_alter_empty'] = FALSE;
   /* Felt: Workbench Moderation: Moderation Links */
   $handler->display->display_options['fields']['moderation_actions']['id'] = 'moderation_actions';
   $handler->display->display_options['fields']['moderation_actions']['table'] = 'workbench_moderation_node_history';
   $handler->display->display_options['fields']['moderation_actions']['field'] = 'moderation_actions';
   $handler->display->display_options['fields']['moderation_actions']['label'] = 'Moderér';
-  $handler->display->display_options['fields']['moderation_actions']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['moderation_actions']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['moderation_actions']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['moderation_actions']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['moderation_actions']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['moderation_actions']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['moderation_actions']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['moderation_actions']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['moderation_actions']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['moderation_actions']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['moderation_actions']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['moderation_actions']['empty_zero'] = 0;
   /* Felt: Indhold: Titel */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['title']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['title']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['title']['link_to_node'] = 1;
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   /* Felt: Indhold: Type */
   $handler->display->display_options['fields']['type']['id'] = 'type';
   $handler->display->display_options['fields']['type']['table'] = 'node';
   $handler->display->display_options['fields']['type']['field'] = 'type';
-  $handler->display->display_options['fields']['type']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['word_boundary'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['ellipsis'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['type']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['type']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['type']['link_to_node'] = 0;
-  $handler->display->display_options['fields']['type']['machine_name'] = 0;
+  $handler->display->display_options['fields']['type']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['type']['alter']['ellipsis'] = FALSE;
   /* Felt: Indhold: Opdateringsdato */
   $handler->display->display_options['fields']['changed']['id'] = 'changed';
   $handler->display->display_options['fields']['changed']['table'] = 'node';
   $handler->display->display_options['fields']['changed']['field'] = 'changed';
   $handler->display->display_options['fields']['changed']['label'] = 'Senest opdateret';
-  $handler->display->display_options['fields']['changed']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['word_boundary'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['ellipsis'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['changed']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['changed']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['changed']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['changed']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['changed']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['changed']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['changed']['date_format'] = 'time ago';
   /* Felt: Global: Tilpasset tekst */
   $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
@@ -1401,24 +880,10 @@ function vih_dashboard_views_default_views() {
   $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['label'] = '';
   $handler->display->display_options['fields']['nothing']['alter']['text'] = 'Rediger';
-  $handler->display->display_options['fields']['nothing']['alter']['make_link'] = 1;
+  $handler->display->display_options['fields']['nothing']['alter']['make_link'] = TRUE;
   $handler->display->display_options['fields']['nothing']['alter']['path'] = 'node/[nid_1]/edit';
-  $handler->display->display_options['fields']['nothing']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['nothing']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['nothing']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['html'] = 0;
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['nothing']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['nothing']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['nothing']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['nothing']['hide_alter_empty'] = 0;
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filterkriterie: Bruger: Aktuelle */
   $handler->display->display_options['filters']['uid_current']['id'] = 'uid_current';
@@ -1438,8 +903,8 @@ function vih_dashboard_views_default_views() {
   $handler->display->display_options['filters']['state']['expose']['label'] = 'Status';
   $handler->display->display_options['filters']['state']['expose']['operator'] = 'state_op';
   $handler->display->display_options['filters']['state']['expose']['identifier'] = 'state';
-  $handler->display->display_options['filters']['state']['expose']['remember'] = 1;
-  $handler->display->display_options['filters']['state']['expose']['reduce'] = 1;
+  $handler->display->display_options['filters']['state']['expose']['remember'] = TRUE;
+  $handler->display->display_options['filters']['state']['expose']['reduce'] = TRUE;
   /* Filterkriterie: Workbench Moderation: Aktuelle */
   $handler->display->display_options['filters']['current']['id'] = 'current';
   $handler->display->display_options['filters']['current']['table'] = 'workbench_moderation_node_history';
@@ -1461,8 +926,13 @@ function vih_dashboard_views_default_views() {
   $handler = $view->new_display('panel_pane', 'Content pane - all unpublished', 'vih_moderation_pane_all');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Der er indhold som ikke er udgivet i systemet';
+  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['use_more'] = FALSE;
   $handler->display->display_options['use_more'] = TRUE;
+  $handler->display->display_options['defaults']['use_more_always'] = FALSE;
+  $handler->display->display_options['defaults']['use_more_always'] = FALSE;
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['defaults']['use_more_text'] = FALSE;
   $handler->display->display_options['use_more_text'] = 'vis alle';
   $handler->display->display_options['defaults']['access'] = FALSE;
   $handler->display->display_options['access']['type'] = 'role';
@@ -1482,123 +952,42 @@ function vih_dashboard_views_default_views() {
   $handler->display->display_options['fields']['nid_1']['table'] = 'node';
   $handler->display->display_options['fields']['nid_1']['field'] = 'nid';
   $handler->display->display_options['fields']['nid_1']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['nid_1']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['nid_1']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['nid_1']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['nid_1']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['nid_1']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['nid_1']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['nid_1']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['nid_1']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['nid_1']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['nid_1']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['nid_1']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['nid_1']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['nid_1']['link_to_node'] = 1;
+  $handler->display->display_options['fields']['nid_1']['link_to_node'] = TRUE;
   /* Felt: Indholdsversion: Logbesked */
   $handler->display->display_options['fields']['log']['id'] = 'log';
   $handler->display->display_options['fields']['log']['table'] = 'node_revision';
   $handler->display->display_options['fields']['log']['field'] = 'log';
   $handler->display->display_options['fields']['log']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['log']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['log']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['log']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['log']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['log']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['log']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['log']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['log']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['log']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['log']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['log']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['log']['empty_zero'] = 0;
   /* Felt: Workbench Moderation: Moderation History Link */
   $handler->display->display_options['fields']['workbench_moderation_history_link']['id'] = 'workbench_moderation_history_link';
   $handler->display->display_options['fields']['workbench_moderation_history_link']['table'] = 'node';
   $handler->display->display_options['fields']['workbench_moderation_history_link']['field'] = 'workbench_moderation_history_link';
   $handler->display->display_options['fields']['workbench_moderation_history_link']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['workbench_moderation_history_link']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['workbench_moderation_history_link']['hide_alter_empty'] = FALSE;
   /* Felt: Workbench Moderation: Moderation Links */
   $handler->display->display_options['fields']['moderation_actions']['id'] = 'moderation_actions';
   $handler->display->display_options['fields']['moderation_actions']['table'] = 'workbench_moderation_node_history';
   $handler->display->display_options['fields']['moderation_actions']['field'] = 'moderation_actions';
   $handler->display->display_options['fields']['moderation_actions']['label'] = 'Moderér';
-  $handler->display->display_options['fields']['moderation_actions']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['moderation_actions']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['moderation_actions']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['moderation_actions']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['moderation_actions']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['moderation_actions']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['moderation_actions']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['moderation_actions']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['moderation_actions']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['moderation_actions']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['moderation_actions']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['moderation_actions']['empty_zero'] = 0;
   /* Felt: Indhold: Titel */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['title']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['title']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['title']['link_to_node'] = 1;
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   /* Felt: Indhold: Type */
   $handler->display->display_options['fields']['type']['id'] = 'type';
   $handler->display->display_options['fields']['type']['table'] = 'node';
   $handler->display->display_options['fields']['type']['field'] = 'type';
-  $handler->display->display_options['fields']['type']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['word_boundary'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['ellipsis'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['type']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['type']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['type']['link_to_node'] = 0;
-  $handler->display->display_options['fields']['type']['machine_name'] = 0;
+  $handler->display->display_options['fields']['type']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['type']['alter']['ellipsis'] = FALSE;
   /* Felt: Indhold: Opdateringsdato */
   $handler->display->display_options['fields']['changed']['id'] = 'changed';
   $handler->display->display_options['fields']['changed']['table'] = 'node';
   $handler->display->display_options['fields']['changed']['field'] = 'changed';
   $handler->display->display_options['fields']['changed']['label'] = 'Senest opdateret';
-  $handler->display->display_options['fields']['changed']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['word_boundary'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['ellipsis'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['changed']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['changed']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['changed']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['changed']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['changed']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['changed']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['changed']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['changed']['date_format'] = 'time ago';
   /* Felt: Global: Tilpasset tekst */
   $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
@@ -1606,24 +995,9 @@ function vih_dashboard_views_default_views() {
   $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['label'] = '';
   $handler->display->display_options['fields']['nothing']['alter']['text'] = 'Rediger';
-  $handler->display->display_options['fields']['nothing']['alter']['make_link'] = 1;
+  $handler->display->display_options['fields']['nothing']['alter']['make_link'] = TRUE;
   $handler->display->display_options['fields']['nothing']['alter']['path'] = 'node/[nid_1]/edit';
-  $handler->display->display_options['fields']['nothing']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['nothing']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['nothing']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['html'] = 0;
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['nothing']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['nothing']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['nothing']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['nothing']['hide_alter_empty'] = 0;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   /* Kontekstuelt filter: Bruger: Uid */
   $handler->display->display_options['arguments']['uid']['id'] = 'uid';
@@ -1631,13 +1005,13 @@ function vih_dashboard_views_default_views() {
   $handler->display->display_options['arguments']['uid']['field'] = 'uid';
   $handler->display->display_options['arguments']['uid']['relationship'] = 'uid';
   $handler->display->display_options['arguments']['uid']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['uid']['exception']['title'] = 'Alle';
   $handler->display->display_options['arguments']['uid']['default_argument_type'] = 'current_user';
-  $handler->display->display_options['arguments']['uid']['default_argument_skip_url'] = 0;
   $handler->display->display_options['arguments']['uid']['summary']['number_of_records'] = '0';
   $handler->display->display_options['arguments']['uid']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['uid']['summary_options']['items_per_page'] = '25';
-  $handler->display->display_options['arguments']['uid']['break_phrase'] = 0;
-  $handler->display->display_options['arguments']['uid']['not'] = 1;
+  $handler->display->display_options['arguments']['uid']['not'] = TRUE;
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filterkriterie: Bruger: Aktuelle */
   $handler->display->display_options['filters']['uid_current']['id'] = 'uid_current';
@@ -1657,8 +1031,8 @@ function vih_dashboard_views_default_views() {
   $handler->display->display_options['filters']['state']['expose']['label'] = 'Status';
   $handler->display->display_options['filters']['state']['expose']['operator'] = 'state_op';
   $handler->display->display_options['filters']['state']['expose']['identifier'] = 'state';
-  $handler->display->display_options['filters']['state']['expose']['remember'] = 1;
-  $handler->display->display_options['filters']['state']['expose']['reduce'] = 1;
+  $handler->display->display_options['filters']['state']['expose']['remember'] = TRUE;
+  $handler->display->display_options['filters']['state']['expose']['reduce'] = TRUE;
   /* Filterkriterie: Workbench Moderation: Aktuelle */
   $handler->display->display_options['filters']['current']['id'] = 'current';
   $handler->display->display_options['filters']['current']['table'] = 'workbench_moderation_node_history';
@@ -1687,6 +1061,10 @@ function vih_dashboard_views_default_views() {
     t('Antal elementer'),
     t('- Alle -'),
     t('Forskydning'),
+    t('« første'),
+    t('‹ forrige'),
+    t('næste ›'),
+    t('sidste »'),
     t('Du har ikke redigeret noget indhold.'),
     t('revision bruger'),
     t('Hent indholdet fra en indholdsversion.'),
@@ -1710,14 +1088,13 @@ function vih_dashboard_views_default_views() {
     t('Content pane'),
     t('Du har indhold, som ikke er udgivet'),
     t('Rediger'),
-    t('node/[nid_1]/edit'),
     t('View panes'),
     t('Content pane - all unpublished'),
     t('Der er indhold som ikke er udgivet i systemet'),
   );
   $export['vih_workbench'] = $view;
 
-  $view = new view;
+  $view = new view();
   $view->name = 'webforms';
   $view->description = '';
   $view->tag = 'default';
@@ -1729,13 +1106,14 @@ function vih_dashboard_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['use_more_text'] = 'mere';
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['access']['perm'] = 'edit own webform content';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
-  $handler->display->display_options['query']['options']['query_comment'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Udfør';
   $handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'Gendan';
   $handler->display->display_options['exposed_form']['options']['exposed_sorts_label'] = 'Sortér efter';
   $handler->display->display_options['exposed_form']['options']['sort_asc_label'] = 'Stigende';
@@ -1745,9 +1123,12 @@ function vih_dashboard_views_default_views() {
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['pager']['options']['expose']['items_per_page_label'] = 'Elementer pr. side';
-  $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all'] = 0;
   $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all_label'] = '- Alle -';
   $handler->display->display_options['pager']['options']['expose']['offset_label'] = 'Forskydning';
+  $handler->display->display_options['pager']['options']['tags']['first'] = '« første';
+  $handler->display->display_options['pager']['options']['tags']['previous'] = '‹ forrige';
+  $handler->display->display_options['pager']['options']['tags']['next'] = 'næste ›';
+  $handler->display->display_options['pager']['options']['tags']['last'] = 'sidste »';
   $handler->display->display_options['style_plugin'] = 'table';
   $handler->display->display_options['style_options']['columns'] = array(
     'title' => 'title',
@@ -1762,218 +1143,65 @@ function vih_dashboard_views_default_views() {
       'empty_column' => 0,
     ),
   );
-  $handler->display->display_options['style_options']['override'] = 1;
-  $handler->display->display_options['style_options']['sticky'] = 0;
-  $handler->display->display_options['style_options']['empty_table'] = 0;
   /* Felt: Indhold: Nid */
   $handler->display->display_options['fields']['nid']['id'] = 'nid';
   $handler->display->display_options['fields']['nid']['table'] = 'node';
   $handler->display->display_options['fields']['nid']['field'] = 'nid';
   $handler->display->display_options['fields']['nid']['label'] = '';
   $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['nid']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['nid']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['nid']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['nid']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['nid']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['nid']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['nid']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['nid']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['nid']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['nid']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['nid']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['nid']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['nid']['alter']['html'] = 0;
   $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['nid']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['nid']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['nid']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['nid']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['nid']['link_to_node'] = 0;
   /* Felt: Indhold: Titel */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['label'] = 'Navn';
-  $handler->display->display_options['fields']['title']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['title']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['title']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['title']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['title']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['title']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['title']['link_to_node'] = 1;
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   /* Felt: Webformular: Antal webform indsendelser */
   $handler->display->display_options['fields']['webform_submission_count_node']['id'] = 'webform_submission_count_node';
   $handler->display->display_options['fields']['webform_submission_count_node']['table'] = 'node';
   $handler->display->display_options['fields']['webform_submission_count_node']['field'] = 'webform_submission_count_node';
   $handler->display->display_options['fields']['webform_submission_count_node']['label'] = 'Antal';
-  $handler->display->display_options['fields']['webform_submission_count_node']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['webform_submission_count_node']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['webform_submission_count_node']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['webform_submission_count_node']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['webform_submission_count_node']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['webform_submission_count_node']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['webform_submission_count_node']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['webform_submission_count_node']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['webform_submission_count_node']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['webform_submission_count_node']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['webform_submission_count_node']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['webform_submission_count_node']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['webform_submission_count_node']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['webform_submission_count_node']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['webform_submission_count_node']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['webform_submission_count_node']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['webform_submission_count_node']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['webform_submission_count_node']['hide_alter_empty'] = 1;
   /* Felt: Indhold: Kategori */
   $handler->display->display_options['fields']['field_webform_category']['id'] = 'field_webform_category';
   $handler->display->display_options['fields']['field_webform_category']['table'] = 'field_data_field_webform_category';
   $handler->display->display_options['fields']['field_webform_category']['field'] = 'field_webform_category';
-  $handler->display->display_options['fields']['field_webform_category']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_webform_category']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['field_webform_category']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['field_webform_category']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['field_webform_category']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_webform_category']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['field_webform_category']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['field_webform_category']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['field_webform_category']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['field_webform_category']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['field_webform_category']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['field_webform_category']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['field_webform_category']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_webform_category']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['field_webform_category']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_webform_category']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['field_webform_category']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_webform_category']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['field_webform_category']['field_api_classes'] = 0;
   /* Felt: Global: Tilpasset tekst */
   $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
   $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['label'] = '';
   $handler->display->display_options['fields']['nothing']['alter']['text'] = 'E-mails';
-  $handler->display->display_options['fields']['nothing']['alter']['make_link'] = 1;
+  $handler->display->display_options['fields']['nothing']['alter']['make_link'] = TRUE;
   $handler->display->display_options['fields']['nothing']['alter']['path'] = 'node/[nid]/webform/emails';
-  $handler->display->display_options['fields']['nothing']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['nothing']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['nothing']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['nothing']['alter']['html'] = 0;
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['nothing']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['nothing']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['nothing']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['nothing']['hide_alter_empty'] = 0;
   /* Felt: Global: Tilpasset tekst */
   $handler->display->display_options['fields']['nothing_1']['id'] = 'nothing_1';
   $handler->display->display_options['fields']['nothing_1']['table'] = 'views';
   $handler->display->display_options['fields']['nothing_1']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing_1']['label'] = '';
   $handler->display->display_options['fields']['nothing_1']['alter']['text'] = 'Tabel';
-  $handler->display->display_options['fields']['nothing_1']['alter']['make_link'] = 1;
+  $handler->display->display_options['fields']['nothing_1']['alter']['make_link'] = TRUE;
   $handler->display->display_options['fields']['nothing_1']['alter']['path'] = 'node/[nid]/webform-results/table';
-  $handler->display->display_options['fields']['nothing_1']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['nothing_1']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['nothing_1']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['nothing_1']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['nothing_1']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['nothing_1']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['nothing_1']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['nothing_1']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['nothing_1']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['nothing_1']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['nothing_1']['alter']['html'] = 0;
   $handler->display->display_options['fields']['nothing_1']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['nothing_1']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['nothing_1']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['nothing_1']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['nothing_1']['hide_alter_empty'] = 0;
   /* Felt: Webformular: Link til redigering af webform */
   $handler->display->display_options['fields']['webform_edit']['id'] = 'webform_edit';
   $handler->display->display_options['fields']['webform_edit']['table'] = 'node';
   $handler->display->display_options['fields']['webform_edit']['field'] = 'webform_edit';
   $handler->display->display_options['fields']['webform_edit']['label'] = '';
-  $handler->display->display_options['fields']['webform_edit']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['webform_edit']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['webform_edit']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['webform_edit']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['webform_edit']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['webform_edit']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['webform_edit']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['webform_edit']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['webform_edit']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['webform_edit']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['webform_edit']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['webform_edit']['alter']['html'] = 0;
   $handler->display->display_options['fields']['webform_edit']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['webform_edit']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['webform_edit']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['webform_edit']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['webform_edit']['hide_alter_empty'] = 1;
   /* Felt: Indhold: Redigér-link */
   $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
   $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['label'] = '';
-  $handler->display->display_options['fields']['edit_node']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['edit_node']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['edit_node']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['edit_node']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['edit_node']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['edit_node']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['edit_node']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['edit_node']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['edit_node']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['edit_node']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['edit_node']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['edit_node']['alter']['html'] = 0;
   $handler->display->display_options['fields']['edit_node']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['edit_node']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['edit_node']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['edit_node']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['edit_node']['hide_alter_empty'] = 1;
   /* Felt: Indhold: Slet-link */
   $handler->display->display_options['fields']['delete_node']['id'] = 'delete_node';
   $handler->display->display_options['fields']['delete_node']['table'] = 'views_entity_node';
   $handler->display->display_options['fields']['delete_node']['field'] = 'delete_node';
   $handler->display->display_options['fields']['delete_node']['label'] = '';
-  $handler->display->display_options['fields']['delete_node']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['delete_node']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['delete_node']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['delete_node']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['delete_node']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['delete_node']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['delete_node']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['delete_node']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['delete_node']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['delete_node']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['delete_node']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['delete_node']['alter']['html'] = 0;
   $handler->display->display_options['fields']['delete_node']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['delete_node']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['delete_node']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['delete_node']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['delete_node']['hide_alter_empty'] = 1;
   /* Filterkriterie: Indhold: Udgivet */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -1997,17 +1225,17 @@ function vih_dashboard_views_default_views() {
   $handler->display->display_options['filters']['field_webform_category_tid']['expose']['label'] = 'Kategori (field_webform_category)';
   $handler->display->display_options['filters']['field_webform_category_tid']['expose']['operator'] = 'field_webform_category_tid_op';
   $handler->display->display_options['filters']['field_webform_category_tid']['expose']['identifier'] = 'field_webform_category_tid';
-  $handler->display->display_options['filters']['field_webform_category_tid']['expose']['remember'] = 1;
-  $handler->display->display_options['filters']['field_webform_category_tid']['expose']['reduce'] = 0;
-  $handler->display->display_options['filters']['field_webform_category_tid']['reduce_duplicates'] = 1;
+  $handler->display->display_options['filters']['field_webform_category_tid']['expose']['remember'] = TRUE;
+  $handler->display->display_options['filters']['field_webform_category_tid']['reduce_duplicates'] = TRUE;
   $handler->display->display_options['filters']['field_webform_category_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_webform_category_tid']['vocabulary'] = 'webform_category';
-  $handler->display->display_options['filters']['field_webform_category_tid']['error_message'] = 1;
 
   /* Display: Side */
   $handler = $view->new_display('page', 'Side', 'page_1');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Webformularer';
+  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filterkriterie: Indhold: Udgivet */
   $handler->display->display_options['filters']['status']['id'] = 'status';
@@ -2032,12 +1260,10 @@ function vih_dashboard_views_default_views() {
   $handler->display->display_options['filters']['field_webform_category_tid']['expose']['label'] = 'Kategori';
   $handler->display->display_options['filters']['field_webform_category_tid']['expose']['operator'] = 'field_webform_category_tid_op';
   $handler->display->display_options['filters']['field_webform_category_tid']['expose']['identifier'] = 'field_webform_category_tid';
-  $handler->display->display_options['filters']['field_webform_category_tid']['expose']['remember'] = 1;
-  $handler->display->display_options['filters']['field_webform_category_tid']['expose']['reduce'] = 0;
-  $handler->display->display_options['filters']['field_webform_category_tid']['reduce_duplicates'] = 1;
+  $handler->display->display_options['filters']['field_webform_category_tid']['expose']['remember'] = TRUE;
+  $handler->display->display_options['filters']['field_webform_category_tid']['reduce_duplicates'] = TRUE;
   $handler->display->display_options['filters']['field_webform_category_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_webform_category_tid']['vocabulary'] = 'webform_category';
-  $handler->display->display_options['filters']['field_webform_category_tid']['error_message'] = 1;
   $handler->display->display_options['path'] = 'admin/dashboard/webforms';
   $handler->display->display_options['menu']['type'] = 'tab';
   $handler->display->display_options['menu']['title'] = 'Webformularer';
@@ -2055,13 +1281,15 @@ function vih_dashboard_views_default_views() {
     t('Elementer pr. side'),
     t('- Alle -'),
     t('Forskydning'),
+    t('« første'),
+    t('‹ forrige'),
+    t('næste ›'),
+    t('sidste »'),
     t('Navn'),
     t('Antal'),
     t('Kategori'),
     t('E-mails'),
-    t('node/[nid]/webform/emails'),
     t('Tabel'),
-    t('node/[nid]/webform-results/table'),
     t('Kategori (field_webform_category)'),
     t('Side'),
     t('Webformularer'),

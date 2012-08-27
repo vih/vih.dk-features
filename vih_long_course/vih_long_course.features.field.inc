@@ -10,7 +10,7 @@
 function vih_long_course_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-vih_long_course-body'
+  // Exported field: 'node-vih_long_course-body'.
   $fields['node-vih_long_course-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -33,6 +33,7 @@ function vih_long_course_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(),
       'translatable' => '1',
@@ -88,7 +89,7 @@ function vih_long_course_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-vih_long_course-field_course_leader'
+  // Exported field: 'node-vih_long_course-field_course_leader'.
   $fields['node-vih_long_course-field_course_leader'] = array(
     'field_config' => array(
       'active' => '1',
@@ -102,6 +103,7 @@ function vih_long_course_field_default_fields() {
           0 => 'target_id',
         ),
       ),
+      'locked' => '0',
       'module' => 'entityreference',
       'settings' => array(
         'handler' => 'base',
@@ -180,7 +182,7 @@ function vih_long_course_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-vih_long_course-field_course_time'
+  // Exported field: 'node-vih_long_course-field_course_time'.
   $fields['node-vih_long_course-field_course_time'] = array(
     'field_config' => array(
       'active' => '1',
@@ -190,6 +192,7 @@ function vih_long_course_field_default_fields() {
       'field_name' => 'field_course_time',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'date',
       'settings' => array(
         'granularity' => array(
@@ -276,7 +279,7 @@ function vih_long_course_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-vih_long_course-field_material_payment'
+  // Exported field: 'node-vih_long_course-field_material_payment'.
   $fields['node-vih_long_course-field_material_payment'] = array(
     'field_config' => array(
       'active' => '1',
@@ -286,6 +289,7 @@ function vih_long_course_field_default_fields() {
       'field_name' => 'field_material_payment',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'number',
       'settings' => array(),
       'translatable' => '0',
@@ -347,7 +351,7 @@ function vih_long_course_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-vih_long_course-field_picture'
+  // Exported field: 'node-vih_long_course-field_picture'.
   $fields['node-vih_long_course-field_picture'] = array(
     'field_config' => array(
       'active' => '1',
@@ -361,6 +365,7 @@ function vih_long_course_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => '178',
@@ -433,7 +438,7 @@ function vih_long_course_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-vih_long_course-field_registration_payment'
+  // Exported field: 'node-vih_long_course-field_registration_payment'.
   $fields['node-vih_long_course-field_registration_payment'] = array(
     'field_config' => array(
       'active' => '1',
@@ -443,6 +448,7 @@ function vih_long_course_field_default_fields() {
       'field_name' => 'field_registration_payment',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'number',
       'settings' => array(),
       'translatable' => '0',
@@ -504,7 +510,7 @@ function vih_long_course_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-vih_long_course-field_travel_payment'
+  // Exported field: 'node-vih_long_course-field_travel_payment'.
   $fields['node-vih_long_course-field_travel_payment'] = array(
     'field_config' => array(
       'active' => '1',
@@ -514,6 +520,7 @@ function vih_long_course_field_default_fields() {
       'field_name' => 'field_travel_payment',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'number',
       'settings' => array(),
       'translatable' => '0',
@@ -575,7 +582,7 @@ function vih_long_course_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-vih_long_course-field_webform'
+  // Exported field: 'node-vih_long_course-field_webform'.
   $fields['node-vih_long_course-field_webform'] = array(
     'field_config' => array(
       'active' => '1',
@@ -589,6 +596,7 @@ function vih_long_course_field_default_fields() {
           0 => 'target_id',
         ),
       ),
+      'locked' => '0',
       'module' => 'entityreference',
       'settings' => array(
         'handler' => 'base',
@@ -650,7 +658,7 @@ function vih_long_course_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-vih_long_course-field_weekly_payment'
+  // Exported field: 'node-vih_long_course-field_weekly_payment'.
   $fields['node-vih_long_course-field_weekly_payment'] = array(
     'field_config' => array(
       'active' => '1',
@@ -660,6 +668,7 @@ function vih_long_course_field_default_fields() {
       'field_name' => 'field_weekly_payment',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'number',
       'settings' => array(),
       'translatable' => '0',

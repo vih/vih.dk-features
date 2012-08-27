@@ -10,7 +10,7 @@
 function vih_employees_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-employee-body'
+  // Exported field: 'node-employee-body'.
   $fields['node-employee-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -33,6 +33,7 @@ function vih_employees_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(),
       'translatable' => '1',
@@ -107,7 +108,7 @@ function vih_employees_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-employee-field_employee_type'
+  // Exported field: 'node-employee-field_employee_type'.
   $fields['node-employee-field_employee_type'] = array(
     'field_config' => array(
       'active' => '1',
@@ -128,6 +129,7 @@ function vih_employees_field_default_fields() {
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
@@ -176,7 +178,7 @@ function vih_employees_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-employee-field_info'
+  // Exported field: 'node-employee-field_info'.
   $fields['node-employee-field_info'] = array(
     'field_config' => array(
       'active' => '1',
@@ -197,6 +199,7 @@ function vih_employees_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(),
       'translatable' => '1',
@@ -266,7 +269,7 @@ function vih_employees_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-employee-field_profile_picture'
+  // Exported field: 'node-employee-field_profile_picture'.
   $fields['node-employee-field_profile_picture'] = array(
     'field_config' => array(
       'active' => '1',
@@ -287,6 +290,7 @@ function vih_employees_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => '633',
@@ -365,7 +369,7 @@ function vih_employees_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-employee-field_vih_email'
+  // Exported field: 'node-employee-field_vih_email'.
   $fields['node-employee-field_vih_email'] = array(
     'field_config' => array(
       'active' => '1',
@@ -375,6 +379,7 @@ function vih_employees_field_default_fields() {
       'field_name' => 'field_vih_email',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'email',
       'settings' => array(),
       'translatable' => '0',
@@ -419,7 +424,7 @@ function vih_employees_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-employee_context-body'
+  // Exported field: 'node-employee_context-body'.
   $fields['node-employee_context-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -442,6 +447,7 @@ function vih_employees_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(),
       'translatable' => '1',
@@ -492,7 +498,7 @@ function vih_employees_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-employee_context-field_employee_reference'
+  // Exported field: 'node-employee_context-field_employee_reference'.
   $fields['node-employee_context-field_employee_reference'] = array(
     'field_config' => array(
       'active' => '1',
@@ -506,6 +512,7 @@ function vih_employees_field_default_fields() {
           0 => 'target_id',
         ),
       ),
+      'locked' => '0',
       'module' => 'entityreference',
       'settings' => array(
         'handler' => 'base',
@@ -581,7 +588,7 @@ function vih_employees_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-employee_context-field_profile_picture'
+  // Exported field: 'node-employee_context-field_profile_picture'.
   $fields['node-employee_context-field_profile_picture'] = array(
     'field_config' => array(
       'active' => '1',
@@ -602,6 +609,7 @@ function vih_employees_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => '633',

@@ -41,6 +41,7 @@ features[user_permission][] = delete any vih_long_course content
 features[user_permission][] = delete own vih_long_course content
 features[user_permission][] = edit any vih_long_course content
 features[user_permission][] = edit own vih_long_course content
+features[variable][] = field_bundle_settings_node__vih_long_course
 features[variable][] = language_content_type_vih_long_course
 features[variable][] = menu_options_vih_long_course
 features[variable][] = menu_parent_vih_long_course

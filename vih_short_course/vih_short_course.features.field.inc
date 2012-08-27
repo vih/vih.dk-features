@@ -416,7 +416,7 @@ function vih_short_course_field_default_fields() {
       ),
       'widget' => array(
         'active' => 1,
-        'module' => 'field_extrawidgets',
+        'module' => NULL,
         'settings' => array(
           'display_empty' => 0,
           'formatter' => 'fixed_field_formatter',
