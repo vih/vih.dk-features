@@ -1,8 +1,12 @@
 <?php
 /**
  * @file
+ * Code for an integration with safeticket
  */
 
+/**
+ * Gets sales from safeticket
+ */
 function vih_safeticket_sales() {
   if ($cache = cache_get('vih_safeticket')) {
     $response = $cache->data;
@@ -15,8 +19,8 @@ function vih_safeticket_sales() {
     $user = 'tester';
     $secret = '45fc4d030cfe51f9d245111b74b634fd6e043596323c00ec1a7dad72a2015dd6';
 
-    $sha = hash('sha256', $version . ":" . $user . ":" . $cash . ":" . $t1.":" . $t2 . ":" . $secret);
-  
+    $sha = hash('sha256', $version . ":" . $user . ":" . $cash . ":" . $t1 . ":" . $t2 . ":" . $secret);
+
     $params = array(
       'version' => $version,
       'user' => $user,
@@ -25,17 +29,17 @@ function vih_safeticket_sales() {
       't2' => $t2,
       'sha' => $sha
     );
-  
+
     $url = 'https://tilmelding.vih.dk/api/stats';
   
     $response = drupal_http_request($url, array(
       'method' => 'POST',
-      'data' => http_build_query($params), // see comments below - you may need to change this
-      'headers' => array('Content-Type' => 'application/x-www-form-urlencoded')
+      'data' => http_build_query($params), // See comments below - you may need to change this
+      'headers' => array('Content-Type' => 'application/x-www-form-urlencoded'),
     ));
     $tickets = new SimpleXMLElement($response->data);
     $amount = 0;
-    
+
     foreach ($tickets->event as $event) {
       foreach ($event->tickets->ticket as $ticket) {
         $amount += $ticket->prices->price->amount * $ticket->prices->price->count;
@@ -69,7 +73,7 @@ function vih_safeticket_sales() {
 }
 
 /**
- * Implementation of hook_block_info().
+ * Implements hook_block_info().
  */
 function vih_safeticket_block_info() {
   $blocks['vih_safeticket'] = array(
@@ -77,7 +81,7 @@ function vih_safeticket_block_info() {
   );
   return $blocks;
 }
- 
+
 /**
  * Implementation of hook_block_view().
  */
