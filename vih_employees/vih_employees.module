@@ -1,3 +1,7 @@
 <?php
-
+/**
+ * @file
+ * Source code for the employees feature
+ */
+ 
 include_once('vih_employees.features.inc');
