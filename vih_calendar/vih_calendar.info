@@ -25,3 +25,10 @@ features[variable][] = node_options_vih_calendar
 features[variable][] = node_preview_vih_calendar
 features[variable][] = node_submitted_vih_calendar
 features[views_view][] = vih_calendar
+
+
+; Information added by drush on 2012-08-29
+version = "unknown"
+project = "vih"
+datestamp = "1346221374"
+

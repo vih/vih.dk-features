@@ -30,3 +30,10 @@ features[variable][] = node_options_citater
 features[variable][] = node_preview_citater
 features[variable][] = node_submitted_citater
 features[views_view][] = participant_quotes
+
+
+; Information added by drush on 2012-08-29
+version = "unknown"
+project = "vih"
+datestamp = "1346221374"
+

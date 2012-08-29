@@ -4,3 +4,10 @@ name = "VIH Custom"
 package = "VIH"
 project = "vih_general"
 version = "7.x-0.3"
+
+
+; Information added by drush on 2012-08-29
+version = "unknown"
+project = "vih"
+datestamp = "1346221374"
+
