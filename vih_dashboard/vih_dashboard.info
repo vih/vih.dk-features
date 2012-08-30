@@ -7,6 +7,7 @@ version = 7.x-0.5
 project = vih_dashboard
 dependencies[] = ctools
 dependencies[] = page_manager
+dependencies[] = panels
 dependencies[] = rules_scheduler
 dependencies[] = views
 dependencies[] = vih_calendar
