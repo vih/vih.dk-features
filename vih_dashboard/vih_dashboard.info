@@ -41,9 +41,3 @@ features[views_view][] = d_de_sider
 features[views_view][] = vih_workbench
 features[views_view][] = webforms
 
-
-; Information added by drush on 2012-08-29
-version = "unknown"
-project = "vih"
-datestamp = "1346221374"
-
