@@ -16,6 +16,7 @@ dependencies[] = number
 dependencies[] = options
 dependencies[] = page_manager
 dependencies[] = strongarm
+dependencies[] = webform
 dependencies[] = views
 datestamp = 1331278554
 features[ctools][] = field_group:field_group:1
@@ -49,3 +50,4 @@ features[variable][] = node_options_vih_long_course
 features[variable][] = node_preview_vih_long_course
 features[variable][] = node_submitted_vih_long_course
 features[views_view][] = lange_kurser
+

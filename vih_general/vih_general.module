@@ -1,10 +1,11 @@
 <?php
 /**
  * @file
+ * Some general methods used for VIH
  */
 
 /**
- * Rewrites author and date information
+ * Rewrites author and date information.
  *
  * Implements hook_preprocess_node().
  */

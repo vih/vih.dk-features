@@ -28,3 +28,10 @@ features[variable][] = node_options_middleman_redirect
 features[variable][] = node_preview_middleman_redirect
 features[variable][] = node_submitted_middleman_redirect
 features[views_view][] = middleman_redirect
+
+
+; Information added by drush on 2012-08-29
+version = "unknown"
+project = "vih"
+datestamp = "1346221374"
+

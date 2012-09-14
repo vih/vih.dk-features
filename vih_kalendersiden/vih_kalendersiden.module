@@ -1,10 +1,11 @@
 <?php
 /**
  * @file
+ * Integration code for kalendersiden.dk.
  */
 
 /**
- * Adds menu for kalendersiden
+ * Adds menu for kalendersiden.
  *
  * Implements hook_menu().
  */
@@ -32,14 +33,14 @@ function vih_kalendersiden_menu() {
 }
 
 /**
- * Method to call kalendersiden options
+ * Method to call kalendersiden options.
  */
 function vih_kalendersiden_view_pdf_form() {
   return drupal_get_form('vih_kalendersiden_form');
 }
 
 /**
- * Form for kalendersiden
+ * Form for kalendersiden.
  */
 function vih_kalendersiden_form($form_state) {
   drupal_set_title('Create calendar PDF');
@@ -102,7 +103,7 @@ function vih_kalendersiden_form($form_state) {
     '#required' => TRUE,
     '#options' => array(
       'landscape' => t('Landscape'),
-      'portrait' => t('Portrait')
+      'portrait' => t('Portrait'),
     ),
     '#default_value' => 'landscape',
   );
@@ -116,6 +117,8 @@ function vih_kalendersiden_form($form_state) {
 }
 
 /**
+ * Validates input from form.
+ *
  * @todo write validation functions
  *
  * Implements hook_form_validate().
@@ -148,7 +151,7 @@ function vih_kalendersiden_form_submit($form, &$form_state) {
  * Posts data from a view to kalendersiden.dk and gets the pdf created
  */
 function vih_kalendersiden_pdf_generate($month = 3, $year = 2012, $months = 4, $pages = 1, $format = 'landscape') {
-  // @todo FIX undefind $display_id
+  // @todo FIX undefind $display_id.
   $result = views_get_view_result('vih_calendar', $display_id);
 
   $events = array();
@@ -171,7 +174,7 @@ function vih_kalendersiden_pdf_generate($month = 3, $year = 2012, $months = 4, $
     'pages' => $pages,
     'format' => $format,
     'head' => 'Vejle Idrætshøjskole',
-    'userdata' => $event_data
+    'userdata' => $event_data,
   );
 
 
@@ -191,7 +194,7 @@ function vih_kalendersiden_pdf_generate($month = 3, $year = 2012, $months = 4, $
     'method' => 'POST',
     'data' => $post,
     'timeout' => 15,
-    'headers' => array('Content-Type' => 'application/x-www-form-urlencoded')
+    'headers' => array('Content-Type' => 'application/x-www-form-urlencoded'),
   );
 
   $url = 'http://kalendersiden.dk/generate.php';
