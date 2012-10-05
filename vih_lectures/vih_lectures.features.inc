@@ -5,6 +5,22 @@
  */
 
 /**
+ * Implements hook_commerce_product_default_types().
+ */
+function vih_lectures_commerce_product_default_types() {
+  $items = array(
+    'vih_lecture' => array(
+      'type' => 'vih_lecture',
+      'name' => 'Foredrag',
+      'description' => '',
+      'help' => '',
+      'revision' => '1',
+    ),
+  );
+  return $items;
+}
+
+/**
  * Implements hook_ctools_plugin_api().
  */
 function vih_lectures_ctools_plugin_api() {

@@ -10,6 +10,117 @@
 function vih_lectures_field_default_fields() {
   $fields = array();
 
+  // Exported field: 'commerce_product-vih_lecture-commerce_price'.
+  $fields['commerce_product-vih_lecture-commerce_price'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(
+        0 => 'commerce_product',
+      ),
+      'field_name' => 'commerce_price',
+      'foreign keys' => array(),
+      'indexes' => array(
+        'currency_price' => array(
+          0 => 'amount',
+          1 => 'currency_code',
+        ),
+      ),
+      'locked' => '1',
+      'module' => 'commerce_price',
+      'settings' => array(),
+      'translatable' => '0',
+      'type' => 'commerce_price',
+    ),
+    'field_instance' => array(
+      'bundle' => 'vih_lecture',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'commerce_line_item_display' => array(
+          'label' => 'hidden',
+          'module' => 'commerce_price',
+          'settings' => array(
+            'calculation' => 'calculated_sell_price',
+          ),
+          'type' => 'commerce_price_formatted_amount',
+          'weight' => 0,
+        ),
+        'default' => array(
+          'label' => 'inline',
+          'module' => 'commerce_price',
+          'settings' => array(
+            'calculation' => 'calculated_sell_price',
+          ),
+          'type' => 'commerce_price_formatted_amount',
+          'weight' => '2',
+        ),
+        'full' => array(
+          'label' => 'hidden',
+          'module' => 'commerce_price',
+          'settings' => array(
+            'calculation' => 'calculated_sell_price',
+          ),
+          'type' => 'commerce_price_formatted_amount',
+          'weight' => 0,
+        ),
+        'ical' => array(
+          'label' => 'hidden',
+          'module' => 'commerce_price',
+          'settings' => array(
+            'calculation' => 'calculated_sell_price',
+          ),
+          'type' => 'commerce_price_formatted_amount',
+          'weight' => 0,
+        ),
+        'line_item' => array(
+          'label' => 'hidden',
+          'module' => 'commerce_price',
+          'settings' => array(
+            'calculation' => 'calculated_sell_price',
+          ),
+          'type' => 'commerce_price_formatted_amount',
+          'weight' => '2',
+        ),
+        'node_teaser' => array(
+          'label' => 'hidden',
+          'module' => 'commerce_price',
+          'settings' => array(
+            'calculation' => 'calculated_sell_price',
+          ),
+          'type' => 'commerce_price_formatted_amount',
+          'weight' => 0,
+        ),
+        'token' => array(
+          'label' => 'hidden',
+          'module' => 'commerce_price',
+          'settings' => array(
+            'calculation' => 'calculated_sell_price',
+          ),
+          'type' => 'commerce_price_formatted_amount',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'commerce_product',
+      'field_name' => 'commerce_price',
+      'label' => 'Pris',
+      'required' => TRUE,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'module' => 'commerce_price',
+        'settings' => array(
+          'currency_code' => 'default',
+        ),
+        'type' => 'commerce_price_full',
+        'weight' => '2',
+      ),
+    ),
+  );
+
   // Exported field: 'node-vih_lecture-body'.
   $fields['node-vih_lecture-body'] = array(
     'field_config' => array(
