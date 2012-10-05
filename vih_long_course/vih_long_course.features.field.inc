@@ -621,6 +621,7 @@ function vih_long_course_field_default_fields() {
           'label' => 'hidden',
           'module' => 'entityreference',
           'settings' => array(
+            'links' => TRUE,
             'view_mode' => 'full',
           ),
           'type' => 'entityreference_entity_view',
